@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <odoo>
-  <data>
     <!-- explicit list view definition -->
 <!--
     <record model="ir.ui.view" id="resource_management.list">
@@ -56,5 +57,4 @@
     <menuitem name="Server to list" id="resource_management" parent="resource_management.menu_2"
               action="resource_management.action_server"/>
 -->
-  </data>
 </odoo>

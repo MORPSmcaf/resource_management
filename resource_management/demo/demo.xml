@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <odoo>
-    <data>
 <!--
           <record id="object0" model="resource_management.resource_management">
             <field name="name">Object 0</field>
@@ -26,5 +27,4 @@
             <field name="value">40</field>
           </record>
 -->
-    </data>
 </odoo>
