@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+
+        <menuitem id="menu_root" name="Resource Reservation"/>
+
+        <menuitem id="menu_resource_reservation" name="Resource Reservation" parent="menu_root"
+                  action="action_resource_reservation"/>
+        <!-- Add resorce detail menu-->
+        <menuitem id="menu_resource_detail" name="Resource Detail" parent="menu_root"
+                  action="action_resource_detail"/>
+
+        <menuitem id="menu_resource_configurations" name="Configurations" parent="menu_root"/>
+        <menuitem id="menu_resource_tag" name="Resource Tags" parent="menu_resource_configurations"
+                  action="action_resource_reservation_tag"/>
+         <!-- Add resorce detail menu for create-->
+        <menuitem id="menu_resource_detail_btn" name="Resource Create" parent="menu_resource_configurations"
+                  action="action_resource_detail_btn"/>
+    </data>
+</odoo>

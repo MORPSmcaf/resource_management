@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_resource_reservation,access_resource_reservation,model_resource_reservation,base.group_user,1,1,1,1
 access_resource_detail,access_resource_detail,model_resource_detail,base.group_user,1,1,1,1
+access_resource_reservation_tag,access_resource_reservation_tag,model_resource_reservation_tag,base.group_user,1,1,1,1
