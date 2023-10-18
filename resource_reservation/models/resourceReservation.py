@@ -1,13 +1,13 @@
 from odoo import models, fields
 
 
-# Our base model is called resource.management
-class ResourceManagement(models.Model):
-    _name = 'resource.management'
-    _description = 'Resource Management'
+# Our base model is called resource.reservation
+class ResourceReservation(models.Model):
+    _name = 'resource.reservation'
+    _description = 'Resource Reservation'
 
     title = fields.Char(string='Title', required=True)
-    name = fields.Char(string='Resource Name', required=True)
+    name = fields.Char(string='Resource', required=True)
     start_datetime = fields.Date(string='Start Date & Time', default=lambda self: fields.Datetime.now(),
                                  help="This field will store the current date and time when a record is created.")
     end_datetime = fields.Datetime(string='End Date & Time',
@@ -23,6 +23,11 @@ class ResourceManagement(models.Model):
         string='Booking Status',
         default='pending',
         help="This field represents the status of the booking.")
+    res_des = fields.Text(string="Reservation Description", required=True)
+    res_tag = fields.Char(string="Reservation Tag", required=True)
+
+
+
 
 
 
