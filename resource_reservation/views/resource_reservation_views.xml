@@ -68,7 +68,6 @@
                     <field name="name" width="4"/>
                     <field name="start_datetime" width="4"/>
                     <field name="end_datetime" width="4"/>
-                    <field name="creator" width="4"/>
                     <field name="booking_status" width="4"/>
                 </tree>
             </field>
