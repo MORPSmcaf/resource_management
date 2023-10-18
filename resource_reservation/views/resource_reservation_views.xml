@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <!-- Define the view for the Resource Reservation model -->
+        <record id="view_resource_reservation_form" model="ir.ui.view">
+            <field name="name">resource.reservation.form</field>
+            <field name="model">resource.reservation</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <!-- Title Field  and start datetime-->
+                        <group>
+                            <group>
+                                <field name="title" class="oe_inline"/>
+                            </group>
+                            <group>
+                                <field name="start_datetime" class="oe_inline"/>
+
+                            </group>
+                        </group>
+
+                        <!-- Resource Name Field  and end datetime-->
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="end_datetime"/>
+
+                            </group>
+                        </group>
+
+                        <!-- Res tag -->
+
+                        <group>
+
+                            <field name="res_tag"/>
+
+
+                        </group>
+
+
+                        <!-- res des and created By -->
+
+                        <group>
+                            <group>
+                                <field name="res_des"/>
+                            </group>
+                            <group>
+                                <field name="creator"/>
+                                <!--                            <field name="booking_status"/>-->
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- Define the tree view for the Resource Reservation model -->
+        <record id="view_resource_reservation_tree" model="ir.ui.view">
+            <field name="name">resource.reservation.tree</field>
+            <field name="model">resource.reservation</field>
+            <field name="arch" type="xml">
+                <tree string="Resource Reservation">
+                    <field name="title" width="4"/>
+                    <field name="name" width="4"/>
+                    <field name="start_datetime" width="4"/>
+                    <field name="end_datetime" width="4"/>
+                    <field name="booking_status" width="4"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- Define an action to open the tree view and form view-->
+        <record id="action_resource_reservation" model="ir.actions.act_window">
+            <field name="name">Resource Reservation</field>
+            <field name="res_model">resource.reservation</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="menu_root" name="Resource Reservation"/>
+
+        <menuitem id="menu_resource_reservation" name="Resource Reservation" parent="menu_root"
+                  action="action_resource_reservation"/>
+
+
+    </data>
+</odoo>
+
+
