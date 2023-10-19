@@ -75,11 +75,28 @@
         </record>
 
 
+        <!-- calendar view for the Resource Reservation model -->
+        <record model="ir.ui.view" id="view_resource_reservation_calendar">
+            <field name="name">resource.reservation.calendar</field>
+            <field name="model">resource.reservation</field>
+            <field name="arch" type="xml">
+                <calendar string="Resource Reservation Calendar" date_start="start_datetime">
+                    <field name="title" width="4"/>
+                    <field name="name" width="4"/>
+                    <field name="start_datetime" width="4"/>
+                    <field name="end_datetime" width="4"/>
+                    <field name="creator" width="4"/>
+                    <field name="booking_status" width="4"/>
+                </calendar>
+            </field>
+        </record>
+
+
         <!-- Define an action to open the tree view and form view-->
         <record id="action_resource_reservation" model="ir.actions.act_window">
             <field name="name">Resource Reservation</field>
             <field name="res_model">resource.reservation</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,calendar</field>
         </record>
 
 
