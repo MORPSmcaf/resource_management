@@ -1,6 +1,14 @@
 from odoo import models, fields, api
 
 
+class ReservationTag(models.Model):
+    _name = 'resource.reservation.tag'
+    _description = 'Reservation Tag'
+
+    name = fields.Char(string='Reservation Type', required=True)
+    des = fields.Text(string='Description')
+
+
 # Our base model is called resource.reservation
 class ResourceReservation(models.Model):
     _name = 'resource.reservation'
@@ -24,7 +32,8 @@ class ResourceReservation(models.Model):
         default='pending',
         help="This field represents the status of the booking.")
     res_des = fields.Text(string="Reservation Description", required=True)
-    res_tag = fields.Char(string="Reservation Tag", required=True)
+    # res_tag = fields.Char(string="Reservation Tag", required=True)
+    res_tag_id = fields.Many2one('resource.reservation.tag', string="Resource Tag", required=True)
 
     @api.model
     def create(self, values):
