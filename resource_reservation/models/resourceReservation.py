@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 # Our base model is called resource.reservation
@@ -12,7 +12,7 @@ class ResourceReservation(models.Model):
                                  help="This field will store the current date and time when a record is created.")
     end_datetime = fields.Datetime(string='End Date & Time',
                                    help="This field will store the end date and time of the event or task.")
-    creator = fields.Char(string='Created By', required=True)
+    creator = fields.Char(string='Created By', default=lambda self: self.env.user.name, required=True)
     booking_status = fields.Selection([
         ('pending', 'Pending'),
         ('confirmed', 'Confirmed'),
@@ -26,9 +26,7 @@ class ResourceReservation(models.Model):
     res_des = fields.Text(string="Reservation Description", required=True)
     res_tag = fields.Char(string="Reservation Tag", required=True)
 
-
-
-
-
-
-
+    @api.model
+    def create(self, values):
+        values['creator'] = self.env.user.name
+        return super(ResourceReservation, self).create(values)
