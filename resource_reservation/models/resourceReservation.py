@@ -30,3 +30,4 @@ class ResourceReservation(models.Model):
     def create(self, values):
         values['creator'] = self.env.user.name
         return super(ResourceReservation, self).create(values)
+
