@@ -74,6 +74,20 @@
             </field>
         </record>
 
+        <!-- Define the tree view for the Resource Detail model -->
+        <record id="view_resource_detail_tree" model="ir.ui.view">
+            <field name="name">resource.detail.tree</field>
+            <field name="model">resource.detail</field>
+            <field name="arch" type="xml">
+                <tree string="Resource detail">
+                    <field name="resource_name" width="6"/>
+                    <field name="resource_type" width="6"/>
+                    <field name="resource_capacity" width="6"/>
+                    <field name="resource_owner" width="6"/>
+                </tree>
+            </field>
+        </record>
+
 
         <!-- calendar view for the Resource Reservation model -->
         <record model="ir.ui.view" id="view_resource_reservation_calendar">
@@ -99,11 +113,21 @@
             <field name="view_mode">tree,form,calendar</field>
         </record>
 
+        <!-- Define an action to open the tree view and form view Resource Detail-->
+        <record id="action_resource_detail" model="ir.actions.act_window">
+            <field name="name">Resource Detail</field>
+            <field name="res_model">resource.detail</field>
+            <field name="view_mode">tree</field>
+        </record>
+
 
         <menuitem id="menu_root" name="Resource Reservation"/>
 
         <menuitem id="menu_resource_reservation" name="Resource Reservation" parent="menu_root"
                   action="action_resource_reservation"/>
+        <!-- Add resorce detail menu-->
+        <menuitem id="menu_resource_detail" name="Resource Detail" parent="menu_root"
+                  action="action_resource_detail"/>
 
 
     </data>

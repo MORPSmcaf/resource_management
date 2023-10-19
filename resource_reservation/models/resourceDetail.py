@@ -1,5 +1,6 @@
 from odoo import models, fields, api
 
+#  model for the Resource Detail add batn
 class ResourceDetail(models.Model):
     _name = 'resource.detail'
     _description = 'Resource Detail'
