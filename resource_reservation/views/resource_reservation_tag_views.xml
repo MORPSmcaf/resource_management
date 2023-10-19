@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+               <record id="view_resource_reservation_tag_form" model="ir.ui.view">
+            <field name="name">resource.reservation.tag.form</field>
+            <field name="model">resource.reservation.tag</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name ="des"/>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="view_resource_reservation_tag_tree" model="ir.ui.view">
+            <field name="name">resource.reservation.tag.tree</field>
+            <field name="model">resource.reservation.tag</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="des"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+               <record id="action_resource_reservation_tag" model="ir.actions.act_window">
+            <field name="name">Resource Reservation Tag</field>
+            <field name="res_model">resource.reservation.tag</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+
+
+
+
+    </data>
+</odoo>

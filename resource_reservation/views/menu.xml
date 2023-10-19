@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+
+        <menuitem id="menu_root" name="Resource Reservation"/>
+
+        <menuitem id="menu_resource_reservation" name="Resource Reservation" parent="menu_root"
+                  action="action_resource_reservation"/>
+
+        <menuitem id="menu_resource_configurations" name="Configurations" parent="menu_root"/>
+        <menuitem id="menu_resource_tag" name="Resource Tags" parent="menu_resource_configurations"
+                  action="action_resource_reservation_tag"/>
+    </data>
+</odoo>
