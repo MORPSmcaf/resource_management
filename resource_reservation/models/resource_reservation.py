@@ -43,10 +43,11 @@ class ResourceReservation(models.Model):
         help="This field represents the status of the booking.")
     resource_description = fields.Text(string="Reservation Description", required=True)
     # res_tag = fields.Char(string="Reservation Tag", required=True)
-    resource_tag_id = fields.Many2one('resource.reservation.tag', string="Resource Tag", required=True)
+    resource_tag_id = fields.Many2one('resource.reservation.tag',
+                                      string="Resource Tag", required=True)
 
-    # Fetches information of current user from odoo environment
     @api.model
     def create(self, vals_list):
+        """Fetches information of current user from odoo environment"""
         vals_list['creator'] = self.env.user.name
         return super().create(vals_list)
