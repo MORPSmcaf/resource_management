@@ -1,6 +1,6 @@
 <odoo>
-    <data>
 
+        <!-- Add root menu for  Resource Reservation modul -->
         <menuitem id="menu_root" name="Resource Reservation"/>
 
         <menuitem id="menu_resource_reservation" name="Resource Reservation" parent="menu_root"
@@ -15,5 +15,5 @@
          <!-- Add resorce detail menu for create-->
         <menuitem id="menu_resource_detail_btn" name="Resource Create" parent="menu_resource_configurations"
                   action="action_resource_detail_btn"/>
-    </data>
+
 </odoo>

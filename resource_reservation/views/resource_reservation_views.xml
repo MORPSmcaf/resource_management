@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <odoo>
-    <data>
         <!-- Define the view for the Resource Reservation model -->
         <record id="view_resource_reservation_form" model="ir.ui.view">
             <field name="name">resource.reservation.form</field>
@@ -105,7 +104,6 @@
 
 
 
-    </data>
 </odoo>
 
 

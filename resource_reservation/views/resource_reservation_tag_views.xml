@@ -1,5 +1,5 @@
 <odoo>
-    <data>
+            <!-- Form view configuration for resource reservation tags -->
                <record id="view_resource_reservation_tag_form" model="ir.ui.view">
             <field name="name">resource.reservation.tag.form</field>
             <field name="model">resource.reservation.tag</field>
@@ -41,5 +41,5 @@
 
 
 
-    </data>
+
 </odoo>
