@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Form view configuration for resource reservation tags -->
-    <record id="view_resource_reservation_tag_form" model="ir.ui.view">
+    <record id="view_resource_reservation_tag_form"
+            model="ir.ui.view">
         <field name="name">resource.reservation.tag.form</field>
         <field name="model">resource.reservation.tag</field>
         <field name="arch" type="xml">
@@ -17,7 +17,8 @@
         </field>
     </record>
 
-    <record id="view_resource_reservation_tag_tree" model="ir.ui.view">
+    <record id="view_resource_reservation_tag_tree"
+            model="ir.ui.view">
         <field name="name">resource.reservation.tag.tree</field>
         <field name="model">resource.reservation.tag</field>
         <field name="arch" type="xml">
@@ -29,7 +30,8 @@
         </field>
     </record>
 
-    <record id="action_resource_reservation_tag_act_window" model="ir.actions.act_window">
+    <record id="action_resource_reservation_tag_act_window"
+            model="ir.actions.act_window">
         <field name="name">Resource Reservation Tag</field>
         <field name="res_model">resource.reservation.tag</field>
         <field name="view_mode">tree,form</field>

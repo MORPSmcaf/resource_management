@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <odoo>
-    <!-- Define the view for the Resource Reservation model -->
-    <record id="view_resource_reservation_form" model="ir.ui.view">
+    <record id="view_resource_reservation_form"
+            model="ir.ui.view">
         <field name="name">resource.reservation.form</field>
         <field name="model">resource.reservation</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
+
                     <group>
                         <group>
                             <field name="title" class="oe_inline"/>
@@ -23,14 +24,11 @@
                         </group>
                         <group>
                             <field name="end_datetime"/>
-
                         </group>
                     </group>
 
                     <group>
-
                         <field name="resource_tag_id"/>
-
                     </group>
 
                     <group>
@@ -41,14 +39,15 @@
                             <field name="creator"/>
                         </group>
                     </group>
+
                 </sheet>
             </form>
         </field>
     </record>
 
 
-    <!-- Define the tree view for the Resource Reservation model -->
-    <record id="view_resource_reservation_tree" model="ir.ui.view">
+    <record id="view_resource_reservation_tree"
+            model="ir.ui.view">
         <field name="name">resource.reservation.tree</field>
         <field name="model">resource.reservation</field>
         <field name="arch" type="xml">
@@ -64,8 +63,8 @@
     </record>
 
 
-    <!-- calendar view for the Resource Reservation model -->
-    <record model="ir.ui.view" id="view_resource_reservation_calendar">
+    <record model="ir.ui.view"
+            id="view_resource_reservation_calendar">
         <field name="name">resource.reservation.calendar</field>
         <field name="model">resource.reservation</field>
         <field name="arch" type="xml">
@@ -80,8 +79,8 @@
         </field>
     </record>
 
-    <!-- Define an action to open the tree view and form view-->
-    <record id="action_resource_reservation_act_window" model="ir.actions.act_window">
+    <record id="action_resource_reservation_act_window"
+            model="ir.actions.act_window">
         <field name="name">Resource Reservation</field>
         <field name="res_model">resource.reservation</field>
         <field name="view_mode">tree,form,calendar</field>
