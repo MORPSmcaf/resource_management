@@ -1,7 +1,10 @@
-from odoo import models, fields, api
+"""Its just show what moduls are imported"""
+from odoo import models, fields
 
-#  model for the Resource Detail add batn
+
 class ResourceDetail(models.Model):
+    """ This module create data for Resource Detail fields in odoo
+        model resource_reservation"""
     _name = 'resource.detail'
     _description = 'Resource Detail'
 

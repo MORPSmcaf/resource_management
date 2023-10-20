@@ -1,2 +1,2 @@
-from . import resourceReservation
-from . import resourceDetail
+from . import resource_reservation
+from . import resource_detail
