@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
     <menuitem id="menu_root"
               name="Resource Reservation"/>
 
@@ -26,4 +27,5 @@
               name="Resource Create"
               parent="menu_resource_configurations"
               action="action_resource_detail_btn_act_window"/>
+
 </odoo>

@@ -1,35 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-
-        <record id="view_resource_detail_tree"
+	<record id="view_resource_detail_tree"
                 model="ir.ui.view">
-            <field name="name">resource.detail.tree</field>
-            <field name="model">resource.detail</field>
-            <field name="arch" type="xml">
-                <tree string="Resource detail">
-                    <field name="resource_name" width="6"/>
-                    <field name="resource_type" width="6"/>
-                    <field name="resource_capacity" width="6"/>
-                    <field name="resource_owner" width="6"/>
-                </tree>
-            </field>
-        </record>
+		<field name="name">resource.detail.tree</field>
+		<field name="model">resource.detail</field>
+		<field name="arch" type="xml">
+			<tree string="Resource detail">
+				<field name="resource_name" width="6"/>
+				<field name="resource_type" width="6"/>
+				<field name="resource_capacity" width="6"/>
+				<field name="resource_owner" width="6"/>
+			</tree>
+		</field>
+	</record>
 
-        <record id="action_resource_detail_act_window"
+	<record id="action_resource_detail_act_window"
                 model="ir.actions.act_window">
-            <field name="name">Resource Detail</field>
-            <field name="res_model">resource.detail</field>
-            <field name="view_mode">tree,form</field>
-        </record>
+		<field name="name">Resource Detail</field>
+		<field name="res_model">resource.detail</field>
+		<field name="view_mode">tree,form</field>
+	</record>
 
-
-        <record id="action_resource_detail_btn_act_window"
+	<record id="action_resource_detail_btn_act_window"
                 model="ir.actions.act_window">
-            <field name="name">Resource Detail btn</field>
-            <field name="res_model">resource.detail</field>
-            <field name="view_mode">form</field>
-        </record>
-
+		<field name="name">Resource Detail btn</field>
+		<field name="res_model">resource.detail</field>
+		<field name="view_mode">form</field>
+	</record>
 
 </odoo>
