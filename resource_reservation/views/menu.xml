@@ -1,19 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!-- Add root menu for Resource Reservation module -->
+    <menuitem id="menu_root" name="Resource Reservation"/>
 
-        <!-- Add root menu for  Resource Reservation modul -->
-        <menuitem id="menu_root" name="Resource Reservation"/>
+    <!-- Resource Reservation menu item -->
+    <menuitem id="menu_resource_reservation" name="Resource Reservation" parent="menu_root"
+              action="action_resource_reservation_act_window"/>
 
-        <menuitem id="menu_resource_reservation" name="Resource Reservation" parent="menu_root"
-                  action="action_resource_reservation"/>
-        <!-- Add resorce detail menu-->
-        <menuitem id="menu_resource_detail" name="Resource Detail" parent="menu_root"
-                  action="action_resource_detail"/>
+    <!-- Resource Detail menu item -->
+    <menuitem id="menu_resource_detail" name="Resource Detail" parent="menu_root"
+              action="action_resource_detail_act_window"/>
 
-        <menuitem id="menu_resource_configurations" name="Configurations" parent="menu_root"/>
-        <menuitem id="menu_resource_tag" name="Resource Tags" parent="menu_resource_configurations"
-                  action="action_resource_reservation_tag"/>
-         <!-- Add resorce detail menu for create-->
-        <menuitem id="menu_resource_detail_btn" name="Resource Create" parent="menu_resource_configurations"
-                  action="action_resource_detail_btn"/>
+    <!-- Configurations menu -->
+    <menuitem id="menu_resource_configurations" name="Configurations" parent="menu_root"/>
 
+    <!-- Resource Tags menu item -->
+    <menuitem id="menu_resource_tag" name="Resource Tags" parent="menu_resource_configurations"
+              action="action_resource_reservation_tag_act_window"/>
+
+    <!-- Resource Detail menu for create -->
+    <menuitem id="menu_resource_detail_btn" name="Resource Create" parent="menu_resource_configurations"
+              action="action_resource_detail_btn_act_window"/>
 </odoo>

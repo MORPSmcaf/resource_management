@@ -11,10 +11,10 @@ class ReservationTag(models.Model):
     _description = 'Reservation Tag'
 
     name = fields.Char(string='Reservation Type', required=True)
-    des = fields.Text(string='Description')
+    description = fields.Text(string='Description')
 
 
-# Our base model is called resource.reservation
+# Base model is called resource.reservation
 class ResourceReservation(models.Model):
     """
     This class represents a resource reservation. Allows admin user to create reservation
@@ -41,10 +41,11 @@ class ResourceReservation(models.Model):
         string='Booking Status',
         default='pending',
         help="This field represents the status of the booking.")
-    res_des = fields.Text(string="Reservation Description", required=True)
+    resource_description = fields.Text(string="Reservation Description", required=True)
     # res_tag = fields.Char(string="Reservation Tag", required=True)
-    res_tag_id = fields.Many2one('resource.reservation.tag', string="Resource Tag", required=True)
+    resource_tag_id = fields.Many2one('resource.reservation.tag', string="Resource Tag", required=True)
 
+    # Fetches information of current user from odoo environment to our model
     @api.model
     def create(self, vals_list):
         vals_list['creator'] = self.env.user.name

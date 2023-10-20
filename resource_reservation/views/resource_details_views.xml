@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
 
@@ -16,15 +17,14 @@
         </record>
 
         <!-- Define an action to open the tree view and form view Resource Detail-->
-        <record id="action_resource_detail" model="ir.actions.act_window">
+        <record id="action_resource_detail_act_window" model="ir.actions.act_window">
             <field name="name">Resource Detail</field>
             <field name="res_model">resource.detail</field>
             <field name="view_mode">tree,form</field>
-<!--            <field name="create">false</field>-->
         </record>
 
 
-        <record id="action_resource_detail_btn" model="ir.actions.act_window">
+        <record id="action_resource_detail_btn_act_window" model="ir.actions.act_window">
             <field name="name">Resource Detail btn</field>
             <field name="res_model">resource.detail</field>
             <field name="view_mode">form</field>
