@@ -7,7 +7,7 @@
         <field name="model">resource.detail</field>
         <field name="arch" type="xml">
             <tree name="Resource detail">
-                <field name="resource_name" width="6"/>
+                <field name="name" width="6"/>
                 <field name="resource_type" width="6"/>
                 <field name="resource_capacity" width="6"/>
                 <field name="resource_owner" width="6"/>

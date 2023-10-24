@@ -2,3 +2,4 @@
 access_resource_reservation,access_resource_reservation,model_resource_reservation,base.group_user,1,1,1,1
 access_resource_detail,access_resource_detail,model_resource_detail,base.group_user,1,1,1,1
 access_resource_reservation_tag,access_resource_reservation_tag,model_resource_reservation_tag,base.group_user,1,1,1,1
+access_resource_availability,access_resource_availability,model_resource_availability,base.group_user,1,1,1,1
