@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_resource_reservation_form"
+            model="ir.ui.view">
+        <field name="name">resource.reservation.form</field>
+        <field name="model">resource.reservation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="title" class="oe_inline"/>
+                        </group>
+                        <group>
+                            <field name="start_datetime" class="oe_inline"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="end_datetime"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="resource_tag_id"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="resource_description"/>
+                        </group>
+                        <group>
+                            <field name="creator"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_resource_reservation_tree"
+            model="ir.ui.view">
+        <field name="name">resource.reservation.tree</field>
+        <field name="model">resource.reservation</field>
+        <field name="arch" type="xml">
+            <tree name="Resource Reservation">
+                <field name="title" width="4"/>
+                <field name="name" width="4"/>
+                <field name="start_datetime" width="4"/>
+                <field name="end_datetime" width="4"/>
+                <field name="creator" width="4"/>
+                <field name="booking_status" width="4"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view"
+            id="view_resource_reservation_calendar">
+        <field name="name">resource.reservation.calendar</field>
+        <field name="model">resource.reservation</field>
+        <field name="arch" type="xml">
+            <calendar string="Resource Reservation Calendar" date_start="start_datetime">
+                <field name="title" width="4"/>
+                <field name="name" width="4"/>
+                <field name="start_datetime" width="4"/>
+                <field name="end_datetime" width="4"/>
+                <field name="creator" width="4"/>
+                <field name="booking_status" width="4"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="action_resource_reservation_act_window"
+            model="ir.actions.act_window">
+        <field name="name">Resource Reservation</field>
+        <field name="res_model">resource.reservation</field>
+        <field name="view_mode">tree,form,calendar</field>
+    </record>
+
+</odoo>
