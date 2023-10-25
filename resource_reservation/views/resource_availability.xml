@@ -1,37 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<odoo>-->
-<!--    <data>-->
-<!--        &lt;!&ndash; Define the view for the ResourceAvailability model &ndash;&gt;-->
-<!--        <record id="view_resource_availability_form" model="ir.ui.view">-->
-<!--            <field name="name">resource.availability.form</field>-->
-<!--            <field name="model">resource.availability</field>-->
-<!--            <field name="arch" type="xml">-->
-<!--                <form>-->
-<!--                    <sheet>-->
-<!--                        <group>-->
-<!--                            <field name="resource_id"/>-->
-<!--                            <field name="start_datetime"/>-->
-<!--                            <field name="end_datetime"/>-->
-<!--                            <button name="search_reservations" string="Search Reservations" type="object" class="oe_highlight" />-->
-<!--                        </group>-->
-<!--                    </sheet>-->
-<!--                </form>-->
-<!--            </field>-->
-<!--        </record>-->
-
-<!--        &lt;!&ndash; Define an action to open the ResourceAvailability form view &ndash;&gt;-->
-<!--        <record id="action_resource_availability" model="ir.actions.act_window">-->
-<!--            <field name="name">Resource Availability</field>-->
-<!--            <field name="res_model">resource.availability</field>-->
-<!--            <field name="view_mode">form</field>-->
-<!--        </record>-->
-
-
-
-
-<!--    </data>-->
-<!--</odoo>-->
-
 
 <odoo>
     <data>
@@ -48,7 +15,8 @@
                             <field name="availability_status" readonly="1"/>
                         </group>
                         <group>
-                            <button name="search_availability" string="Check Availability" type="object" class="oe_highlight"/>
+                            <button name="search_availability" string="Check Availability for given resource" type="object" class="oe_highlight"/>
+                            <button name="check_availability_start_end_date" string="Check Availability for all resources" type="object" class="oe_highlight"/>
                         </group>
                     </sheet>
                 </form>
