@@ -14,6 +14,7 @@
         'views/resource_reservation_views.xml',
         'views/resource_reservation_tag_views.xml',
         'views/resource_details_views.xml',
+        'views/resource_availability.xml',
         'views/menu.xml'
     ],
     'demo': [

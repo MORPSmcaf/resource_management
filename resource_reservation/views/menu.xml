@@ -18,8 +18,14 @@
               name="Configurations"
               parent="menu_root"/>
 
+                <!-- Define a menu item to access the ResourceAvailability form view -->
+    <menuitem id="menu_resource_availability"
+              name="Resource Availability"
+              parent="menu_root"
+              action="action_resource_availability"/>
+
     <menuitem id="menu_resource_tag"
-              name="Resource Tags"
+              name="Reservation Tags"
               parent="menu_resource_configurations"
               action="action_resource_reservation_tag_act_window"/>
 
@@ -27,5 +33,4 @@
               name="Resource Create"
               parent="menu_resource_configurations"
               action="action_resource_detail_btn_act_window"/>
-
 </odoo>

@@ -1,5 +1,5 @@
 """Required import for the functionality"""
-from odoo import models, fields, api
+from odoo import models, fields, api, exceptions, _
 
 
 class ReservationTag(models.Model):
@@ -27,14 +27,15 @@ class ResourceReservation(models.Model):
     _description = 'Resource Reservation'
 
     title = fields.Char(string='Title ', required=True)
-    name = fields.Char(string='Resource', required=True)
+    name = fields.Many2one('resource.detail',
+                           string="Resource Name", required=True)
     start_datetime = fields.Datetime(string='Start Date & Time',
                                      default=lambda self:
                                      fields.Datetime.now(),
                                      help="Store the current date and time")
     end_datetime = fields.Datetime(string='End Date & Time',
                                    help="This field will store "
-                                   "the end date and time "
+                                        "the end date and time "
                                         "of the event or task.")
     creator = fields.Char(string='Created By',
                           default=lambda self: self.env.user.name,
@@ -43,8 +44,6 @@ class ResourceReservation(models.Model):
         ('pending', 'Pending '),
         ('confirmed', 'Confirmed '),
         ('canceled', 'Canceled '),
-        ('completed', 'Completed '),
-        ('other', 'Other '),
     ],
         string='Booking Status ',
         default='pending',
@@ -52,11 +51,27 @@ class ResourceReservation(models.Model):
     resource_description = fields.Text(string="Reservation Description",
                                        required=True)
     # res_tag = fields.Char(string="Reservation Tag", required=True)
-    resource_tag_id = fields.Many2one('resource.reservation.tag',
-                                      string="Resource Tag", required=True)
+    reservation_tag_id = fields.Many2one('resource.reservation.tag',
+                                         string="Reservation Tag",
+                                         required=True)
 
     @api.model
     def create(self, vals_list):
         """Fetches information of current user from odoo environment"""
         vals_list['creator'] = self.env.user.name
         return super().create(vals_list)
+
+    @api.constrains('name', 'start_datetime', 'end_datetime')
+    def check_overlapping_reservations(self):
+        """Check for overlapping reservations."""
+        for reservation in self:
+            overlapping = (self.env['resource.reservation'].search([
+                # Exclude the current reservation
+                ('id', '!=', reservation.id),
+                ('name', '=', reservation.name.id),
+                ('start_datetime', '<', reservation.end_datetime),
+                ('end_datetime', '>', reservation.start_datetime),
+            ]))
+            if overlapping:
+                raise exceptions.ValidationError(_("Overlapping reservations"
+                                                   " are not allowed."))
