@@ -15,6 +15,37 @@
         </field>
     </record>
 
+    <record id="view_resource_type_tree" model="ir.ui.view">
+    <field name="name">resource.type.tree</field>
+    <field name="model">resource.type</field>
+    <field name="arch" type="xml">
+        <tree string="Resource Types">
+            <field name="name"/>
+        </tree>
+    </field>
+    </record>
+
+    <record id="view_resource_type_form" model="ir.ui.view">
+        <field name="name">resource.type.form</field>
+        <field name="model">resource.type</field>
+        <field name="arch" type="xml">
+            <form string="Resource Type">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_resource_type_act_window" model="ir.actions.act_window">
+        <field name="name">Resource Type</field>
+        <field name="res_model">resource.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
     <record id="action_resource_detail_act_window"
             model="ir.actions.act_window">
         <field name="name">Resource Detail</field>
