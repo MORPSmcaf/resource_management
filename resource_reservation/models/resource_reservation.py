@@ -76,16 +76,4 @@ class ResourceReservation(models.Model):
                 raise exceptions.ValidationError(_("Overlapping reservations"
                                                    " are not allowed."))
 
-    def show_reservation(self):
-        # Create a wizard for reservation
-        staff_model = self.env['resource.reservation']
-        staff_model.create({
-            'title': self.title,
-            'name': self.name,
-            'start_datetime': self.start_datetime,
-            'end_datetime': self.end_datetime,
-            'creator': self.creator,
-            'resource_description': self.resource_description,
-            'reservation_tag_id': self.reservation_tag_id,
-        })
-        return {'type': 'ir.actions.act_window_close'}
+
