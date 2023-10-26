@@ -1,5 +1,5 @@
 """Required import for the functionality"""
-from odoo import models, fields, api, exceptions
+from odoo import models, fields, api, exceptions, _
 
 
 class ReservationTag(models.Model):
@@ -52,7 +52,8 @@ class ResourceReservation(models.Model):
                                        required=True)
     # res_tag = fields.Char(string="Reservation Tag", required=True)
     reservation_tag_id = fields.Many2one('resource.reservation.tag',
-                                      string="Reservation Tag", required=True)
+                                         string="Reservation Tag",
+                                         required=True)
 
     @api.model
     def create(self, vals_list):
@@ -64,26 +65,27 @@ class ResourceReservation(models.Model):
     def check_overlapping_reservations(self):
         """Check for overlapping reservations."""
         for reservation in self:
-            overlapping_reservations = self.env['resource.reservation'].search([
-                ('id', '!=', reservation.id),  # Exclude the current reservation
+            overlapping = (self.env['resource.reservation'].search([
+                # Exclude the current reservation
+                ('id', '!=', reservation.id),
                 ('name', '=', reservation.name.id),
                 ('start_datetime', '<', reservation.end_datetime),
                 ('end_datetime', '>', reservation.start_datetime),
-            ])
-            if overlapping_reservations:
-                raise exceptions.ValidationError("Overlapping reservations are not allowed.")
-
+            ]))
+            if overlapping:
+                raise exceptions.ValidationError(_("Overlapping reservations"
+                                                   " are not allowed."))
 
     def show_reservation(self):
-        # Create a new staff member in the 'mcaf.management.staff' model
+        # Create a wizard for reservation
         staff_model = self.env['resource.reservation']
         staff_model.create({
             'title': self.title,
-            'name' : self.name,
-            'start_datetime' : self.start_datetime,
-            'end_datetime' : self.end_datetime,
-            'creator' : self.creator,
-            'resource_description' : self.resource_description,
-            'reservation_tag_id' : self.reservation_tag_id,
+            'name': self.name,
+            'start_datetime': self.start_datetime,
+            'end_datetime': self.end_datetime,
+            'creator': self.creator,
+            'resource_description': self.resource_description,
+            'reservation_tag_id': self.reservation_tag_id,
         })
         return {'type': 'ir.actions.act_window_close'}
