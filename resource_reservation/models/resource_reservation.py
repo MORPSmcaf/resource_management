@@ -75,5 +75,3 @@ class ResourceReservation(models.Model):
             if overlapping:
                 raise exceptions.ValidationError(_("Overlapping reservations"
                                                    " are not allowed."))
-
-
