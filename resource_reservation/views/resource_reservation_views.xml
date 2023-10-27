@@ -51,6 +51,10 @@
         <field name="model">resource.reservation</field>
         <field name="arch" type="xml">
             <tree name="Resource Reservation">
+                <header>
+                    <button name="update_booking_status_cancel" string="Cancel" class="oe_highlight" type="object"/>
+                    <button name="update_booking_status_confirm" string="Confirm" class="oe_highlight" type="object"/>
+                </header>
                 <field name="title" width="4"/>
                 <field name="name" width="4"/>
                 <field name="start_datetime" width="4"/>
