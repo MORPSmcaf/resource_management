@@ -22,7 +22,7 @@
         <field name="name">resource.reservation.tag.tree</field>
         <field name="model">resource.reservation.tag</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree name="Reservation Tags" editable="bottom" >
                 <field name="name"/>
                 <field name="description"/>
             </tree>

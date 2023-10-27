@@ -4,3 +4,5 @@ access_resource_detail,access_resource_detail,model_resource_detail,base.group_u
 access_resource_reservation_tag,access_resource_reservation_tag,model_resource_reservation_tag,base.group_user,1,1,1,1
 access_resource_availability,access_resource_availability,model_resource_availability,base.group_user,1,1,1,1
 access_resource_type,access_resource_type,model_resource_type,base.group_user,1,1,1,1
+access_resource_availability_v2,access_resource_availability_v2,model_resource_availability_v2,base.group_user,1,1,1,1
+access_resource_availability_v3,access_resource_availability_v3,model_resource_availability_v3,base.group_user,1,1,1,1

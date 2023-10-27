@@ -1,30 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <odoo>
-        <record id="view_resource_availability_form" model="ir.ui.view">
-            <field name="name">resource.availability.form</field>
-            <field name="model">resource.availability</field>
-            <field name="arch" type="xml">
-                <form>
-                    <sheet>
-                        <group>
-                            <field name="resource_id"/>
-                            <field name="start_datetime"/>
-                            <field name="end_datetime"/>
-                            <field name="availability_status" readonly="1"/>
-                        </group>
-                        <group>
-                            <button name="search_availability" string="Check Availability" type="object" class="oe_highlight"/>
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
+    <record id="view_resource_availability_form" model="ir.ui.view">
+        <field name="name">resource.availability.form</field>
+        <field name="model">resource.availability</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="resource_id"/>
+                        <field name="start_datetime"/>
+                        <field name="end_datetime"/>
+                        <field name="availability_status" readonly="1"/>
+                    </group>
+                    <group>
 
-        <record id="action_resource_availability" model="ir.actions.act_window">
-    <field name="name">Resource Availability</field>
-    <field name="res_model">resource.availability</field>
-    <field name="view_mode">form</field>
-</record>
+                        <button name="search_availability" string="Check Availability" type="object" class="btn-primary"/>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+        <record id="view_resource_availability_by_resource_form" model="ir.ui.view">
+        <field name="name">resource.availability.v2.form</field>
+        <field name="model">resource.availability.v2</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="resource_id"/>
+                    </group>
+                    <group>
+
+                        <button name="show_related_bookings" string="Show Bookings" type="object" class="btn-primary"/>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+            <record id="view_resource_availability_by_dates_form" model="ir.ui.view">
+        <field name="name">resource.availability.v3.form</field>
+        <field name="model">resource.availability.v3</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                    </group>
+                    <group>
+
+                        <button name="show_related_bookings" string="Show Bookings" type="object" class="btn-primary"/>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_resource_availability" model="ir.actions.act_window">
+        <field name="name">Resource Availability</field>
+        <field name="res_model">resource.availability</field>
+        <field name="view_mode">form</field>
+    </record>
+
+        <record id="action_resource_availability_by_resource" model="ir.actions.act_window">
+        <field name="name">Resource Availability v2</field>
+        <field name="res_model">resource.availability.v2</field>
+        <field name="view_mode">form</field>
+    </record>
+
+            <record id="action_resource_availability_by_dates" model="ir.actions.act_window">
+        <field name="name">Resource Availability v3</field>
+        <field name="res_model">resource.availability.v3</field>
+        <field name="view_mode">form</field>
+    </record>
 </odoo>
 

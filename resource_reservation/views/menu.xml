@@ -18,11 +18,25 @@
               name="Configurations"
               parent="menu_root"/>
 
-                <!-- Define a menu item to access the ResourceAvailability form view -->
-    <menuitem id="menu_resource_availability"
+        <menuitem id="menu_resource_availability"
               name="Resource Availability"
-              parent="menu_root"
+              parent="menu_root"/>
+
+                <!-- Define a menu item to access the ResourceAvailability form view -->
+    <menuitem id="menu_resource_availability_by_all"
+              name="Resource Availability"
+              parent="menu_resource_availability"
               action="action_resource_availability"/>
+
+        <menuitem id="menu_resource_availability_by_resource"
+              name="Resource Availability By Resource"
+              parent="menu_resource_availability"
+              action="action_resource_availability_by_resource"/>
+
+            <menuitem id="menu_resource_availability_by_dates"
+              name="Resource Availability By Dates"
+              parent="menu_resource_availability"
+              action="action_resource_availability_by_dates"/>
 
     <menuitem id="menu_resource_tag"
               name="Reservation Tags"
