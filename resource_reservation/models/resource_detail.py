@@ -22,6 +22,6 @@ class ResourceType(models.Model):
     name = fields.Char(string='Resource Type', required=True)
 
     _sql_constraints = [
-        ('unique_resource_type', 'UNIQUE (name)', 'A resource type with the same name already exists.'),
+        ('unique_resource_type', 'UNIQUE (name)',
+         'A resource type with the same name already exists.'),
     ]
-

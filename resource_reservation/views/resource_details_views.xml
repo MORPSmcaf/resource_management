@@ -19,7 +19,7 @@
     <field name="name">resource.type.tree</field>
     <field name="model">resource.type</field>
     <field name="arch" type="xml">
-        <tree string="Resource Types">
+        <tree name="Resource Types">
             <field name="name"/>
         </tree>
     </field>

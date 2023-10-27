@@ -16,7 +16,8 @@ class ReservationTag(models.Model):
     description = fields.Text(string='Description ')
 
     _sql_constraints = [
-        ('unique_reservation_tag', 'UNIQUE (name)', 'A reservation tag with the same type already exists.'),
+        ('unique_reservation_tag', 'UNIQUE (name)',
+         'A reservation tag with the same type already exists.'),
     ]
 
 
@@ -86,4 +87,6 @@ class ResourceReservation(models.Model):
         for reservation in self:
             if reservation.start_datetime and reservation.end_datetime:
                 if reservation.end_datetime < reservation.start_datetime:
-                    raise exceptions.ValidationError(_("End date cannot be before the start date."))
+                    raise exceptions.ValidationError(_("End date cannot"
+                                                       " be before the"
+                                                       " start date."))
