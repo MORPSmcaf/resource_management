@@ -15,6 +15,10 @@ class ReservationTag(models.Model):
     name = fields.Char(string='Reservation Type', required=True)
     description = fields.Text(string='Description ')
 
+    _sql_constraints = [
+        ('unique_reservation_tag', 'UNIQUE (name)', 'A reservation tag with the same type already exists.'),
+    ]
+
 
 # Base model is called resource.reservation
 class ResourceReservation(models.Model):
@@ -75,3 +79,11 @@ class ResourceReservation(models.Model):
             if overlapping:
                 raise exceptions.ValidationError(_("Overlapping reservations"
                                                    " are not allowed."))
+
+    @api.constrains('start_datetime', 'end_datetime')
+    def check_start_end_dates(self):
+        """Check that end date is after or equal to start date."""
+        for reservation in self:
+            if reservation.start_datetime and reservation.end_datetime:
+                if reservation.end_datetime < reservation.start_datetime:
+                    raise exceptions.ValidationError(_("End date cannot be before the start date."))
