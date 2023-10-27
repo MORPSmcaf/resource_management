@@ -66,6 +66,12 @@ class ResourceReservation(models.Model):
         'resource.type',
         string="Resource Type", required=True)
 
+    def update_booking_status_cansel(self):
+        self.write({'booking_status': 'canceled'})
+
+    def update_booking_status_confirm(self):
+        self.write({'booking_status': 'confirmed'})
+
     @api.model
     def create(self, vals_list):
         """Fetches information of current user from odoo environment"""
