@@ -24,8 +24,8 @@
     </record>
 
         <record id="view_resource_availability_by_resource_form" model="ir.ui.view">
-        <field name="name">resource.availability.v2.form</field>
-        <field name="model">resource.availability.v2</field>
+        <field name="name">resource.availability.one.form</field>
+        <field name="model">resource.availability.one</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
@@ -44,8 +44,8 @@
 
 
             <record id="view_resource_availability_by_dates_form" model="ir.ui.view">
-        <field name="name">resource.availability.v3.form</field>
-        <field name="model">resource.availability.v3</field>
+        <field name="name">resource.availability.two.form</field>
+        <field name="model">resource.availability.two</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
@@ -71,13 +71,13 @@
 
         <record id="action_resource_availability_by_resource" model="ir.actions.act_window">
         <field name="name">Resource Availability v2</field>
-        <field name="res_model">resource.availability.v2</field>
+        <field name="res_model">resource.availability.one</field>
         <field name="view_mode">form</field>
     </record>
 
             <record id="action_resource_availability_by_dates" model="ir.actions.act_window">
         <field name="name">Resource Availability v3</field>
-        <field name="res_model">resource.availability.v3</field>
+        <field name="res_model">resource.availability.two</field>
         <field name="view_mode">form</field>
     </record>
 </odoo>
