@@ -15,6 +15,11 @@ class ReservationTag(models.Model):
     name = fields.Char(string='Reservation Type', required=True)
     description = fields.Text(string='Description ')
 
+    _sql_constraints = [
+        ('unique_reservation_tag', 'UNIQUE (name)',
+         'A reservation tag with the same type already exists.'),
+    ]
+
 
 # Base model is called resource.reservation
 class ResourceReservation(models.Model):
@@ -32,11 +37,14 @@ class ResourceReservation(models.Model):
     start_datetime = fields.Datetime(string='Start Date & Time',
                                      default=lambda self:
                                      fields.Datetime.now(),
-                                     help="Store the current date and time")
+                                     help="Store the "
+                                          "current date and time",
+                                     required=True)
     end_datetime = fields.Datetime(string='End Date & Time',
                                    help="This field will store "
                                         "the end date and time "
-                                        "of the event or task.")
+                                        "of the event or task.",
+                                   required=True)
     creator = fields.Char(string='Created By',
                           default=lambda self: self.env.user.name,
                           required=True)
@@ -50,10 +58,13 @@ class ResourceReservation(models.Model):
         help="This field represents the status of the booking.")
     resource_description = fields.Text(string="Reservation Description",
                                        required=True)
-    # res_tag = fields.Char(string="Reservation Tag", required=True)
-    reservation_tag_id = fields.Many2one('resource.reservation.tag',
-                                         string="Reservation Tag",
-                                         required=True)
+
+    reservation_tag_id = fields.Many2one(
+        'resource.reservation.tag',
+        string="Reservation Tag", required=True)
+    resource_type_id = fields.Many2one(
+        'resource.type',
+        string="Resource Type", required=True)
 
     @api.model
     def create(self, vals_list):
@@ -75,3 +86,13 @@ class ResourceReservation(models.Model):
             if overlapping:
                 raise exceptions.ValidationError(_("Overlapping reservations"
                                                    " are not allowed."))
+
+    @api.constrains('start_datetime', 'end_datetime')
+    def check_start_end_dates(self):
+        """Check that end date is after or equal to start date."""
+        for reservation in self:
+            if reservation.start_datetime and reservation.end_datetime:
+                if reservation.end_datetime < reservation.start_datetime:
+                    raise exceptions.ValidationError(_("End date cannot"
+                                                       " be before the"
+                                                       " start date."))

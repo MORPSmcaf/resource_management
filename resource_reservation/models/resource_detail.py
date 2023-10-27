@@ -13,3 +13,15 @@ class ResourceDetail(models.Model):
     resource_capacity = fields.Float(string=" Resource Capacity",
                                      required=True)
     resource_owner = fields.Char(string='Resource owner', required=True)
+
+
+class ResourceType(models.Model):
+    _name = 'resource.type'
+    _description = 'Resource Type'
+
+    name = fields.Char(string='Resource Type', required=True)
+
+    _sql_constraints = [
+        ('unique_resource_type', 'UNIQUE (name)',
+         'A resource type with the same name already exists.'),
+    ]

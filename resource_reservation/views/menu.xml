@@ -29,6 +29,11 @@
               parent="menu_resource_configurations"
               action="action_resource_reservation_tag_act_window"/>
 
+        <menuitem id="menu_resource_type"
+              name="Resource Type"
+              parent="menu_resource_configurations"
+              action="action_resource_type_act_window"/>
+
     <menuitem id="menu_resource_detail_btn"
               name="Resource Create"
               parent="menu_resource_configurations"
