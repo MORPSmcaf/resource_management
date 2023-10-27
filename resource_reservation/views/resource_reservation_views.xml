@@ -25,7 +25,12 @@
                         </group>
                     </group>
                     <group>
+                        <group>
                         <field name="reservation_tag_id"/>
+                            </group>
+                        <group>
+                            <field name = "resource_type_id"/>
+                        </group>
                     </group>
                     <group>
                         <group>

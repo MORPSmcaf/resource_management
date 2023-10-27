@@ -37,11 +37,14 @@ class ResourceReservation(models.Model):
     start_datetime = fields.Datetime(string='Start Date & Time',
                                      default=lambda self:
                                      fields.Datetime.now(),
-                                     help="Store the current date and time")
+                                     help="Store the "
+                                          "current date and time",
+                                     required=True)
     end_datetime = fields.Datetime(string='End Date & Time',
                                    help="This field will store "
                                         "the end date and time "
-                                        "of the event or task.")
+                                        "of the event or task.",
+                                   required=True)
     creator = fields.Char(string='Created By',
                           default=lambda self: self.env.user.name,
                           required=True)
@@ -55,10 +58,13 @@ class ResourceReservation(models.Model):
         help="This field represents the status of the booking.")
     resource_description = fields.Text(string="Reservation Description",
                                        required=True)
-    # res_tag = fields.Char(string="Reservation Tag", required=True)
-    reservation_tag_id = fields.Many2one('resource.reservation.tag',
-                                         string="Reservation Tag",
-                                         required=True)
+
+    reservation_tag_id = fields.Many2one(
+        'resource.reservation.tag',
+        string="Reservation Tag", required=True)
+    resource_type_id = fields.Many2one(
+        'resource.type',
+        string="Resource Type", required=True)
 
     @api.model
     def create(self, vals_list):
