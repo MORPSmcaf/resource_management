@@ -72,7 +72,7 @@ class ResourceReservation(models.Model):
         'name',
         string="Sessions")
 
-    def update_booking_status_cansel(self):
+    def update_booking_status_cancel(self):
         self.write({'booking_status': 'canceled'})
 
     def update_booking_status_confirm(self):
