@@ -40,6 +40,37 @@
                             <field name="creator"/>
                         </group>
                     </group>
+
+                    <notebook>
+                        <!-- First Notebook Page -->
+                        <page string="Confirm">
+                            <tree string="Resource Reservation">
+                                <field name="title" class="oe_inline"/>
+                                <field name="start_datetime" class="oe_inline"/>
+                                <field name="name"/>
+                                <field name="end_datetime"/>
+                                <field name="booking_status"/>
+                                <field name="reservation_tag_id"/>
+                                <field name="resource_type_id"/>
+                                <field name="resource_description"/>
+                                <field name="creator"/>
+                            </tree>
+                        </page>
+                            <!-- Second Notebook Page -->
+                        <page string="Cancel">
+                            <tree string="Resource Reservation2">
+                                <field name="title" class="oe_inline"/>
+                                <field name="start_datetime" class="oe_inline"/>
+                                <field name="name"/>
+                                <field name="end_datetime"/>
+                                <field name="booking_status"/>
+                                <field name="reservation_tag_id"/>
+                                <field name="resource_type_id"/>
+                                <field name="resource_description"/>
+                                <field name="creator"/>
+                            </tree>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
