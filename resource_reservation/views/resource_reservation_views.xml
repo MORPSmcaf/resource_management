@@ -40,8 +40,9 @@
                         </group>
                     </group>
 
+                    <!--Work in progress-->
                     <notebook>
-                        <page string="Tree View">
+                        <page string="Book Canceled">
                             <field name="session_ids">
                                 <tree string="Resource Reservation">
                                     <field name="title"/>
