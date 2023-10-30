@@ -61,7 +61,7 @@ class ResourceAvailability(models.Model):
 
 
 class ResourceAvailabilityByResource(models.Model):
-    _name = 'resource.availability.one'
+    _name = 'resource.availability.by.resource'
     _description = 'Resource Availability By Resource'
 
     resource_id = fields.Many2one('resource.detail',
@@ -90,7 +90,7 @@ class ResourceAvailabilityByResource(models.Model):
 
 
 class ResourceAvailabilityByDate(models.Model):
-    _name = 'resource.availability.two'
+    _name = 'resource.availability.by.dates'
     _description = 'Resource Availability By Date'
 
     start_date = fields.Datetime(string='Start Date & Time', required=True)

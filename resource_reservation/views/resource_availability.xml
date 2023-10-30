@@ -15,7 +15,8 @@
                     </group>
                     <group>
 
-                        <button name="search_availability" string="Check Availability" type="object" class="btn-primary"/>
+                        <button name="search_availability" string="Check Availability" type="object"
+                                class="btn-primary"/>
 
                     </group>
                 </sheet>
@@ -23,9 +24,9 @@
         </field>
     </record>
 
-        <record id="view_resource_availability_by_resource_form" model="ir.ui.view">
-        <field name="name">resource.availability.one.form</field>
-        <field name="model">resource.availability.one</field>
+    <record id="view_resource_availability_by_resource_form" model="ir.ui.view">
+        <field name="name">resource.availability.by.resource.form</field>
+        <field name="model">resource.availability.by.resource</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
@@ -42,10 +43,9 @@
         </field>
     </record>
 
-
-            <record id="view_resource_availability_by_dates_form" model="ir.ui.view">
-        <field name="name">resource.availability.two.form</field>
-        <field name="model">resource.availability.two</field>
+    <record id="view_resource_availability_by_dates_form" model="ir.ui.view">
+        <field name="name">resource.availability.by.dates.form</field>
+        <field name="model">resource.availability.by.dates</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
@@ -69,16 +69,17 @@
         <field name="view_mode">form</field>
     </record>
 
-        <record id="action_resource_availability_by_resource" model="ir.actions.act_window">
+    <record id="action_resource_availability_by_resource" model="ir.actions.act_window">
         <field name="name">Resource Availability v2</field>
-        <field name="res_model">resource.availability.one</field>
+        <field name="res_model">resource.availability.by.resource</field>
         <field name="view_mode">form</field>
     </record>
 
-            <record id="action_resource_availability_by_dates" model="ir.actions.act_window">
+    <record id="action_resource_availability_by_dates" model="ir.actions.act_window">
         <field name="name">Resource Availability v3</field>
-        <field name="res_model">resource.availability.two</field>
+        <field name="res_model">resource.availability.by.dates</field>
         <field name="view_mode">form</field>
     </record>
 </odoo>
+
 

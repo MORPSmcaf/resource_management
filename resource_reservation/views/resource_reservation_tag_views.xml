@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
 
+<odoo>
     <record id="view_resource_reservation_tag_form"
             model="ir.ui.view">
         <field name="name">resource.reservation.tag.form</field>
@@ -22,7 +22,7 @@
         <field name="name">resource.reservation.tag.tree</field>
         <field name="model">resource.reservation.tag</field>
         <field name="arch" type="xml">
-            <tree name="Reservation Tags" editable="bottom" >
+            <tree name="Reservation Tags" editable="top">
                 <field name="name"/>
                 <field name="description"/>
             </tree>
@@ -35,5 +35,5 @@
         <field name="res_model">resource.reservation.tag</field>
         <field name="view_mode">tree,form</field>
     </record>
-
 </odoo>
+
