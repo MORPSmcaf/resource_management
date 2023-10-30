@@ -66,6 +66,7 @@ class ResourceReservation(models.Model):
         'resource.type',
         string="Resource Type", required=True)
 
+
     session_ids = fields.One2many(
         'resource.reservation',
         'name',
