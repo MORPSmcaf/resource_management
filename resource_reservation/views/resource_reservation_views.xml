@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_resource_reservation_form" model="ir.ui.view">
+    <record id="view_resource_reservation_form"
+            model="ir.ui.view">
         <field name="name">resource.reservation.form</field>
         <field name="model">resource.reservation</field>
         <field name="arch" type="xml">
@@ -40,33 +41,14 @@
                     </group>
 
                     <notebook>
-                        <!-- First Notebook Page -->
-                        <page string="Confirm">
-                            <tree string="Resource Reservation">
-                                <field name="title" class="oe_inline"/>
-                                <field name="start_datetime" class="oe_inline"/>
-                                <field name="name"/>
-                                <field name="end_datetime"/>
-                                <field name="booking_status"/>
-                                <field name="reservation_tag_id"/>
-                                <field name="resource_type_id"/>
-                                <field name="resource_description"/>
-                                <field name="creator"/>
-                            </tree>
-                        </page>
-                            <!-- Second Notebook Page -->
-                        <page string="Cancel">
-                            <tree string="Resource Reservation2">
-                                <field name="title" class="oe_inline"/>
-                                <field name="start_datetime" class="oe_inline"/>
-                                <field name="name"/>
-                                <field name="end_datetime"/>
-                                <field name="booking_status"/>
-                                <field name="reservation_tag_id"/>
-                                <field name="resource_type_id"/>
-                                <field name="resource_description"/>
-                                <field name="creator"/>
-                            </tree>
+                        <page string="Tree View">
+                            <field name="session_ids">
+                                <tree string="Resource Reservation">
+                                    <field name="title"/>
+                                    <field name="name"/>
+                                    <field name="booking_status"/>
+                                </tree>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>

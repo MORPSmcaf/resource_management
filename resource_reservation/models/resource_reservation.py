@@ -66,6 +66,11 @@ class ResourceReservation(models.Model):
         'resource.type',
         string="Resource Type", required=True)
 
+    session_ids = fields.One2many(
+        'resource.reservation',
+        'name',
+        string="Sessions")
+
     def update_booking_status_cansel(self):
         self.write({'booking_status': 'canceled'})
 
