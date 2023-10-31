@@ -51,7 +51,7 @@ class ResourceReservation(models.Model):
     booking_status = fields.Selection([
         ('pending', 'Pending '),
         ('confirmed', 'Confirmed '),
-        ('canceled', 'Canceled '),
+        ('cancelled', 'Cancelled '),
     ],
         string='Booking Status ',
         default='pending',
@@ -62,12 +62,9 @@ class ResourceReservation(models.Model):
     reservation_tag_id = fields.Many2one(
         'resource.reservation.tag',
         string="Reservation Tag", required=True)
-    resource_type_id = fields.Many2one(
-        'resource.type',
-        string="Resource Type", required=True)
 
     def update_booking_status_cancel(self):
-        self.write({'booking_status': 'canceled'})
+        self.write({'booking_status': 'cancelled'})
 
     def update_booking_status_confirm(self):
         self.write({'booking_status': 'confirmed'})
