@@ -26,7 +26,6 @@
               parent="menu_root"
               sequence="2"/>
 
-    <!-- Define a menu item to access the ResourceAvailability form view -->
     <menuitem id="menu_resource_availability_by_all"
               name="Resource Availability"
               parent="menu_resource_availability"

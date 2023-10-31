@@ -71,16 +71,13 @@ class ResourceReservation(models.Model):
 
     @api.model
     def create(self, vals_list):
-        """Fetches information of current user from odoo environment"""
         vals_list['creator'] = self.env.user.name
         return super().create(vals_list)
 
     @api.constrains('name', 'start_datetime', 'end_datetime')
     def check_overlapping_reservations(self):
-        """Check for overlapping reservations."""
         for reservation in self:
             overlapping = (self.env['resource.reservation'].search([
-                # Exclude the current reservation
                 ('id', '!=', reservation.id),
                 ('name', '=', reservation.name.id),
                 ('start_datetime', '<', reservation.end_datetime),
@@ -92,7 +89,6 @@ class ResourceReservation(models.Model):
 
     @api.constrains('start_datetime', 'end_datetime')
     def check_start_end_dates(self):
-        """Check that end date is after or equal to start date."""
         for reservation in self:
             if reservation.start_datetime and reservation.end_datetime:
                 if reservation.end_datetime < reservation.start_datetime:

@@ -45,13 +45,11 @@ class ResourceAvailability(models.Model):
                 'view_id': False,
                 'target': 'new',
             }
-        # Resource is not available, display a message
         raise exceptions.UserError(_("Resource is not available for"
                                      " the selected time period."))
 
     @api.constrains('start_datetime', 'end_datetime')
     def check_start_end_dates(self):
-        """Check that end date is after or equal to start date."""
         for reservation in self:
             if reservation.start_datetime and reservation.end_datetime:
                 if reservation.end_datetime < reservation.start_datetime:
@@ -119,7 +117,6 @@ class ResourceAvailabilityByDate(models.Model):
 
     @api.constrains('start_date', 'end_date')
     def check_start_end_dates(self):
-        """Check that end date is after or equal to start date."""
         for reservation in self:
             if reservation.start_date and reservation.end_date:
                 if reservation.end_date < reservation.start_date:

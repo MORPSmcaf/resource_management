@@ -34,7 +34,7 @@
                             <field name="resource_description"/>
                         </group>
                         <group>
-                            <field name="creator"/>
+                            <field name="creator" readonly="1"/>
                         </group>
                     </group>
                 </sheet>
