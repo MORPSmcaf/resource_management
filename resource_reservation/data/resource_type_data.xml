@@ -1,0 +1,14 @@
+<odoo>
+    <data noupdate="1">
+        <!-- Resource Type Records -->
+        <record id="resource_type_1" model="resource.type">
+            <field name="name">Meeting Room</field>
+        </record>
+
+        <record id="resource_type_2" model="resource.type">
+            <field name="name">Conference Hall</field>
+        </record>
+
+        <!-- Define more resource type records as needed -->
+    </data>
+</odoo>

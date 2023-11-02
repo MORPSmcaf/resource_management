@@ -1,0 +1,22 @@
+<odoo>
+    <data noupdate="1">
+        <!-- Resource Detail Records -->
+        <record id="resource_detail_1" model="resource.detail">
+            <field name="name">Meeting Room A</field>
+            <field name="resource_type" ref="resource_type_1" />
+            <field name="resource_capacity">10</field>
+            <field name="resource_owner">John Doe</field>
+            <!-- Add more fields as needed -->
+        </record>
+
+        <record id="resource_detail_2" model="resource.detail">
+            <field name="name">Conference Hall B</field>
+            <field name="resource_type" ref="resource_type_2" />
+            <field name="resource_capacity">50</field>
+            <field name="resource_owner">Jane Smith</field>
+            <!-- Add more fields as needed -->
+        </record>
+
+        <!-- Define more resource detail records as needed -->
+    </data>
+</odoo>

@@ -1,0 +1,28 @@
+<odoo>
+    <data noupdate="1">
+        <!-- Reservation Records -->
+        <record id="reservation_1" model="resource.reservation">
+            <field name="title">Sample Reservation 1</field>
+            <field name="name" ref="resource_detail_1" />
+            <field name="start_datetime">2023-11-10 09:00:00</field>
+            <field name="end_datetime">2023-11-10 12:00:00</field>
+            <field name="creator">Administrator</field>
+            <field name="booking_status">confirmed</field>
+            <field name="resource_description">Sample description for reservation 1.</field>
+            <field name="reservation_tag_id" ref="reservation_tag_1" />
+        </record>
+
+        <record id="reservation_2" model="resource.reservation">
+            <field name="title">Sample Reservation 2</field>
+            <field name="name" ref="resource_detail_2" />
+            <field name="start_datetime">2023-11-15 14:00:00</field>
+            <field name="end_datetime">2023-11-15 16:00:00</field>
+            <field name="creator">Administrator</field>
+            <field name="booking_status">pending</field>
+            <field name="resource_description">Sample description for reservation 2.</field>
+            <field name="reservation_tag_id" ref="reservation_tag_2" />
+        </record>
+
+        <!-- Define more reservation records as needed -->
+    </data>
+</odoo>

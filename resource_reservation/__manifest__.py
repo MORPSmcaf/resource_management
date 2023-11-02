@@ -17,6 +17,11 @@
         'views/resource_availability.xml',
         'views/menu.xml',
         'report/detail.xml',
+        'data/reservation_tag_data.xml',
+        'data/resource_type_data.xml',
+        'data/resource_detail_data.xml',
+        'data/resource_reservation_data.xml',
+
     ],
     'demo': [
         'demo/demo.xml',
