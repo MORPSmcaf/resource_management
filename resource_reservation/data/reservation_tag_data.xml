@@ -11,6 +11,94 @@
             <field name="description">Tag for training sessions</field>
         </record>
 
-        <!-- Define more reservation tag records as needed -->
+        <record id="reservation_tag_3" model="resource.reservation.tag">
+            <field name="name">Conference</field>
+            <field name="description">Tag for conferences</field>
+        </record>
+
+        <record id="reservation_tag_4" model="resource.reservation.tag">
+            <field name="name">Workshop</field>
+            <field name="description">Tag for workshops</field>
+        </record>
+
+        <record id="reservation_tag_5" model="resource.reservation.tag">
+            <field name="name">Seminar</field>
+            <field name="description">Tag for seminars</field>
+        </record>
+
+        <record id="reservation_tag_6" model="resource.reservation.tag">
+            <field name="name">Webinar</field>
+            <field name="description">Tag for webinars</field>
+        </record>
+
+        <record id="reservation_tag_7" model="resource.reservation.tag">
+            <field name="name">Presentation</field>
+            <field name="description">Tag for presentations</field>
+        </record>
+
+        <record id="reservation_tag_8" model="resource.reservation.tag">
+            <field name="name">Product Launch</field>
+            <field name="description">Tag for product launch events</field>
+        </record>
+
+        <record id="reservation_tag_9" model="resource.reservation.tag">
+            <field name="name">Exhibition</field>
+            <field name="description">Tag for exhibitions</field>
+        </record>
+
+        <record id="reservation_tag_10" model="resource.reservation.tag">
+            <field name="name">Social Gathering</field>
+            <field name="description">Tag for social gatherings</field>
+        </record>
+
+        <record id="reservation_tag_11" model="resource.reservation.tag">
+            <field name="name">Board Meeting</field>
+            <field name="description">Tag for board meetings</field>
+        </record>
+
+        <record id="reservation_tag_12" model="resource.reservation.tag">
+            <field name="name">Company Picnic</field>
+            <field name="description">Tag for company picnic events</field>
+        </record>
+
+        <record id="reservation_tag_13" model="resource.reservation.tag">
+            <field name="name">Team Building</field>
+            <field name="description">Tag for team building activities</field>
+        </record>
+
+        <record id="reservation_tag_14" model="resource.reservation.tag">
+            <field name="name">Birthday Party</field>
+            <field name="description">Tag for birthday parties</field>
+        </record>
+
+        <record id="reservation_tag_15" model="resource.reservation.tag">
+            <field name="name">Holiday Celebration</field>
+            <field name="description">Tag for holiday celebrations</field>
+        </record>
+
+        <record id="reservation_tag_16" model="resource.reservation.tag">
+            <field name="name">Trade Show</field>
+            <field name="description">Tag for trade show events</field>
+        </record>
+
+        <record id="reservation_tag_17" model="resource.reservation.tag">
+            <field name="name">Award Ceremony</field>
+            <field name="description">Tag for award ceremonies</field>
+        </record>
+
+        <record id="reservation_tag_18" model="resource.reservation.tag">
+            <field name="name">Job Fair</field>
+            <field name="description">Tag for job fair events</field>
+        </record>
+
+        <record id="reservation_tag_19" model="resource.reservation.tag">
+            <field name="name">Charity Event</field>
+            <field name="description">Tag for charity events</field>
+        </record>
+
+        <record id="reservation_tag_20" model="resource.reservation.tag">
+            <field name="name">Networking Event</field>
+            <field name="description">Tag for networking events</field>
+        </record>
     </data>
 </odoo>

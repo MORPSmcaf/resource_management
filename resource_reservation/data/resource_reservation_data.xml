@@ -1,28 +1,223 @@
 <odoo>
     <data noupdate="1">
-        <!-- Reservation Records -->
         <record id="reservation_1" model="resource.reservation">
             <field name="title">Sample Reservation 1</field>
-            <field name="name" ref="resource_detail_1" />
+            <field name="name" ref="resource_detail_1"/>
             <field name="start_datetime">2023-11-10 09:00:00</field>
             <field name="end_datetime">2023-11-10 12:00:00</field>
             <field name="creator">Administrator</field>
             <field name="booking_status">confirmed</field>
             <field name="resource_description">Sample description for reservation 1.</field>
-            <field name="reservation_tag_id" ref="reservation_tag_1" />
+            <field name="reservation_tag_id" ref="reservation_tag_1"/>
         </record>
 
         <record id="reservation_2" model="resource.reservation">
             <field name="title">Sample Reservation 2</field>
-            <field name="name" ref="resource_detail_2" />
+            <field name="name" ref="resource_detail_2"/>
             <field name="start_datetime">2023-11-15 14:00:00</field>
             <field name="end_datetime">2023-11-15 16:00:00</field>
             <field name="creator">Administrator</field>
             <field name="booking_status">pending</field>
             <field name="resource_description">Sample description for reservation 2.</field>
-            <field name="reservation_tag_id" ref="reservation_tag_2" />
+            <field name="reservation_tag_id" ref="reservation_tag_2"/>
         </record>
 
-        <!-- Define more reservation records as needed -->
+        <record id="reservation_3" model="resource.reservation">
+            <field name="title">Sample Reservation 3</field>
+            <field name="name" ref="resource_detail_3"/>
+            <field name="start_datetime">2023-11-20 10:00:00</field>
+            <field name="end_datetime">2023-11-20 13:00:00</field>
+            <field name="creator">Administrator</field>
+            <field name="booking_status">confirmed</field>
+            <field name="resource_description">Sample description for reservation 3.</field>
+            <field name="reservation_tag_id" ref="reservation_tag_3"/>
+        </record>
+
+        <record id="reservation_4" model="resource.reservation">
+            <field name="title">Sample Reservation 4</field>
+            <field name="name" ref="resource_detail_4"/>
+            <field name="start_datetime">2023-11-25 15:00:00</field>
+            <field name="end_datetime">2023-11-25 17:00:00</field>
+            <field name="creator">Administrator</field>
+            <field name="booking_status">pending</field>
+            <field name="resource_description">Sample description for reservation 4.</field>
+            <field name="reservation_tag_id" ref="reservation_tag_4"/>
+        </record>
+
+        <record id="reservation_5" model="resource.reservation">
+            <field name="title">Sample Reservation 5</field>
+            <field name="name" ref="resource_detail_5"/>
+            <field name="start_datetime">2023-11-30 11:00:00</field>
+            <field name="end_datetime">2023-11-30 14:00:00</field>
+            <field name="creator">Administrator</field>
+            <field name="booking_status">confirmed</field>
+            <field name="resource_description">Sample description for reservation 5.</field>
+            <field name="reservation_tag_id" ref="reservation_tag_5"/>
+        </record>
+
+        <record id="reservation_6" model="resource.reservation">
+            <field name="title">Sample Reservation 6</field>
+            <field name="name" ref="resource_detail_6"/>
+            <field name="start_datetime">2023-12-05 09:00:00</field>
+            <field name="end_datetime">2023-12-05 12:00:00</field>
+            <field name="creator">Administrator</field>
+            <field name="booking_status">pending</field>
+            <field name="resource_description">Sample description for reservation 6.</field>
+            <field name="reservation_tag_id" ref="reservation_tag_6"/>
+        </record>
+
+        <record id="reservation_7" model="resource.reservation">
+            <field name="title">Sample Reservation 7</field>
+            <field name="name" ref="resource_detail_7"/>
+            <field name="start_datetime">2023-12-10 13:00:00</field>
+            <field name="end_datetime">2023-12-10 15:00:00</field>
+            <field name="creator">Administrator</field>
+            <field name="booking_status">confirmed</field>
+            <field name="resource_description">Sample description for reservation 7.</field>
+            <field name="reservation_tag_id" ref="reservation_tag_7"/>
+        </record>
+
+        <record id="reservation_8" model="resource.reservation">
+            <field name="title">Sample Reservation 8</field>
+            <field name="name" ref="resource_detail_8"/>
+            <field name="start_datetime">2023-12-15 14:00:00</field>
+            <field name="end_datetime">2023-12-15 16:00:00</field>
+            <field name="creator">Administrator</field>
+            <field name="booking_status">pending</field>
+            <field name="resource_description">Sample description for reservation 8.</field>
+            <field name="reservation_tag_id" ref="reservation_tag_8"/>
+        </record>
+
+        <record id="reservation_9" model="resource.reservation">
+            <field name="title">Sample Reservation 9</field>
+            <field name="name" ref="resource_detail_9"/>
+            <field name="start_datetime">2023-12-20 10:00:00</field>
+            <field name="end_datetime">2023-12-20 13:00:00</field>
+            <field name="creator">Administrator</field>
+            <field name="booking_status">confirmed</field>
+            <field name="resource_description">Sample description for reservation 9.</field>
+            <field name="reservation_tag_id" ref="reservation_tag_9"/>
+        </record>
+
+        <record id="reservation_10" model="resource.reservation">
+            <field name="title">Sample Reservation 10</field>
+            <field name="name" ref="resource_detail_10"/>
+            <field name="start_datetime">2023-12-25 15:00:00</field>
+            <field name="end_datetime">2023-12-25 17:00:00</field>
+            <field name="creator">Administrator</field>
+            <field name="booking_status">pending</field>
+            <field name="resource_description">Sample description for reservation 10.</field>
+            <field name="reservation_tag_id" ref="reservation_tag_10"/>
+        </record>
+
+        <record id="reservation_11" model="resource.reservation">
+            <field name="title">Sample Reservation 11</field>
+            <field name="name" ref="resource_detail_11"/>
+            <field name="start_datetime">2023-12-30 11:00:00</field>
+            <field name="end_datetime">2023-12-30 14:00:00</field>
+            <field name="creator">Administrator</field>
+            <field name="booking_status">confirmed</field>
+            <field name="resource_description">Sample description for reservation 11.</field>
+            <field name="reservation_tag_id" ref="reservation_tag_11"/>
+        </record>
+
+        <record id="reservation_12" model="resource.reservation">
+            <field name="title">Sample Reservation 12</field>
+            <field name="name" ref="resource_detail_12"/>
+            <field name="start_datetime">2024-01-05 09:00:00</field>
+            <field name="end_datetime">2024-01-05 12:00:00</field>
+            <field name="creator">Administrator</field>
+            <field name="booking_status">pending</field>
+            <field name="resource_description">Sample description for reservation 12.</field>
+            <field name="reservation_tag_id" ref="reservation_tag_12"/>
+        </record>
+
+        <record id="reservation_13" model="resource.reservation">
+            <field name="title">Sample Reservation 13</field>
+            <field name="name" ref="resource_detail_13"/>
+            <field name="start_datetime">2024-01-10 13:00:00</field>
+            <field name="end_datetime">2024-01-10 15:00:00</field>
+            <field name="creator">Administrator</field>
+            <field name="booking_status">confirmed</field>
+            <field name="resource_description">Sample description for reservation 13.</field>
+            <field name="reservation_tag_id" ref="reservation_tag_13"/>
+        </record>
+
+        <record id="reservation_14" model="resource.reservation">
+            <field name="title">Sample Reservation 14</field>
+            <field name="name" ref="resource_detail_14"/>
+            <field name="start_datetime">2024-01-15 14:00:00</field>
+            <field name="end_datetime">2024-01-15 16:00:00</field>
+            <field name="creator">Administrator</field>
+            <field name="booking_status">pending</field>
+            <field name="resource_description">Sample description for reservation 14.</field>
+            <field name="reservation_tag_id" ref="reservation_tag_14"/>
+        </record>
+
+        <record id="reservation_15" model="resource.reservation">
+            <field name="title">Sample Reservation 15</field>
+            <field name="name" ref="resource_detail_15"/>
+            <field name="start_datetime">2024-01-20 10:00:00</field>
+            <field name="end_datetime">2024-01-20 13:00:00</field>
+            <field name="creator">Administrator</field>
+            <field name="booking_status">confirmed</field>
+            <field name="resource_description">Sample description for reservation 15.</field>
+            <field name="reservation_tag_id" ref="reservation_tag_15"/>
+        </record>
+
+        <record id="reservation_16" model="resource.reservation">
+            <field name="title">Sample Reservation 16</field>
+            <field name="name" ref="resource_detail_16"/>
+            <field name="start_datetime">2024-01-25 15:00:00</field>
+            <field name="end_datetime">2024-01-25 17:00:00</field>
+            <field name="creator">Administrator</field>
+            <field name="booking_status">pending</field>
+            <field name="resource_description">Sample description for reservation 16.</field>
+            <field name="reservation_tag_id" ref="reservation_tag_16"/>
+        </record>
+
+        <record id="reservation_17" model="resource.reservation">
+            <field name="title">Sample Reservation 17</field>
+            <field name="name" ref="resource_detail_17"/>
+            <field name="start_datetime">2024-01-30 11:00:00</field>
+            <field name="end_datetime">2024-01-30 14:00:00</field>
+            <field name="creator">Administrator</field>
+            <field name="booking_status">confirmed</field>
+            <field name="resource_description">Sample description for reservation 17.</field>
+            <field name="reservation_tag_id" ref="reservation_tag_17"/>
+        </record>
+
+        <record id="reservation_18" model="resource.reservation">
+            <field name="title">Sample Reservation 18</field>
+            <field name="name" ref="resource_detail_18"/>
+            <field name="start_datetime">2024-02-05 09:00:00</field>
+            <field name="end_datetime">2024-02-05 12:00:00</field>
+            <field name="creator">Administrator</field>
+            <field name="booking_status">pending</field>
+            <field name="resource_description">Sample description for reservation 18.</field>
+            <field name="reservation_tag_id" ref="reservation_tag_18"/>
+        </record>
+
+        <record id="reservation_19" model="resource.reservation">
+            <field name="title">Sample Reservation 19</field>
+            <field name="name" ref="resource_detail_19"/>
+            <field name="start_datetime">2024-02-10 13:00:00</field>
+            <field name="end_datetime">2024-02-10 15:00:00</field>
+            <field name="creator">Administrator</field>
+            <field name="booking_status">confirmed</field>
+            <field name="resource_description">Sample description for reservation 19.</field>
+            <field name="reservation_tag_id" ref="reservation_tag_19"/>
+        </record>
+
+        <record id="reservation_20" model="resource.reservation">
+            <field name="title">Sample Reservation 20</field>
+            <field name="name" ref="resource_detail_20"/>
+            <field name="start_datetime">2024-02-15 14:00:00</field>
+            <field name="end_datetime">2024-02-15 16:00:00</field>
+            <field name="creator">Administrator</field>
+            <field name="booking_status">pending</field>
+            <field name="resource_description">Sample description for reservation 20.</field>
+            <field name="reservation_tag_id" ref="reservation_tag_20"/>
+        </record>
     </data>
 </odoo>

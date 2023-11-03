@@ -17,6 +17,148 @@
             <!-- Add more fields as needed -->
         </record>
 
-        <!-- Define more resource detail records as needed -->
+        <record id="resource_detail_3" model="resource.detail">
+            <field name="name">Training Room C</field>
+            <field name="resource_type" ref="resource_type_1" />
+            <field name="resource_capacity">15</field>
+            <field name="resource_owner">David Johnson</field>
+            <!-- Add more fields as needed -->
+        </record>
+
+        <record id="resource_detail_4" model="resource.detail">
+            <field name="name">Boardroom D</field>
+            <field name="resource_type" ref="resource_type_3" />
+            <field name="resource_capacity">8</field>
+            <field name="resource_owner">Sarah Wilson</field>
+            <!-- Add more fields as needed -->
+        </record>
+
+        <record id="resource_detail_5" model="resource.detail">
+            <field name="name">Classroom E</field>
+            <field name="resource_type" ref="resource_type_4" />
+            <field name="resource_capacity">30</field>
+            <field name="resource_owner">Michael Brown</field>
+            <!-- Add more fields as needed -->
+        </record>
+
+        <record id="resource_detail_6" model="resource.detail">
+            <field name="name">Auditorium F</field>
+            <field name="resource_type" ref="resource_type_5" />
+            <field name="resource_capacity">200</field>
+            <field name="resource_owner">Lisa Davis</field>
+            <!-- Add more fields as needed -->
+        </record>
+
+        <record id="resource_detail_7" model="resource.detail">
+            <field name="name">Exhibition Hall G</field>
+            <field name="resource_type" ref="resource_type_6" />
+            <field name="resource_capacity">500</field>
+            <field name="resource_owner">Robert White</field>
+            <!-- Add more fields as needed -->
+        </record>
+
+        <record id="resource_detail_8" model="resource.detail">
+            <field name="name">Outdoor Space H</field>
+            <field name="resource_type" ref="resource_type_7" />
+            <field name="resource_capacity">1000</field>
+            <field name="resource_owner">Karen Taylor</field>
+            <!-- Add more fields as needed -->
+        </record>
+
+        <record id="resource_detail_9" model="resource.detail">
+            <field name="name">Training Center I</field>
+            <field name="resource_type" ref="resource_type_8" />
+            <field name="resource_capacity">40</field>
+            <field name="resource_owner">Kevin Martinez</field>
+            <!-- Add more fields as needed -->
+        </record>
+
+        <record id="resource_detail_10" model="resource.detail">
+            <field name="name">Gymnasium J</field>
+            <field name="resource_type" ref="resource_type_9" />
+            <field name="resource_capacity">100</field>
+            <field name="resource_owner">Patricia Harris</field>
+            <!-- Add more fields as needed -->
+        </record>
+
+        <record id="resource_detail_11" model="resource.detail">
+            <field name="name">Library K</field>
+            <field name="resource_type" ref="resource_type_10" />
+            <field name="resource_capacity">25</field>
+            <field name="resource_owner">Daniel Lewis</field>
+            <!-- Add more fields as needed -->
+        </record>
+
+        <record id="resource_detail_12" model="resource.detail">
+            <field name="name">Art Gallery L</field>
+            <field name="resource_type" ref="resource_type_11" />
+            <field name="resource_capacity">150</field>
+            <field name="resource_owner">Nancy Hall</field>
+            <!-- Add more fields as needed -->
+        </record>
+
+        <record id="resource_detail_13" model="resource.detail">
+            <field name="name">Cafeteria M</field>
+            <field name="resource_type" ref="resource_type_12" />
+            <field name="resource_capacity">80</field>
+            <field name="resource_owner">Mark Anderson</field>
+            <!-- Add more fields as needed -->
+        </record>
+
+        <record id="resource_detail_14" model="resource.detail">
+            <field name="name">Open Field N</field>
+            <field name="resource_type" ref="resource_type_13" />
+            <field name="resource_capacity">2000</field>
+            <field name="resource_owner">Linda Miller</field>
+            <!-- Add more fields as needed -->
+        </record>
+
+        <record id="resource_detail_15" model="resource.detail">
+            <field name="name">Rooftop Terrace O</field>
+            <field name="resource_type" ref="resource_type_14" />
+            <field name="resource_capacity">50</field>
+            <field name="resource_owner">Edward Robinson</field>
+            <!-- Add more fields as needed -->
+        </record>
+
+        <record id="resource_detail_16" model="resource.detail">
+            <field name="name">Banquet Hall P</field>
+            <field name="resource_type" ref="resource_type_15" />
+            <field name="resource_capacity">300</field>
+            <field name="resource_owner">Laura Turner</field>
+            <!-- Add more fields as needed -->
+        </record>
+
+        <record id="resource_detail_17" model="resource.detail">
+            <field name="name">Museum Q</field>
+            <field name="resource_type" ref="resource_type_16" />
+            <field name="resource_capacity">75</field>
+            <field name="resource_owner">Richard Moore</field>
+            <!-- Add more fields as needed -->
+        </record>
+
+        <record id="resource_detail_18" model="resource.detail">
+            <field name="name">Park R</field>
+            <field name="resource_type" ref="resource_type_17" />
+            <field name="resource_capacity">5000</field>
+            <field name="resource_owner">Susan Clark</field>
+            <!-- Add more fields as needed -->
+        </record>
+
+        <record id="resource_detail_19" model="resource.detail">
+            <field name="name">Atrium S</field>
+            <field name="resource_type" ref="resource_type_18" />
+            <field name="resource_capacity">150</field>
+            <field name="resource_owner">John Walker</field>
+            <!-- Add more fields as needed -->
+        </record>
+
+        <record id="resource_detail_20" model="resource.detail">
+            <field name="name">Conference Room T</field>
+            <field name="resource_type" ref="resource_type_19" />
+            <field name="resource_capacity">20</field>
+            <field name="resource_owner">Alice Turner</field>
+            <!-- Add more fields as needed -->
+        </record>
     </data>
 </odoo>

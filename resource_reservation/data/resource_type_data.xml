@@ -9,6 +9,76 @@
             <field name="name">Conference Hall</field>
         </record>
 
-        <!-- Define more resource type records as needed -->
+        <record id="resource_type_3" model="resource.type">
+            <field name="name">Training Room</field>
+        </record>
+
+        <record id="resource_type_4" model="resource.type">
+            <field name="name">Boardroom</field>
+        </record>
+
+        <record id="resource_type_5" model="resource.type">
+            <field name="name">Classroom</field>
+        </record>
+
+        <record id="resource_type_6" model="resource.type">
+            <field name="name">Auditorium</field>
+        </record>
+
+        <record id="resource_type_7" model="resource.type">
+            <field name="name">Exhibition Hall</field>
+        </record>
+
+        <record id="resource_type_8" model="resource.type">
+            <field name="name">Outdoor Space</field>
+        </record>
+
+        <record id="resource_type_9" model="resource.type">
+            <field name="name">Training Center</field>
+        </record>
+
+        <record id="resource_type_10" model="resource.type">
+            <field name="name">Gymnasium</field>
+        </record>
+
+        <record id="resource_type_11" model="resource.type">
+            <field name="name">Library</field>
+        </record>
+
+        <record id="resource_type_12" model="resource.type">
+            <field name="name">Art Gallery</field>
+        </record>
+
+        <record id="resource_type_13" model="resource.type">
+            <field name="name">Cafeteria</field>
+        </record>
+
+        <record id="resource_type_14" model="resource.type">
+            <field name="name">Open Field</field>
+        </record>
+
+        <record id="resource_type_15" model="resource.type">
+            <field name="name">Rooftop Terrace</field>
+        </record>
+
+        <record id="resource_type_16" model="resource.type">
+            <field name="name">Banquet Hall</field>
+        </record>
+
+        <record id="resource_type_17" model="resource.type">
+            <field name="name">Museum</field>
+        </record>
+
+        <record id="resource_type_18" model="resource.type">
+            <field name="name">Park</field>
+        </record>
+
+        <record id="resource_type_19" model="resource.type">
+            <field name="name">Atrium</field>
+        </record>
+
+        <record id="resource_type_20" model="resource.type">
+            <field name="name">Conference Room</field>
+        </record>
     </data>
 </odoo>
