@@ -7,12 +7,16 @@
     <menuitem id="menu_resource_reservation"
               name="Resource Reservation"
               parent="menu_root"
-              action="action_resource_reservation_act_window"
               sequence="1"/>
 
+    <menuitem id="resource_reservation"
+              name="Resource Reservation"
+              parent="menu_resource_reservation"
+              action="action_resource_reservation_act_window"/>
+
     <menuitem id="menu_resource_detail"
-              name="Resource Detail"
-              parent="menu_root"
+              name="Resource"
+              parent="menu_resource_configurations"
               action="action_resource_detail_act_window"
               sequence="5"/>
 
@@ -21,25 +25,10 @@
               parent="menu_root"
               sequence="9"/>
 
-    <menuitem id="menu_resource_availability"
+    <menuitem id="resource_availability_by_all"
               name="Resource Availability"
-              parent="menu_root"
-              sequence="2"/>
-
-    <menuitem id="menu_resource_availability_by_all"
-              name="Resource Availability"
-              parent="menu_resource_availability"
+              parent="menu_resource_reservation"
               action="action_resource_availability"/>
-
-    <menuitem id="menu_resource_availability_by_resource"
-              name="Resource Availability By Resource"
-              parent="menu_resource_availability"
-              action="action_resource_availability_by_resource"/>
-
-    <menuitem id="menu_resource_availability_by_dates"
-              name="Resource Availability By Dates"
-              parent="menu_resource_availability"
-              action="action_resource_availability_by_dates"/>
 
     <menuitem id="menu_resource_tag"
               name="Reservation Tags"
