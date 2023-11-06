@@ -30,7 +30,7 @@ class ResourceAvailability(models.Model):
             else:
                 availability.availability_status = 'available'
 
-    def search_availability(self):
+    def create_booking(self):
         availability = self.search([
             ('resource_id', '=', self.resource_id.id),
             ('start_datetime', '=', self.start_datetime),

@@ -15,7 +15,7 @@
                     </group>
                     <group>
 
-                        <button name="search_availability" string="Check Availability" type="object"
+                        <button name="create_booking" string="Create booking" type="object"
                                 class="btn-primary"/>
 
                     </group>
