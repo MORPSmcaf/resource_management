@@ -41,10 +41,15 @@
               parent="menu_resource_availability"
               action="action_resource_availability_by_dates"/>
 
-    <menuitem id="menu_resource_tag"
+    <menuitem id="menu_reservation_tag"
               name="Reservation Tags"
               parent="menu_resource_configurations"
               action="action_resource_reservation_tag_act_window"/>
+
+    <menuitem id="menu_resource_tag"
+              name="Resource Tags"
+              parent="menu_resource_configurations"
+              action="action_resource_tag_act_window"/>
 
     <menuitem id="menu_resource_type"
               name="Resource Type"

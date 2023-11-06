@@ -26,6 +26,7 @@
                             <field name="resource_type" required="1"/>
                             <field name="resource_capacity" required="1"/>
                             <field name="resource_owner" required="1"/>
+                            <field name="resource_tags" required="1" widget="many2many_tags"/>
                         </group>
                         <group>
                             <field name="image" widget="image" class="oe_avatar" filename="name"/>
@@ -76,6 +77,36 @@
                 </sheet>
             </form>
         </field>
+    </record>
+
+    <record id="view_resource_tag_tree" model="ir.ui.view">
+        <field name="name">resource.tag.tree</field>
+        <field name="model">resource.tag</field>
+        <field name="arch" type="xml">
+            <tree name="Resource Tags" editable="top">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_resource_tag_form" model="ir.ui.view">
+        <field name="name">resource.tag.form</field>
+        <field name="model">resource.tag</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_resource_tag_act_window" model="ir.actions.act_window">
+        <field name="name">Resource Tag</field>
+        <field name="res_model">resource.tag</field>
+        <field name="view_mode">tree,form</field>
     </record>
 
     <record id="action_resource_type_act_window" model="ir.actions.act_window">
