@@ -21,19 +21,22 @@ class ResourceAvailability(models.Model):
     def _compute_availability_status(self):
         current_datetime = fields.Datetime.now()
         for availability in self:
-            start_datetime = fields.Datetime.from_string(availability.start_datetime)
-            if start_datetime < current_datetime:
-                availability.availability_status = 'unavailable'
-            else:
-                reservations = self.env['resource.reservation'].search([
-                    ('name', '=', availability.resource_id.id),
-                    ('start_datetime', '<', availability.end_datetime),
-                    ('end_datetime', '>', availability.start_datetime),
-                ])
-                if reservations:
+            if availability.start_datetime:
+                start_datetime = fields.Datetime.from_string(availability.start_datetime)
+                if start_datetime < current_datetime:
                     availability.availability_status = 'booked'
                 else:
-                    availability.availability_status = 'available'
+                    reservations = self.env['resource.reservation'].search([
+                        ('name', '=', availability.resource_id.id),
+                        ('start_datetime', '<', availability.end_datetime),
+                        ('end_datetime', '>', availability.start_datetime),
+                    ])
+                    if reservations:
+                        availability.availability_status = 'booked'
+                    else:
+                        availability.availability_status = 'available'
+            else:
+                availability.availability_status = 'booked'
 
     def create_booking(self):
         availability = self.search([
