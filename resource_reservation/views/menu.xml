@@ -14,12 +14,6 @@
               parent="menu_resource_reservation"
               action="action_resource_reservation_act_window"/>
 
-    <menuitem id="menu_resource_detail"
-              name="Resource"
-              parent="menu_resource_configurations"
-              action="action_resource_detail_act_window"
-              sequence="5"/>
-
     <menuitem id="menu_resource_configurations"
               name="Configurations"
               parent="menu_root"
@@ -44,4 +38,9 @@
               name="Resource Create"
               parent="menu_resource_configurations"
               action="action_resource_detail_btn_act_window"/>
+
+    <menuitem id="menu_resource_detail"
+              name="Resource"
+              parent="menu_resource_configurations"
+              action="action_resource_detail_act_window"/>
 </odoo>
