@@ -25,6 +25,10 @@ class ResourceDetail(models.Model):
     cancelled_reservations = fields.One2many('resource.reservation',
                                              'name',
                                              compute='_compute_cancelled')
+    resource_tags = fields.Many2many('resource.tag',
+                                     string='Resource Tags ',
+                                     help="Select one or more resource tags",
+                                     widget='many2many_tags')
 
     @api.depends('reservation_ids')
     def _compute_confirmed(self):
@@ -47,5 +51,17 @@ class ResourceType(models.Model):
 
     _sql_constraints = [
         ('unique_resource_type', 'UNIQUE (name)',
+         'A resource type with the same name already exists.'),
+    ]
+
+
+class ResourceTag(models.Model):
+    _name = 'resource.tag'
+    _description = 'Resource Tag'
+
+    name = fields.Char(string='Resource Tag', required=True)
+
+    _sql_constraints = [
+        ('unique_resource_tag', 'UNIQUE (name)',
          'A resource type with the same name already exists.'),
     ]

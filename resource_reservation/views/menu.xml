@@ -24,7 +24,7 @@
               parent="menu_resource_reservation"
               action="action_resource_availability"/>
 
-    <menuitem id="menu_resource_tag"
+    <menuitem id="menu_reservation_tag"
               name="Reservation Tags"
               parent="menu_resource_configurations"
               action="action_resource_reservation_tag_act_window"/>
@@ -43,4 +43,9 @@
               name="Resource"
               parent="menu_resource_configurations"
               action="action_resource_detail_act_window"/>
+
+    <menuitem id="menu_resource_tag"
+              name="Resource Tags"
+              parent="menu_resource_configurations"
+              action="action_resource_tag_act_window"/>
 </odoo>
