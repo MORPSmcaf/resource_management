@@ -95,3 +95,11 @@ class ResourceReservation(models.Model):
                     raise exceptions.ValidationError(_("End date cannot"
                                                        " be before the"
                                                        " start date."))
+
+    @api.constrains('start_datetime')
+    def check_future_start_date(self):
+        for i in self:
+            if i.start_datetime and i.start_datetime < fields.Datetime.now():
+                raise exceptions.ValidationError(_("Bookings for "
+                                                   "past dates are "
+                                                   "not allowed."))
