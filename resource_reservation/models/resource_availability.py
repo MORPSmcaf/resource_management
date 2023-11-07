@@ -22,7 +22,9 @@ class ResourceAvailability(models.Model):
         current_datetime = fields.Datetime.now()
         for availability in self:
             if availability.start_datetime:
-                start_datetime = fields.Datetime.from_string(availability.start_datetime)
+                start_datetime = (fields.Datetime.
+                                  from_string(availability.
+                                              start_datetime))
                 if start_datetime < current_datetime:
                     availability.availability_status = 'booked'
                 else:
