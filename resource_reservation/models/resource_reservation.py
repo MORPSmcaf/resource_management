@@ -48,6 +48,9 @@ class ResourceReservation(models.Model):
     creator = fields.Char(string='Created By',
                           default=lambda self: self.env.user.name,
                           required=True)
+    user_id = fields.Integer(string='User ID',
+                             default=lambda self: self.env.user.id,
+                             required=True)
     booking_status = fields.Selection([
         ('pending', 'Pending '),
         ('confirmed', 'Confirmed '),
