@@ -103,3 +103,13 @@ class ResourceReservation(models.Model):
                 raise exceptions.ValidationError(_("Bookings for "
                                                    "past dates are "
                                                    "not allowed."))
+
+    odoo.define('your_module_name.checkbox_widget', function(require)    {
+        'use strict'
+
+    var
+    FieldBoolean = require('web.basic_fields').FieldBoolean;
+
+    var
+    CheckboxWidget = FieldBoolean.extend({
+        template: 'CheckboxWidget',

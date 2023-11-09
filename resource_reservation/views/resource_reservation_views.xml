@@ -74,6 +74,19 @@
                 <field name="end_datetime" width="4"/>
                 <field name="creator" width="4"/>
                 <field name="booking_status" width="4"/>
+
+                <template id="assets_backend" name="Your Module Assets" inherit_id="web.assets_backend">
+                    <xpath expr="." position="inside">
+                        <script type="text/javascript"
+                                src="/your_module_name/static/src/js/checkbox_widget.js"></script>
+                    </xpath>
+                </template>
+
+                <template id="CheckboxWidget">
+                    <div t-attf-class="oe_form_field oe_form_field_boolean oe_checkbox #{widget.classes}">
+                        <input type="checkbox" class="oe_checkbox" t-att-checked="widget.value"/>
+                    </div>
+                </template>
             </calendar>
         </field>
     </record>
