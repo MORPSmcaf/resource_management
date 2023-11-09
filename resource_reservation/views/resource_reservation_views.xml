@@ -75,7 +75,7 @@
                 <field name="creator" width="4"/>
                 <field name="booking_status" width="4"/>
 
-                <template id="assets_backend" name="Your Module Assets" inherit_id="web.assets_backend">
+                <template id="assets_backend" name="Your Module Assets" inheritheckbox to the calendar view in Odoo, you'll need to create a custom widget for your field and then use it in your calendar view_id="web.assets_backend">
                     <xpath expr="." position="inside">
                         <script type="text/javascript"
                                 src="/your_module_name/static/src/js/checkbox_widget.js"></script>
