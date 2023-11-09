@@ -62,18 +62,16 @@
         </field>
     </record>
 
-    <!--Search view for the Booking Report-->
     <record id="resource_reservation_view_search" model="ir.ui.view">
-    <field name="name">resource.reservation.view.search</field>
-    <field name="model">resource.reservation</field>
-    <field name="arch" type="xml">
-    <search string="Resource Reservation">
-    <filter string="My Reservations" name="creator"
-            domain="[('creator', '=', uid)]"/>
-    </search>
-    </field>
+        <field name="name">resource.reservation.view.search</field>
+        <field name="model">resource.reservation</field>
+        <field name="arch" type="xml">
+            <search string="Resource Reservation">
+                <filter string="My Reservations" name="user_id"
+                        domain="[('user_id', '=', uid)]" icon="terp-personal"/>
+            </search>
+        </field>
     </record>
-
 
     <record model="ir.ui.view"
             id="view_resource_reservation_calendar">
