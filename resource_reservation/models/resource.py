@@ -2,11 +2,11 @@
 from odoo import models, fields, api
 
 
-class ResourceDetail(models.Model):
-    """ This module create data for Resource Detail fields in odoo
+class Resource(models.Model):
+    """ This module create data for Resource fields in odoo
         model resource_reservation"""
-    _name = 'resource.detail'
-    _description = 'Resource Detail'
+    _name = 'resource'
+    _description = 'Resource'
 
     name = fields.Char(string='Resource name', required=True)
     resource_type = fields.Many2one(

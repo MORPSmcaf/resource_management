@@ -34,15 +34,10 @@
               parent="menu_resource_configurations"
               action="action_resource_type_act_window"/>
 
-    <menuitem id="menu_resource_detail_btn"
-              name="Resource Create"
-              parent="menu_resource_configurations"
-              action="action_resource_detail_btn_act_window"/>
-
-    <menuitem id="menu_resource_detail"
+    <menuitem id="menu_resource"
               name="Resource"
               parent="menu_resource_configurations"
-              action="action_resource_detail_act_window"/>
+              action="action_resource_act_window"/>
 
     <menuitem id="menu_resource_tag"
               name="Resource Tags"
