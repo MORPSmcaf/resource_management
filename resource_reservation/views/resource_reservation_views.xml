@@ -62,6 +62,17 @@
         </field>
     </record>
 
+    <record id="resource_reservation_view_search" model="ir.ui.view">
+        <field name="name">resource.reservation.view.search</field>
+        <field name="model">resource.reservation</field>
+        <field name="arch" type="xml">
+            <search string="Resource Reservation">
+                <filter string="My Reservations" name="user_id"
+                        domain="[('user_id', '=', uid)]" icon="terp-personal"/>
+            </search>
+        </field>
+    </record>
+
     <record model="ir.ui.view"
             id="view_resource_reservation_calendar">
         <field name="name">resource.reservation.calendar</field>
@@ -83,6 +94,7 @@
         <field name="name">Resource Reservation</field>
         <field name="res_model">resource.reservation</field>
         <field name="view_mode">tree,form,calendar</field>
+        <field name="search_view_id" ref="resource_reservation_view_search"/>
     </record>
 </odoo>
 
