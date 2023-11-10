@@ -74,7 +74,7 @@
                 <field name="end_datetime" width="4"/>
                 <field name="creator" width="4"/>
                 <field name="booking_status" width="4"/>
-                <field name="checkboxtest" filters="1"/>
+                <field name="reservation_tag_id" filters="1" widget="statusbar" options="{'statusbar_colors': {'tag_value_1': 'color1', 'tag_value_2': 'color2'}}"/>
             </calendar>
         </field>
     </record>

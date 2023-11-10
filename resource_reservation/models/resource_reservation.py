@@ -63,9 +63,6 @@ class ResourceReservation(models.Model):
         'resource.reservation.tag',
         string="Reservation Tag", required=True)
 
-    checkboxtest = fields.Boolean(string='Checkbox Test')
-
-
     def update_booking_status_cancel(self):
         self.write({'booking_status': 'cancelled'})
 
