@@ -74,9 +74,7 @@
                 <field name="end_datetime" width="4"/>
                 <field name="creator" width="4"/>
                 <field name="booking_status" width="4"/>
-                <right>
-                    <field name="chekboxtest" widget="boolean_checkbox"/>
-                </right>
+                <field name="checkboxtest" filters="1"/>
             </calendar>
         </field>
     </record>
