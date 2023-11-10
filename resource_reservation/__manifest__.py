@@ -11,16 +11,12 @@
     'depends': ['base'],
     'data': [
         'security/ir.model.access.csv',
-        'views/assets.xml',
         'views/resource_reservation_views.xml',
         'views/resource_reservation_tag_views.xml',
         'views/resource_views.xml',
         'views/resource_availability.xml',
         'views/menu.xml'
     ],
-    'assets': {
-        'web.assets_backend': ['resource_reservation/static/src/css/my_custom_css.css'],
-    },
     'demo': [
         'demo/demo.xml',
     ],
