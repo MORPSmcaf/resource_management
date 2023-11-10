@@ -63,6 +63,9 @@ class ResourceReservation(models.Model):
         'resource.reservation.tag',
         string="Reservation Tag", required=True)
 
+    chekboxtest = fields.Boolean(string='Is Checked')
+
+
     def update_booking_status_cancel(self):
         self.write({'booking_status': 'cancelled'})
 
@@ -103,13 +106,3 @@ class ResourceReservation(models.Model):
                 raise exceptions.ValidationError(_("Bookings for "
                                                    "past dates are "
                                                    "not allowed."))
-
-    odoo.define('your_module_name.checkbox_widget', function(require)    {
-        'use strict'
-
-    var
-    FieldBoolean = require('web.basic_fields').FieldBoolean;
-
-    var
-    CheckboxWidget = FieldBoolean.extend({
-        template: 'CheckboxWidget',
