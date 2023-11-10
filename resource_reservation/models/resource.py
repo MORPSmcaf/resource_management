@@ -12,8 +12,10 @@ class Resource(models.Model):
     resource_type = fields.Many2one(
         'resource.type',
         string="Resource Type ", required=True)
-    resource_capacity = fields.Float(string=" Resource Capacity",
+    resource_capacity = fields.Float(string=" Resource Capacity ",
                                      required=True)
+    resource_capacity_text = fields.Char(string=" Resource Capacity  ",
+                                         required=True)
     resource_owner = fields.Char(string='Resource owner', required=True)
     image = fields.Binary(string='')
     reservation_ids = fields.One2many('resource.reservation',
@@ -42,6 +44,11 @@ class Resource(models.Model):
             record.cancelled_reservations = record.reservation_ids.filtered(
                 lambda r: r.booking_status == 'cancelled')
 
+    @api.onchange('resource_capacity')
+    def _onchange_resource_capacity(self):
+        for record in self:
+            record.resource_capacity_text = str(record.resource_capacity)
+
 
 class ResourceType(models.Model):
     _name = 'resource.type'
@@ -65,3 +72,4 @@ class ResourceTag(models.Model):
         ('unique_resource_tag', 'UNIQUE (name)',
          'A resource type with the same name already exists.'),
     ]
+
