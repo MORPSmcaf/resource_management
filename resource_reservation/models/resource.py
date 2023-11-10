@@ -72,4 +72,3 @@ class ResourceTag(models.Model):
         ('unique_resource_tag', 'UNIQUE (name)',
          'A resource type with the same name already exists.'),
     ]
-

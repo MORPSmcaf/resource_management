@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <odoo>
-    <data>
-
         <record id="view_resource_tree" model="ir.ui.view">
             <field name="name">resource.tree</field>
             <field name="model">resource</field>
@@ -125,7 +123,6 @@
             <field name="res_model">resource</field>
             <field name="view_mode">tree,form</field>
         </record>
-    </data>
 </odoo>
 
 
