@@ -67,6 +67,7 @@ class ResourceTag(models.Model):
     _description = 'Resource Tag'
 
     name = fields.Char(string='Resource Tag', required=True)
+    color = fields.Integer(string="Color ")
 
     _sql_constraints = [
         ('unique_resource_tag', 'UNIQUE (name)',

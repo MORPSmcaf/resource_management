@@ -27,7 +27,7 @@
                                 <field name="resource_type" required="1"/>
                                 <field name="resource_capacity" required="1"/>
                                 <field name="resource_owner" required="1"/>
-                                <field name="resource_tags" required="1" widget="many2many_tags"/>
+                                <field name="resource_tags" required="1" widget="many2many_tags" options="{'color_field': 'color'}"/>
                                 <field name="resource_capacity_text" invisible="1"/>
                             </group>
                             <group>
@@ -87,6 +87,7 @@
             <field name="arch" type="xml">
                 <tree name="Resource Tags" editable="top">
                     <field name="name"/>
+                    <field name="color" widget="color_picker"/>
                 </tree>
             </field>
         </record>
@@ -99,6 +100,7 @@
                     <sheet>
                         <group>
                             <field name="name"/>
+                            <field name="color" widget="color_picker"/>
                         </group>
                     </sheet>
                 </form>
