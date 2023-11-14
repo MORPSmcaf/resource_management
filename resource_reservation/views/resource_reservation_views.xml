@@ -83,11 +83,12 @@
         <field name="arch" type="xml">
             <calendar string="Resource Reservation Calendar" date_start="start_datetime">
                 <field name="title" width="4"/>
-                <field name="name" width="4"/>
+                <field name="name" width="4" filters="1"/>
                 <field name="start_datetime" width="4"/>
                 <field name="end_datetime" width="4"/>
                 <field name="creator" width="4"/>
                 <field name="booking_status" width="4"/>
+                <field name="reservation_tag_id" filters="1"/>
             </calendar>
         </field>
     </record>
