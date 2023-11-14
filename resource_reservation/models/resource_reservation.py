@@ -14,6 +14,7 @@ class ReservationTag(models.Model):
 
     name = fields.Char(string='Reservation Type', required=True)
     description = fields.Text(string='Description ')
+    color = fields.Integer(string='Color ')
 
     _sql_constraints = [
         ('unique_reservation_tag', 'UNIQUE (name)',
@@ -62,9 +63,11 @@ class ResourceReservation(models.Model):
     resource_description = fields.Text(string="Reservation Description",
                                        required=True)
 
-    reservation_tag_id = fields.Many2one(
+    reservation_tag_id = fields.Many2many(
         'resource.reservation.tag',
-        string="Reservation Tag", required=True)
+        string="Reservation Tag",
+        required=True,
+        widget='many2many_tags')
 
     def update_booking_status_cancel(self):
         self.write({'booking_status': 'cancelled'})
