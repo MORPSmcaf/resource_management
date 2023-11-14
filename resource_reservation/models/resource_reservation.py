@@ -32,7 +32,7 @@ class ResourceReservation(models.Model):
     _description = 'Resource Reservation'
 
     title = fields.Char(string='Title ', required=True)
-    name = fields.Many2one('resource.detail',
+    name = fields.Many2one('resource',
                            string="Resource Name", required=True)
     start_datetime = fields.Datetime(string='Start Date & Time',
                                      default=lambda self:
