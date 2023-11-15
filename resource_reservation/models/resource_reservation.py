@@ -66,7 +66,11 @@ class ResourceReservation(models.Model):
     reservation_tag_id = fields.Many2one(
         'resource.reservation.tag',
         string="Reservation Tag", required=True)
-    color = fields.Integer(string='Color', related='reservation_tag_id.color', store=True)
+
+    color = fields.Integer(
+        string='Color',
+        related='reservation_tag_id.color',
+        store=True)
 
     def update_booking_status_cancel(self):
         self.write({'booking_status': 'cancelled'})
