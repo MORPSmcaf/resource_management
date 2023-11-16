@@ -55,6 +55,7 @@ class ResourceType(models.Model):
     _description = 'Resource Type'
 
     name = fields.Char(string='Resource Type', required=True)
+    color_resource_type = fields.Integer(string="Color ")
 
     _sql_constraints = [
         ('unique_resource_type', 'UNIQUE (name)',

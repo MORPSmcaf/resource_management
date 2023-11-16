@@ -63,6 +63,7 @@
             <field name="arch" type="xml">
                 <tree name="Resource Types" editable="top">
                     <field name="name"/>
+                    <field name="color_resource_type" widget="color_picker"/>
                 </tree>
             </field>
         </record>
@@ -75,6 +76,7 @@
                     <sheet>
                         <group>
                             <field name="name"/>
+                            <field name="color_resource_type" widget="color_picker"/>
                         </group>
                     </sheet>
                 </form>

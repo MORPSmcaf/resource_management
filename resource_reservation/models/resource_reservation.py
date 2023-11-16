@@ -69,6 +69,29 @@ class ResourceReservation(models.Model):
         required=True,
         widget='many2many_tags')
 
+
+    resource_type = fields.Many2one(
+        'resource.type',
+        string='Resource Type',
+        options={'no_create': True})
+
+    color_reserv = fields.Integer(
+        string='Color',
+        related='resource_type.color_resource_type',
+        store=True)
+
+    # @api.depends('booking_status')
+    # def _compute_color(self):
+    #     for record in self:
+    #         if record.booking_status == 'pending':
+    #             record.color_state = 'blue'
+    #         elif record.booking_status == 'confirmed':
+    #             record.color_state = 'grey'
+    #         elif record.booking_status == 'cancelled':
+    #             record.color_state = 'red'
+    #
+    # color_state = fields.Char(compute="_compute_color", store=True)
+
     def update_booking_status_cancel(self):
         self.write({'booking_status': 'cancelled'})
 
