@@ -88,8 +88,9 @@
                 <field name="end_datetime" width="4"/>
                 <field name="creator" width="4"/>
                 <field name="booking_status" width="4"/>
-                <field name="reservation_tag_id" filters="1"/>
+                <field name="reservation_tag_id" width="4"/>
             </calendar>
+
         </field>
     </record>
 
