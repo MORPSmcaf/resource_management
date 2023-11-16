@@ -11,7 +11,7 @@
                     <group>
                         <field name="name"/>
                         <field name="description"/>
-                        <field name="color" widget="color_picker"/>
+<!--                        <field name="color" widget="color_picker"/>-->
                     </group>
                 </sheet>
             </form>
@@ -26,7 +26,7 @@
             <tree name="Reservation Tags" editable="top">
                 <field name="name"/>
                 <field name="description"/>
-                <field name="color" widget="color_picker"/>
+<!--                <field name="color" widget="color_picker"/>-->
             </tree>
         </field>
     </record>

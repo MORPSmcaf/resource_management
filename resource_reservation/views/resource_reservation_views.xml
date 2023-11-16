@@ -81,7 +81,7 @@
         <field name="name">resource.reservation.calendar</field>
         <field name="model">resource.reservation</field>
         <field name="arch" type="xml">
-            <calendar string="Resource Reservation Calendar" date_start="start_datetime" color="color">
+            <calendar string="Resource Reservation Calendar" date_start="start_datetime">
                 <field name="title" width="4"/>
                 <field name="name" width="4"/>
                 <field name="start_datetime" width="4"/>
