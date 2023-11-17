@@ -17,7 +17,8 @@
                     </group>
                     <group>
                         <group>
-                            <field name="name"/>
+                            <field name="name" options="{'no_create': True}"/>
+                            <field name="resource_type" options="{'no_create': True}"/>
                         </group>
                         <group>
                             <field name="end_datetime"/>
@@ -25,7 +26,7 @@
                     </group>
                     <group>
                         <group>
-                            <field name="reservation_tag_id" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            <field name="reservation_tag_id" widget="many2many_tags"/>
                         </group>
 
                     </group>
@@ -81,7 +82,7 @@
         <field name="name">resource.reservation.calendar</field>
         <field name="model">resource.reservation</field>
         <field name="arch" type="xml">
-            <calendar string="Resource Reservation Calendar" date_start="start_datetime">
+            <calendar string="Resource Reservation Calendar" date_start="start_datetime" color="color_reserv">
                 <field name="title" width="4"/>
                 <field name="name" width="4" filters="1"/>
                 <field name="start_datetime" width="4"/>
