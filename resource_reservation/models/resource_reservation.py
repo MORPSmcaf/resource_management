@@ -14,7 +14,7 @@ class ReservationTag(models.Model):
 
     name = fields.Char(string='Reservation Type', required=True)
     description = fields.Text(string='Description ')
-    color = fields.Integer(string='Color ')
+    color_reservation_tag = fields.Integer(string='Color ')
 
     _sql_constraints = [
         ('unique_reservation_tag', 'UNIQUE (name)',
