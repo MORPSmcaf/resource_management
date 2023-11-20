@@ -46,9 +46,6 @@ class ResourceReservation(models.Model):
                                         "the end date and time "
                                         "of the event or task.",
                                    required=True)
-    creator = fields.Char(string='Created By',
-                          default=lambda self: self.env.user.name,
-                          required=True)
     user_id = fields.Integer(string='User ID',
                              default=lambda self: self.env.user.id,
                              required=True)
@@ -77,7 +74,7 @@ class ResourceReservation(models.Model):
 
     @api.model
     def create(self, vals_list):
-        vals_list['creator'] = self.env.user.name
+        vals_list['create_uid'] = self.env.user.name
         return super().create(vals_list)
 
     @api.constrains('name', 'start_datetime', 'end_datetime')
