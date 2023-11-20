@@ -5,7 +5,7 @@
         <field name="name">resource.availability.form</field>
         <field name="model">resource.availability</field>
         <field name="arch" type="xml">
-            <form>
+            <form create="false">
                 <sheet>
                     <group>
                         <field name="resource_id"/>

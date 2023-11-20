@@ -6,11 +6,12 @@
         <field name="name">resource.reservation.tag.form</field>
         <field name="model">resource.reservation.tag</field>
         <field name="arch" type="xml">
-            <form>
+            <form create="false">
                 <sheet>
                     <group>
                         <field name="name"/>
                         <field name="description"/>
+                        <field name="color" widget="color_picker"/>
                     </group>
                 </sheet>
             </form>
@@ -25,6 +26,7 @@
             <tree name="Reservation Tags" editable="top">
                 <field name="name"/>
                 <field name="description"/>
+                <field name="color" widget="color_picker"/>
             </tree>
         </field>
     </record>

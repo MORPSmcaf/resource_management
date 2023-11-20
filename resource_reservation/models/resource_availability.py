@@ -5,7 +5,7 @@ class ResourceAvailability(models.Model):
     _name = 'resource.availability'
     _description = 'Resource Availability'
 
-    resource_id = fields.Many2one('resource.detail',
+    resource_id = fields.Many2one('resource',
                                   string="Resource Name",
                                   required=True)
     start_datetime = fields.Datetime(string='Start Date & Time', required=True)
@@ -72,7 +72,7 @@ class ResourceAvailabilityByResource(models.Model):
     _name = 'resource.availability.by.resource'
     _description = 'Resource Availability By Resource'
 
-    resource_id = fields.Many2one('resource.detail',
+    resource_id = fields.Many2one('resource',
                                   string="Resource Name",
                                   required=True)
     related_bookings = fields.Many2many('resource.reservation',

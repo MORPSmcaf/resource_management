@@ -2,18 +2,20 @@
 from odoo import models, fields, api
 
 
-class ResourceDetail(models.Model):
-    """ This module create data for Resource Detail fields in odoo
+class Resource(models.Model):
+    """ This module create data for Resource fields in odoo
         model resource_reservation"""
-    _name = 'resource.detail'
-    _description = 'Resource Detail'
+    _name = 'resource'
+    _description = 'Resource'
 
     name = fields.Char(string='Resource name', required=True)
     resource_type = fields.Many2one(
         'resource.type',
         string="Resource Type ", required=True)
-    resource_capacity = fields.Float(string=" Resource Capacity",
+    resource_capacity = fields.Float(string=" Resource Capacity ",
                                      required=True)
+    resource_capacity_text = fields.Char(string=" Resource Capacity  ",
+                                         required=True)
     resource_owner = fields.Char(string='Resource owner', required=True)
     image = fields.Binary(string='')
     reservation_ids = fields.One2many('resource.reservation',
@@ -42,6 +44,11 @@ class ResourceDetail(models.Model):
             record.cancelled_reservations = record.reservation_ids.filtered(
                 lambda r: r.booking_status == 'cancelled')
 
+    @api.onchange('resource_capacity')
+    def _onchange_resource_capacity(self):
+        for record in self:
+            record.resource_capacity_text = str(record.resource_capacity)
+
 
 class ResourceType(models.Model):
     _name = 'resource.type'
@@ -60,6 +67,7 @@ class ResourceTag(models.Model):
     _description = 'Resource Tag'
 
     name = fields.Char(string='Resource Tag', required=True)
+    color = fields.Integer(string="Color ")
 
     _sql_constraints = [
         ('unique_resource_tag', 'UNIQUE (name)',
