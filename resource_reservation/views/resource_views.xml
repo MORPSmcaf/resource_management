@@ -19,7 +19,7 @@
             <field name="name">resource.form</field>
             <field name="model">resource</field>
             <field name="arch" type="xml">
-                <form name="Resource">
+                <form name="Resource" create="false">
                     <sheet>
                         <group>
                             <group>
@@ -71,7 +71,7 @@
             <field name="name">resource.type.form</field>
             <field name="model">resource.type</field>
             <field name="arch" type="xml">
-                <form string="Resource Type">
+                <form string="Resource Type" create="false">
                     <sheet>
                         <group>
                             <field name="name"/>
@@ -96,7 +96,7 @@
             <field name="name">resource.tag.form</field>
             <field name="model">resource.tag</field>
             <field name="arch" type="xml">
-                <form>
+                <form create="false">
                     <sheet>
                         <group>
                             <field name="name"/>
