@@ -111,12 +111,14 @@
             <field name="name">Resource Tag</field>
             <field name="res_model">resource.tag</field>
             <field name="view_mode">tree,form</field>
+            <field name="context"> {'no_breadcrumbs': True}</field>
         </record>
 
         <record id="action_resource_type_act_window" model="ir.actions.act_window">
             <field name="name">Resource Type</field>
             <field name="res_model">resource.type</field>
             <field name="view_mode">tree,form</field>
+            <field name="context"> {'no_breadcrumbs': True}</field>
         </record>
 
         <record id="action_resource_act_window"
@@ -124,6 +126,7 @@
             <field name="name">Resource</field>
             <field name="res_model">resource</field>
             <field name="view_mode">tree,form</field>
+            <field name="context"> {'no_breadcrumbs': True}</field>
         </record>
 </odoo>
 

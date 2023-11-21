@@ -104,6 +104,7 @@
         <field name="res_model">resource.reservation</field>
         <field name="view_mode">tree,form,calendar</field>
         <field name="search_view_id" ref="resource_reservation_view_search"/>
+        <field name="context"> {'no_breadcrumbs': True}</field>
     </record>
 </odoo>
 
