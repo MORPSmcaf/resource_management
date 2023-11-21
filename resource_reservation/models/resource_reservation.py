@@ -129,3 +129,9 @@ class ResourceReservation(models.Model):
         if self.name:
             # Filter the available resource_type options based on the selected name
             return {'domain': {'resource_type': [('id', '=', self.name.resource_type.id), ('id', '!=', False)]}}
+
+    @api.onchange('resource_type')
+    def _onchange_resource_type(self):
+        if self.resource_type:
+            # Set the name field based on the selected resource_type
+            self.name = self.env['resource'].search([('resource_type', '=', self.resource_type.id)], limit=1)
