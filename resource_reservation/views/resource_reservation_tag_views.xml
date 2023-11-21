@@ -6,7 +6,7 @@
         <field name="name">resource.reservation.tag.form</field>
         <field name="model">resource.reservation.tag</field>
         <field name="arch" type="xml">
-            <form>
+            <form create="false">
                 <sheet>
                     <group>
                         <field name="name"/>

@@ -5,7 +5,7 @@
         <field name="name">resource.reservation.form</field>
         <field name="model">resource.reservation</field>
         <field name="arch" type="xml">
-            <form>
+            <form create="false">
                 <sheet>
                     <group>
                         <group>
@@ -26,7 +26,9 @@
                     </group>
                     <group>
                         <group>
-                            <field name="reservation_tag_id" widget="many2many_tags"/>
+                            <field name="reservation_tag_id"
+                                   widget="many2many_tags"
+                                   options="{'color_field': 'color'}"/>
                         </group>
 
                     </group>
@@ -35,7 +37,9 @@
                             <field name="resource_description"/>
                         </group>
                         <group>
-                            <field name="creator" readonly="1"/>
+                            <field name="create_uid"
+                                   readonly="1"
+                                   options="{'no_open' : True}"/>
                         </group>
                     </group>
                 </sheet>
@@ -57,7 +61,7 @@
                 <field name="name" width="4"/>
                 <field name="start_datetime" width="4"/>
                 <field name="end_datetime" width="4"/>
-                <field name="creator" width="4"/>
+                <field name="create_uid" width="4"/>
                 <field name="booking_status" width="4"/>
             </tree>
         </field>
@@ -87,7 +91,7 @@
                 <field name="name" width="4" filters="1"/>
                 <field name="start_datetime" width="4"/>
                 <field name="end_datetime" width="4"/>
-                <field name="creator" width="4"/>
+                <field name="create_uid" width="4"/>
                 <field name="booking_status" width="4"/>
                 <field name="reservation_tag_id" width="4"/>
             </calendar>
