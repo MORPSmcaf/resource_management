@@ -27,8 +27,7 @@
                     <group>
                         <group>
                             <field name="reservation_tag_id"
-                                   widget="many2many_tags"
-                                   options="{'color_field': 'color'}"/>
+                                   widget="many2many_tags"/>
                         </group>
 
                     </group>
