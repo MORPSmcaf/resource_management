@@ -14,7 +14,7 @@ class ReservationTag(models.Model):
 
     name = fields.Char(string='Reservation Type', required=True)
     description = fields.Text(string='Description ')
-    color = fields.Integer(string='Color ')
+    color_reservation_tag = fields.Integer(string='Color ')
 
     _sql_constraints = [
         ('unique_reservation_tag', 'UNIQUE (name)',
@@ -33,8 +33,14 @@ class ResourceReservation(models.Model):
     _description = 'Resource Reservation'
 
     title = fields.Char(string='Title ', required=True)
-    name = fields.Many2one('resource',
-                           string="Resource Name", required=True)
+    name = fields.Many2one(
+        'resource',
+        string='Resource Name',
+        options={'no_create': True})
+    resource_type = fields.Many2one(
+        'resource.type',
+        string='Resource Type',
+        options={'no_create': True})
     start_datetime = fields.Datetime(string='Start Date & Time',
                                      default=lambda self:
                                      fields.Datetime.now(),
@@ -65,6 +71,11 @@ class ResourceReservation(models.Model):
         string="Reservation Tag",
         required=True,
         widget='many2many_tags')
+
+    color_reserv = fields.Integer(
+        string='Color',
+        related='resource_type.color_resource_type',
+        store=True)
 
     def update_booking_status_cancel(self):
         self.write({'booking_status': 'cancelled'})
@@ -106,3 +117,15 @@ class ResourceReservation(models.Model):
                 raise exceptions.ValidationError(_("Bookings for "
                                                    "past dates are "
                                                    "not allowed."))
+
+    @api.onchange('resource_type')
+    def _onchange_resource_type(self):
+        if self.resource_type:
+            # Filter the available name options based on the selected resource_type
+            return {'domain': {'name': [('resource_type', '=', self.resource_type.id), ('id', '!=', False)]}}
+
+    @api.onchange('name')
+    def _onchange_name(self):
+        if self.name:
+            # Filter the available resource_type options based on the selected name
+            return {'domain': {'resource_type': [('id', '=', self.name.resource_type.id), ('id', '!=', False)]}}
