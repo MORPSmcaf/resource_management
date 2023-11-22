@@ -39,7 +39,7 @@ class ResourceReservation(models.Model):
         options={'no_create': True})
     resource_type = fields.Many2one(
         'resource.type',
-        string='Resource Type',
+        string='Resource Type ',
         options={'no_create': True})
     start_datetime = fields.Datetime(string='Start Date & Time',
                                      default=lambda self:
@@ -121,11 +121,13 @@ class ResourceReservation(models.Model):
     @api.onchange('resource_type')
     def _onchange_resource_type(self):
         if self.resource_type:
-            # Filter the available name options based on the selected resource_type
+            # Filter the available name options
+            # based on the selected resource_type
             return {'domain': {'name': [('resource_type', '=', self.resource_type.id), ('id', '!=', False)]}}
 
     @api.onchange('name')
     def _onchange_name(self):
         if self.name:
-            # Filter the available resource_type options based on the selected name
+            # Filter the available resource_type
+            # options based on the selected name
             return {'domain': {'resource_type': [('id', '=', self.name.resource_type.id), ('id', '!=', False)]}}
