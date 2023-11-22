@@ -118,20 +118,27 @@ class ResourceReservation(models.Model):
                                                    "past dates are "
                                                    "not allowed."))
 
-    @api.onchange('resource_type')
-    def _onchange_resource_type(self):
-        if self.resource_type:
-            # Filter the available name options based on the selected resource_type
-            return {'domain': {'name': [('resource_type', '=', self.resource_type.id), ('id', '!=', False)]}}
-
     @api.onchange('name')
     def _onchange_name(self):
         if self.name:
             # Filter the available resource_type options based on the selected name
             return {'domain': {'resource_type': [('id', '=', self.name.resource_type.id), ('id', '!=', False)]}}
 
+    # @api.onchange('resource_type')
+    # def _onchange_resource_type(self):
+    #     if self.resource_type:
+    #         # Set the name field based on the selected resource_type
+    #         self.name = self.env['resource'].search([('resource_type', '=', self.resource_type.id)], limit=1)
+
+    @api.onchange('resource_type')
+    def _onchange_resource_type(self):
+        if self.resource_type:
+            # Filter the available name options based on the selected resource_type
+            return {'domain': {'name': [('resource_type', '=', self.resource_type.id), ('id', '!=', False)]}}
+
     @api.onchange('resource_type')
     def _onchange_resource_type(self):
         if self.resource_type:
             # Set the name field based on the selected resource_type
             self.name = self.env['resource'].search([('resource_type', '=', self.resource_type.id)], limit=1)
+
