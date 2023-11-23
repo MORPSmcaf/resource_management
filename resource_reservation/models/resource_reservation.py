@@ -123,14 +123,17 @@ class ResourceReservation(models.Model):
     @api.onchange('name')
     def _onchange_name(self):
         if self.name:
-            # Filter the available resource_type options based on the selected name
-            return {'domain': {'resource_type': [('id', '=', self.name.resource_type.id), ('id', '!=', False)]}}
+            return {'domain': {'resource_type': [
+                ('id', '=',
+                 self.name.resource_type.id), ('id', '!=', False)]}}
 
     @api.onchange('resource_type')
     def _onchange_resource_type(self):
         if self.resource_type:
-            # Filter the available name options based on the selected resource_type
-            self.name = self.env['resource'].search([('resource_type', '=', self.resource_type.id)], limit=1)
-            return {'domain': {'name': [('resource_type', '=', self.resource_type.id), ('id', '!=', False)]}}
-
-
+            # mb better if it will be in 1 line ?
+            self.name = self.env['resource'].search(
+                [('resource_type', '=', self.resource_type.id)], limit=1)
+            # mb better if it will be in 1 line ?
+            return {'domain': {'name': [
+                ('resource_type', '=',
+                 self.resource_type.id), ('id', '!=', False)]}}
