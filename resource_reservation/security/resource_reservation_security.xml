@@ -35,4 +35,27 @@
         <field name="perm_create" eval="True"/>
     </record>
 
+
+
+<!--    <record id="record_rule_user_resource_view_their" model="ir.rule">-->
+<!--        <field name="name">User Resource Reservation Rule</field>-->
+<!--        <field name="model_id" ref="model_resource_reservation"/>-->
+<!--        <field name="domain_force">[('user_id', '=', user.id)]</field>-->
+<!--        <field name="groups" eval="[(4, ref('group_resource_reservation_user'))]"/>-->
+<!--        <field name="perm_read" eval="False"/>-->
+<!--        <field name="perm_write" eval="False"/>-->
+<!--        <field name="perm_unlink" eval="False"/>-->
+<!--        <field name="perm_create" eval="False"/>-->
+<!--    </record>-->
+
+    <record id="access_resource_approver" model="ir.model.access">
+        <field name="name">Access Resource Approver</field>
+        <field name="model_id" ref="model_resource"/>
+        <field name="group_id" ref="group_resource_reservation_approver"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
 </odoo>
