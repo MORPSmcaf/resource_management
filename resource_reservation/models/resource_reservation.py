@@ -123,6 +123,7 @@ class ResourceReservation(models.Model):
     @api.onchange('name')
     def _onchange_name(self):
         if self.name:
+            self.resource_type = self.name.resource_type.id
             return {'domain': {'resource_type': [
                 ('id', '=',
                  self.name.resource_type.id), ('id', '!=', False)]}}
