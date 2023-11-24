@@ -2,124 +2,124 @@
 
 <odoo>
 
-    <record id="access_resource_tag_user" model="ir.model.access">
-        <field name="name">Access Resource Tag User</field>
-        <field name="model_id" ref="model_resource_tag"/>
-        <field name="group_id" ref="group_resource_reservation_user"/>
-        <field name="perm_read" eval="True"/>
-        <field name="perm_write" eval="False"/>
-        <field name="perm_create" eval="False"/>
-        <field name="perm_unlink" eval="False"/>
-    </record>
+<!--    <record id="access_resource_tag_user" model="ir.model.access">-->
+<!--        <field name="name">Access Resource Tag User</field>-->
+<!--        <field name="model_id" ref="model_resource_tag"/>-->
+<!--        <field name="group_id" ref="group_resource_reservation_user"/>-->
+<!--        <field name="perm_read" eval="True"/>-->
+<!--        <field name="perm_write" eval="False"/>-->
+<!--        <field name="perm_create" eval="False"/>-->
+<!--        <field name="perm_unlink" eval="False"/>-->
+<!--    </record>-->
 
-    <record id="access_resource_tag_approver" model="ir.model.access">
-        <field name="name">Access Resource Tag Approver</field>
-        <field name="model_id" ref="model_resource_tag"/>
-        <field name="group_id" ref="group_resource_reservation_approver"/>
-        <field name="perm_read" eval="True"/>
-        <field name="perm_write" eval="False"/>
-        <field name="perm_create" eval="False"/>
-        <field name="perm_unlink" eval="False"/>
-    </record>
+<!--    <record id="access_resource_tag_approver" model="ir.model.access">-->
+<!--        <field name="name">Access Resource Tag Approver</field>-->
+<!--        <field name="model_id" ref="model_resource_tag"/>-->
+<!--        <field name="group_id" ref="group_resource_reservation_approver"/>-->
+<!--        <field name="perm_read" eval="True"/>-->
+<!--        <field name="perm_write" eval="False"/>-->
+<!--        <field name="perm_create" eval="False"/>-->
+<!--        <field name="perm_unlink" eval="False"/>-->
+<!--    </record>-->
 
-    <record id="access_resource_tag_admin" model="ir.model.access">
-        <field name="name">Access Resource Tag Admin</field>
-        <field name="model_id" ref="model_resource_tag"/>
-        <field name="group_id" ref="group_resource_reservation_admin"/>
-        <field name="perm_read" eval="True"/>
-        <field name="perm_write" eval="True"/>
-        <field name="perm_create" eval="True"/>
-        <field name="perm_unlink" eval="True"/>
-    </record>
+<!--    <record id="access_resource_tag_admin" model="ir.model.access">-->
+<!--        <field name="name">Access Resource Tag Admin</field>-->
+<!--        <field name="model_id" ref="model_resource_tag"/>-->
+<!--        <field name="group_id" ref="group_resource_reservation_admin"/>-->
+<!--        <field name="perm_read" eval="True"/>-->
+<!--        <field name="perm_write" eval="True"/>-->
+<!--        <field name="perm_create" eval="True"/>-->
+<!--        <field name="perm_unlink" eval="True"/>-->
+<!--    </record>-->
 
-    <record id="access_resource_type_user" model="ir.model.access">
-        <field name="name">Access Resource Type User</field>
-        <field name="model_id" ref="model_resource_type"/>
-        <field name="group_id" ref="group_resource_reservation_user"/>
-        <field name="perm_read" eval="True"/>
-        <field name="perm_write" eval="False"/>
-        <field name="perm_create" eval="False"/>
-        <field name="perm_unlink" eval="False"/>
-    </record>
+<!--    <record id="access_resource_type_user" model="ir.model.access">-->
+<!--        <field name="name">Access Resource Type User</field>-->
+<!--        <field name="model_id" ref="model_resource_type"/>-->
+<!--        <field name="group_id" ref="group_resource_reservation_user"/>-->
+<!--        <field name="perm_read" eval="True"/>-->
+<!--        <field name="perm_write" eval="False"/>-->
+<!--        <field name="perm_create" eval="False"/>-->
+<!--        <field name="perm_unlink" eval="False"/>-->
+<!--    </record>-->
 
-    <record id="access_resource_type_approver" model="ir.model.access">
-        <field name="name">Access Resource Type Approver</field>
-        <field name="model_id" ref="model_resource_type"/>
-        <field name="group_id" ref="group_resource_reservation_approver"/>
-        <field name="perm_read" eval="True"/>
-        <field name="perm_write" eval="False"/>
-        <field name="perm_create" eval="False"/>
-        <field name="perm_unlink" eval="False"/>
-    </record>
+<!--    <record id="access_resource_type_approver" model="ir.model.access">-->
+<!--        <field name="name">Access Resource Type Approver</field>-->
+<!--        <field name="model_id" ref="model_resource_type"/>-->
+<!--        <field name="group_id" ref="group_resource_reservation_approver"/>-->
+<!--        <field name="perm_read" eval="True"/>-->
+<!--        <field name="perm_write" eval="False"/>-->
+<!--        <field name="perm_create" eval="False"/>-->
+<!--        <field name="perm_unlink" eval="False"/>-->
+<!--    </record>-->
 
-    <record id="access_resource_type_admin" model="ir.model.access">
-        <field name="name">Access Resource Type Admin</field>
-        <field name="model_id" ref="model_resource_type"/>
-        <field name="group_id" ref="group_resource_reservation_admin"/>
-        <field name="perm_read" eval="True"/>
-        <field name="perm_write" eval="True"/>
-        <field name="perm_create" eval="True"/>
-        <field name="perm_unlink" eval="True"/>
-    </record>
+<!--    <record id="access_resource_type_admin" model="ir.model.access">-->
+<!--        <field name="name">Access Resource Type Admin</field>-->
+<!--        <field name="model_id" ref="model_resource_type"/>-->
+<!--        <field name="group_id" ref="group_resource_reservation_admin"/>-->
+<!--        <field name="perm_read" eval="True"/>-->
+<!--        <field name="perm_write" eval="True"/>-->
+<!--        <field name="perm_create" eval="True"/>-->
+<!--        <field name="perm_unlink" eval="True"/>-->
+<!--    </record>-->
 
-    <record id="access_resource_reservation_tag_user" model="ir.model.access">
-        <field name="name">Access Resource reservation tag User</field>
-        <field name="model_id" ref="model_resource_reservation_tag"/>
-        <field name="group_id" ref="group_resource_reservation_user"/>
-        <field name="perm_read" eval="True"/>
-        <field name="perm_write" eval="False"/>
-        <field name="perm_create" eval="False"/>
-        <field name="perm_unlink" eval="False"/>
-    </record>
+<!--    <record id="access_resource_reservation_tag_user" model="ir.model.access">-->
+<!--        <field name="name">Access Resource reservation tag User</field>-->
+<!--        <field name="model_id" ref="model_resource_reservation_tag"/>-->
+<!--        <field name="group_id" ref="group_resource_reservation_user"/>-->
+<!--        <field name="perm_read" eval="True"/>-->
+<!--        <field name="perm_write" eval="False"/>-->
+<!--        <field name="perm_create" eval="False"/>-->
+<!--        <field name="perm_unlink" eval="False"/>-->
+<!--    </record>-->
 
-    <record id="access_resource_reservation_tag_approver" model="ir.model.access">
-        <field name="name">Access Resource reservation_tag Approver</field>
-        <field name="model_id" ref="model_resource_reservation_tag"/>
-        <field name="group_id" ref="group_resource_reservation_approver"/>
-        <field name="perm_read" eval="True"/>
-        <field name="perm_write" eval="False"/>
-        <field name="perm_create" eval="False"/>
-        <field name="perm_unlink" eval="False"/>
-    </record>
+<!--    <record id="access_resource_reservation_tag_approver" model="ir.model.access">-->
+<!--        <field name="name">Access Resource reservation_tag Approver</field>-->
+<!--        <field name="model_id" ref="model_resource_reservation_tag"/>-->
+<!--        <field name="group_id" ref="group_resource_reservation_approver"/>-->
+<!--        <field name="perm_read" eval="True"/>-->
+<!--        <field name="perm_write" eval="False"/>-->
+<!--        <field name="perm_create" eval="False"/>-->
+<!--        <field name="perm_unlink" eval="False"/>-->
+<!--    </record>-->
 
-    <record id="access_resource_reservation_tag_admin" model="ir.model.access">
-        <field name="name">Access Resource reservation_tag Admin</field>
-        <field name="model_id" ref="model_resource_reservation_tag"/>
-        <field name="group_id" ref="group_resource_reservation_admin"/>
-        <field name="perm_read" eval="True"/>
-        <field name="perm_write" eval="True"/>
-        <field name="perm_create" eval="True"/>
-        <field name="perm_unlink" eval="True"/>
-    </record>
+<!--    <record id="access_resource_reservation_tag_admin" model="ir.model.access">-->
+<!--        <field name="name">Access Resource reservation_tag Admin</field>-->
+<!--        <field name="model_id" ref="model_resource_reservation_tag"/>-->
+<!--        <field name="group_id" ref="group_resource_reservation_admin"/>-->
+<!--        <field name="perm_read" eval="True"/>-->
+<!--        <field name="perm_write" eval="True"/>-->
+<!--        <field name="perm_create" eval="True"/>-->
+<!--        <field name="perm_unlink" eval="True"/>-->
+<!--    </record>-->
 
-    <record id="access_resource_user" model="ir.model.access">
-        <field name="name">Access Resource User</field>
-        <field name="model_id" ref="model_resource"/>
-        <field name="group_id" ref="group_resource_reservation_user"/>
-        <field name="perm_read" eval="True"/>
-        <field name="perm_write" eval="False"/>
-        <field name="perm_create" eval="False"/>
-        <field name="perm_unlink" eval="False"/>
-    </record>
+<!--    <record id="access_resource_user" model="ir.model.access">-->
+<!--        <field name="name">Access Resource User</field>-->
+<!--        <field name="model_id" ref="model_resource"/>-->
+<!--        <field name="group_id" ref="group_resource_reservation_user"/>-->
+<!--        <field name="perm_read" eval="True"/>-->
+<!--        <field name="perm_write" eval="False"/>-->
+<!--        <field name="perm_create" eval="False"/>-->
+<!--        <field name="perm_unlink" eval="False"/>-->
+<!--    </record>-->
 
-    <record id="access_resource_approver" model="ir.model.access">
-        <field name="name">Access Resource Approver</field>
-        <field name="model_id" ref="model_resource"/>
-        <field name="group_id" ref="group_resource_reservation_approver"/>
-        <field name="perm_read" eval="True"/>
-        <field name="perm_write" eval="False"/>
-        <field name="perm_create" eval="False"/>
-        <field name="perm_unlink" eval="False"/>
-    </record>
+<!--    <record id="access_resource_approver" model="ir.model.access">-->
+<!--        <field name="name">Access Resource Approver</field>-->
+<!--        <field name="model_id" ref="model_resource"/>-->
+<!--        <field name="group_id" ref="group_resource_reservation_approver"/>-->
+<!--        <field name="perm_read" eval="True"/>-->
+<!--        <field name="perm_write" eval="False"/>-->
+<!--        <field name="perm_create" eval="False"/>-->
+<!--        <field name="perm_unlink" eval="False"/>-->
+<!--    </record>-->
 
-    <record id="access_resource_admin" model="ir.model.access">
-        <field name="name">Access Resource Admin</field>
-        <field name="model_id" ref="model_resource"/>
-        <field name="group_id" ref="group_resource_reservation_admin"/>
-        <field name="perm_read" eval="True"/>
-        <field name="perm_write" eval="True"/>
-        <field name="perm_create" eval="True"/>
-        <field name="perm_unlink" eval="True"/>
-    </record>
+<!--    <record id="access_resource_admin" model="ir.model.access">-->
+<!--        <field name="name">Access Resource Admin</field>-->
+<!--        <field name="model_id" ref="model_resource"/>-->
+<!--        <field name="group_id" ref="group_resource_reservation_admin"/>-->
+<!--        <field name="perm_read" eval="True"/>-->
+<!--        <field name="perm_write" eval="True"/>-->
+<!--        <field name="perm_create" eval="True"/>-->
+<!--        <field name="perm_unlink" eval="True"/>-->
+<!--    </record>-->
 
 </odoo>
