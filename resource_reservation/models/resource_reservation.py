@@ -12,7 +12,7 @@ class ReservationTag(models.Model):
     _name = 'resource.reservation.tag'
     _description = 'Reservation Tag'
 
-    name = fields.Char(string='Reservation Type', required=True)
+    name = fields.Char(string=' Reservation Tag ', required=True)
     description = fields.Text(string='Description ')
     color_reservation_tag = fields.Integer(string='Color ')
 
@@ -40,7 +40,7 @@ class ResourceReservation(models.Model):
         options={'no_create': True})
     resource_type = fields.Many2one(
         'resource.type',
-        string='Resource Type',
+        string=' Resource Type ',
         required=True,
         options={'no_create': True})
     start_datetime = fields.Datetime(string='Start Date & Time',
