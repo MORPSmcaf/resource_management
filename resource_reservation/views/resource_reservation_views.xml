@@ -76,10 +76,13 @@
                 <field name="reservation_tag_id"/>
                 <filter string="My Reservations" name="user_id"
                         domain="[('user_id', '=', uid)]" icon="terp-personal"/>
+                <separator/>
                 <filter string="Pending" name="booking_status"
                         domain="[('booking_status', '=', 'pending')]" icon="terp-personal"/>
+                <separator/>
                 <filter string="Confirmed" name="booking_status"
                         domain="[('booking_status', '=', 'confirmed')]" icon="terp-personal"/>
+                <separator/>
                 <filter string="Cancelled" name="booking_status"
                         domain="[('booking_status', '=', 'cancelled')]" icon="terp-personal"/>
             </search>
