@@ -1,11 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
+    <record id="action_approve" model="ir.actions.server" >
+            <field name="name">Approve</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_resource_reservation"/>
+            <field name="binding_model_id" ref="model_resource_reservation"/>
+            <field name="groups_id" eval="[(4, ref('group_resource_reservation_approver'))]"/>
+            <field name="binding_view_types">tree,form</field>
+            <field name="state">code</field>
+            <field name="code">records.update_booking_status_confirm()</field>
+    </record>
+
+    <record id="action_cancel" model="ir.actions.server" >
+            <field name="name">Cancel</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_resource_reservation"/>
+            <field name="binding_model_id" ref="model_resource_reservation"/>
+            <field name="groups_id" eval="[(4, ref('group_resource_reservation_approver'))]"/>
+            <field name="binding_view_types">tree,form</field>
+            <field name="state">code</field>
+            <field name="code">records.update_booking_status_cancel()</field>
+    </record>
+
     <record id="view_resource_reservation_form"
             model="ir.ui.view">
         <field name="name">resource.reservation.form</field>
         <field name="model">resource.reservation</field>
         <field name="arch" type="xml">
-            <form create="false">
+            <form create="false" action_cancel="0">
                 <sheet>
                     <group>
                         <group>
@@ -52,10 +75,6 @@
         <field name="model">resource.reservation</field>
         <field name="arch" type="xml">
             <tree name="Resource Reservation">
-                <header>
-                    <button name="update_booking_status_cancel" string="Cancel" class="oe_highlight" type="object"/>
-                    <button name="update_booking_status_confirm" string="Confirm" class="oe_highlight" type="object"/>
-                </header>
                 <field name="title" width="4"/>
                 <field name="name" width="4"/>
                 <field name="start_datetime" width="4"/>
