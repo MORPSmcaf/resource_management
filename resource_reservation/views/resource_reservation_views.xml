@@ -7,7 +7,7 @@
             <field name="model_id" ref="model_resource_reservation"/>
             <field name="binding_model_id" ref="model_resource_reservation"/>
             <field name="groups_id" eval="[(4, ref('group_resource_reservation_approver'))]"/>
-            <field name="binding_view_types">tree</field>
+            <field name="binding_view_types">tree,form</field>
             <field name="state">code</field>
             <field name="code">records.update_booking_status_confirm()</field>
     </record>
@@ -18,7 +18,7 @@
             <field name="model_id" ref="model_resource_reservation"/>
             <field name="binding_model_id" ref="model_resource_reservation"/>
             <field name="groups_id" eval="[(4, ref('group_resource_reservation_approver'))]"/>
-            <field name="binding_view_types">tree</field>
+            <field name="binding_view_types">tree,form</field>
             <field name="state">code</field>
             <field name="code">records.update_booking_status_cancel()</field>
     </record>
