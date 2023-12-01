@@ -80,8 +80,7 @@
         </field>
     </record>
 
-    <record model="ir.ui.view"
-            id="view_resource_reservation_calendar">
+    <record id="view_resource_reservation_calendar" model="ir.ui.view">
         <field name="name">resource.reservation.calendar</field>
         <field name="model">resource.reservation</field>
         <field name="arch" type="xml">
@@ -98,7 +97,7 @@
         </field>
     </record>
 
-    <record id="action_resource_reservation_act_window"
+    <record id="action_resource_reservation_report"
             model="ir.actions.act_window">
         <field name="name">Resource Reservation</field>
         <field name="res_model">resource.reservation</field>
