@@ -24,7 +24,7 @@
               name="Report"
               parent="menu_root"
               action="action_resource_reservation_report"
-              sequence="7"
+              sequence="3"
               groups="group_resource_reservation_admin"/>
 
     <menuitem id="resource_availability_by_all"
