@@ -18,7 +18,6 @@
         'views/resource_reservation_tag_views.xml',
         'views/resource_views.xml',
         'views/resource_availability.xml',
-        'views/resource_report.xml',
         'views/menu.xml'
     ],
     'demo': [

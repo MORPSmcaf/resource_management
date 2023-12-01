@@ -20,13 +20,6 @@
               sequence="5"
               groups="group_resource_reservation_admin"/>
 
-    <menuitem id="menu_resource_report"
-              name="Report"
-              parent="menu_root"
-              action="action_resource_reservation_report"
-              sequence="3"
-              groups="group_resource_reservation_admin"/>
-
     <menuitem id="resource_availability_by_all"
               name="Resource Availability"
               parent="menu_resource_reservation"
