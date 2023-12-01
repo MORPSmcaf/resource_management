@@ -11,12 +11,7 @@
                     <field name="name"/>
                 </pivot>
         </field>
-
-
     </record>
-
-
-
 
     <record id="action_resource_reservation_report"
             model="ir.actions.act_window">
@@ -25,5 +20,4 @@
         <field name="view_mode">pivot</field>
         <field name="context"> {'no_breadcrumbs': True}</field>
     </record>
-
 </odoo>
