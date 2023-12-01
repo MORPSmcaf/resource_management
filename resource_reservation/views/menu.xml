@@ -17,7 +17,7 @@
     <menuitem id="menu_resource_configurations"
               name="Configurations"
               parent="menu_root"
-              sequence="9"
+              sequence="5"
               groups="group_resource_reservation_admin"/>
 
     <menuitem id="resource_availability_by_all"

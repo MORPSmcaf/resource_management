@@ -107,6 +107,18 @@
             </field>
         </record>
 
+        <record id="view_resource_pivot" model="ir.ui.view">
+            <field name="name">resource.pivot</field>
+            <field name="model">resource</field>
+            <field name="arch" type="xml">
+                <pivot>
+                    <field name="resource_type"/>
+                    <field name="name"/>
+                </pivot>
+            </field>
+        </record>
+
+
         <record id="action_resource_tag_act_window" model="ir.actions.act_window">
             <field name="name">Resource Tag</field>
             <field name="res_model">resource.tag</field>
@@ -125,7 +137,7 @@
                 model="ir.actions.act_window">
             <field name="name">Resource</field>
             <field name="res_model">resource</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,pivot</field>
             <field name="context"> {'no_breadcrumbs': True}</field>
         </record>
 </odoo>
