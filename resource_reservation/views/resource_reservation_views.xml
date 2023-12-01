@@ -97,7 +97,7 @@
         </field>
     </record>
 
-    <record id="action_resource_reservation_report"
+    <record id="action_resource_reservation_act_window"
             model="ir.actions.act_window">
         <field name="name">Resource Reservation</field>
         <field name="res_model">resource.reservation</field>
