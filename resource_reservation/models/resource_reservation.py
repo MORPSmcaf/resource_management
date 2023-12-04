@@ -1,5 +1,5 @@
 """Required import for the functionality"""
-from odoo import models, fields, api, exceptions
+from odoo import models, fields, api, exceptions, _
 
 
 class ReservationTag(models.Model):
@@ -81,15 +81,17 @@ class ResourceReservation(models.Model):
 
     def update_booking_status_cancel(self):
         for reservation in self:
-            print("resorce owner: ", reservation.name.resource_owner.id)
-            print("me:", self.env.user.id)
-        self.write({'booking_status': 'cancelled'})
+            if reservation.name.resource_owner.id == self.env.user.id:
+                self.write({'booking_status': 'cancelled'})
+            else:
+                raise exceptions.ValidationError(_("test"))
 
     def update_booking_status_confirm(self):
         for reservation in self:
-            print("resorce owner: ", reservation.name.resource_owner.id)
-            print("me:", self.env.user.id)
-        self.write({'booking_status': 'confirmed'})
+            if reservation.name.resource_owner.id == self.env.user.id:
+                self.write({'booking_status': 'confirmed'})
+            else:
+                raise exceptions.ValidationError(_("test"))
 
     @api.model
     def create(self, vals_list):
