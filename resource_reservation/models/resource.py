@@ -16,7 +16,7 @@ class Resource(models.Model):
                                      required=True)
     resource_capacity_text = fields.Char(string=" Resource Capacity  ",
                                          required=True)
-    resource_owner = fields.Char(string='Resource owner', required=True)
+    resource_owner = fields.Many2one('res.users', string='Resource owner', required=True)
     image = fields.Binary(string='')
     reservation_ids = fields.One2many('resource.reservation',
                                       'name',

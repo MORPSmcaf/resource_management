@@ -1,5 +1,5 @@
 """Required import for the functionality"""
-from odoo import models, fields, api, exceptions, _
+from odoo import models, fields, api, exceptions
 
 
 class ReservationTag(models.Model):
@@ -80,9 +80,15 @@ class ResourceReservation(models.Model):
         store=True)
 
     def update_booking_status_cancel(self):
+        for reservation in self:
+            print("resorce owner: ", reservation.name.resource_owner.id)
+            print("me:", self.env.user.id)
         self.write({'booking_status': 'cancelled'})
 
     def update_booking_status_confirm(self):
+        for reservation in self:
+            print("resorce owner: ", reservation.name.resource_owner.id)
+            print("me:", self.env.user.id)
         self.write({'booking_status': 'confirmed'})
 
     @api.model
@@ -138,3 +144,22 @@ class ResourceReservation(models.Model):
             return {'domain': {'name': [
                 ('resource_type', '=',
                  self.resource_type.id), ('id', '!=', False)]}}
+
+    # def write(self, vals):
+    #     # Check if the user is in the "Administrator" group
+    #     if not self.env.user.has_group('resource_reservation.group_resource_reservation_admin'):
+    #         try:
+    #             # Check if the 'create_uid' field is present in the record
+    #             if 'create_uid' in self and self.create_uid.id != self.env.user.id:
+    #                 raise exceptions.ValidationError(_("You are not allowed to edit reservations of other users."))
+    #
+    #             # Call the original write method to perform the default behavior
+    #             result = super(ResourceReservation, self).write(vals)
+    #
+    #             return result
+    #         except exceptions.ValidationError as e:
+    #             # Catch the ValidationError and raise a UserError with the custom message
+    #             raise exceptions.UserError(e.name)
+    #     else:
+    #         # Skip the validation for users in the "Administrator" group
+    #         return super(ResourceReservation, self).write(vals)
