@@ -168,25 +168,28 @@ class ResourceReservation(models.Model):
 
     def write(self, vals):
         if not self.env.user.has_group('resource_reservation.'
-                                       'group_resource_reservation_admin',):
+                                       'group_resource_reservation_admin'):
             try:
-                if ('create_uid' in
-                        self and self.create_uid.id != self.env.user.id):
-                    raise exceptions.ValidationError(_("Oops! It seems like "
-                                                       "you're trying to "
-                                                       "access a "
-                                                       "reservation that"
-                                                       " wasn't created "
-                                                       "under your account. "
-                                                       "This reservation "
-                                                       "belongs to another "
-                                                       "user, and you "
-                                                       "currently"
-                                                       " don't have the"
-                                                       " necessary permissions"
-                                                       " to modify it"))
+                is_approver = self.env.user.has_group('resource_reservation.'
+                                                      'group_resource_'
+                                                      'reservation_'
+                                                      'approver')
 
-                return super(ResourceReservation, self).write(vals)
+                if is_approver and 'booking_status' in vals:
+                    return super(ResourceReservation, self).write(vals)
+
+                if 'create_uid' in self and self.create_uid.id != self.env.user.id:
+                    raise exceptions.ValidationError(
+                        _("Oops! It seems like you're "
+                          "trying to access a reservation "
+                          "that wasn't created under your "
+                          "account. This reservation belongs"
+                          " to another user, and you currently"
+                          " don't have the "
+                          "necessary permissions to modify it"))
+                else:
+                    return super(ResourceReservation, self).write(vals)
+
             except exceptions.ValidationError as e:
                 raise exceptions.UserError(str(e))
         else:
