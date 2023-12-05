@@ -165,3 +165,29 @@ class ResourceReservation(models.Model):
     #     else:
     #         # Skip the validation for users in the "Administrator" group
     #         return super(ResourceReservation, self).write(vals)
+
+    def write(self, vals):
+        if not self.env.user.has_group('resource_reservation.'
+                                       'group_resource_reservation_admin',):
+            try:
+                if ('create_uid' in
+                        self and self.create_uid.id != self.env.user.id):
+                    raise exceptions.ValidationError(_("Oops! It seems like "
+                                                       "you're trying to "
+                                                       "access a "
+                                                       "reservation that"
+                                                       " wasn't created "
+                                                       "under your account. "
+                                                       "This reservation "
+                                                       "belongs to another "
+                                                       "user, and you "
+                                                       "currently"
+                                                       " don't have the"
+                                                       " necessary permissions"
+                                                       " to modify it"))
+
+                return super(ResourceReservation, self).write(vals)
+            except exceptions.ValidationError as e:
+                raise exceptions.UserError(str(e))
+        else:
+            return super(ResourceReservation, self).write(vals)
