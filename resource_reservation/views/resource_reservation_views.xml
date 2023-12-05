@@ -65,6 +65,11 @@
                         </group>
                     </group>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
             </form>
         </field>
     </record>
@@ -93,8 +98,8 @@
                 <field name="name"/>
                 <field name="title"/>
                 <field name="reservation_tag_id"/>
-                <filter string="My Reservations" name="user_id"
-                        domain="[('user_id', '=', uid)]" icon="terp-personal"/>
+                <filter string="My Reservations" name="user_idr"
+                        domain="[('user_idr', '=', uid)]" icon="terp-personal"/>
                 <separator/>
                 <filter string="Pending" name="booking_status"
                         domain="[('booking_status', '=', 'pending')]" icon="terp-personal"/>

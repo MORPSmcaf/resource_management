@@ -8,7 +8,7 @@
     'license': 'OPL-1',
     "application": True,
     "installable": True,
-    'depends': ['base'],
+    'depends': ['base', 'mail'],
     'data': [
         'security/resource_reservation_groups.xml',
         'security/ir.model.access.csv',

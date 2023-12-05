@@ -11,6 +11,7 @@ class ReservationTag(models.Model):
     """
     _name = 'resource.reservation.tag'
     _description = 'Reservation Tag'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char(string=' Reservation Tag ', required=True)
     description = fields.Text(string='Description ')
@@ -30,6 +31,7 @@ class ResourceReservation(models.Model):
     create reservation
     """
     _name = 'resource.reservation'
+    _inherit = ['mail.thread']
     _description = 'Resource Reservation'
 
     title = fields.Char(string='Title ', required=True)
@@ -54,9 +56,17 @@ class ResourceReservation(models.Model):
                                         "the end date and time "
                                         "of the event or task.",
                                    required=True)
-    user_id = fields.Integer(string='User ID',
-                             default=lambda self: self.env.user.id,
-                             required=True)
+    user_idr = fields.Integer(string='User ID',
+                              default=lambda self: self.env.user.id,
+                              required=True)
+
+    activity_ids = fields.One2many(
+        'mail.activity',
+        'res_id',
+        string='Activities',
+        index=True,
+        domain=lambda self: [('res_model', '=', self._name)])
+
     booking_status = fields.Selection([
         ('pending', 'Pending '),
         ('confirmed', 'Confirmed '),

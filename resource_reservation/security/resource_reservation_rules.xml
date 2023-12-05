@@ -16,7 +16,7 @@
     <record id="record_rule_user_resource_reservation_view_their" model="ir.rule">
         <field name="name">User Resource Reservation Rule view their</field>
         <field name="model_id" ref="model_resource_reservation"/>
-        <field name="domain_force">[('user_id', '=' ,user.id)]</field>
+        <field name="domain_force">[('user_idr', '=' ,user.id)]</field>
         <field name="groups" eval="[(4, ref('group_resource_reservation_user'))]"/>
         <field name="perm_read" eval="True"/>
         <field name="perm_write" eval="True"/>
@@ -26,7 +26,7 @@
     <record id="record_rule_approver_resource_reservation_view_their" model="ir.rule">
         <field name="name">Approver Resource Reservation Rule view their</field>
         <field name="model_id" ref="model_resource_reservation"/>
-        <field name="domain_force">[('user_id', '=' ,user.id)]</field>
+        <field name="domain_force">[('user_idr', '=' ,user.id)]</field>
         <field name="groups" eval="[(4, ref('group_resource_reservation_approver'))]"/>
         <field name="perm_read" eval="True"/>
         <field name="perm_write" eval="True"/>
