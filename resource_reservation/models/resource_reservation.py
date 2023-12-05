@@ -161,6 +161,6 @@ class ResourceReservation(models.Model):
 
                 return super(ResourceReservation, self).write(vals)
             except exceptions.ValidationError as e:
-                raise exceptions.UserError(e.name)
+                raise exceptions.UserError(str(e))
         else:
             return super(ResourceReservation, self).write(vals)
