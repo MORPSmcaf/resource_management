@@ -153,7 +153,8 @@ class ResourceReservation(models.Model):
         if not self.env.user.has_group('resource_reservation.'
                                        'group_resource_reservation_admin'):
             try:
-                if 'create_uid' in self and self.create_uid.id != self.env.user.id:
+                if ('create_uid' in
+                        self and self.create_uid.id != self.env.user.id):
                     raise exceptions.ValidationError(_("Oops! It seems like "
                                                        "you're trying to "
                                                        "access a "
@@ -168,9 +169,7 @@ class ResourceReservation(models.Model):
                                                        " necessary permissions"
                                                        " to modify it"))
 
-                result = super(ResourceReservation, self).write(vals)
-
-                return result
+                return super(ResourceReservation, self).write(vals)
             except exceptions.ValidationError as e:
                 raise exceptions.UserError(e.name)
         else:
