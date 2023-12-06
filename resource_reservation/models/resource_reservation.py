@@ -12,9 +12,9 @@ class ReservationTag(models.Model):
     _name = 'resource.reservation.tag'
     _description = 'Reservation Tag'
 
-    name = fields.Char(string='Reservation Type', required=True)
+    name = fields.Char(string=' Reservation Tag ', required=True)
     description = fields.Text(string='Description ')
-    color = fields.Integer(string='Color ')
+    color_reservation_tag = fields.Integer(string='Color ')
 
     _sql_constraints = [
         ('unique_reservation_tag', 'UNIQUE (name)',
@@ -33,8 +33,16 @@ class ResourceReservation(models.Model):
     _description = 'Resource Reservation'
 
     title = fields.Char(string='Title ', required=True)
-    name = fields.Many2one('resource',
-                           string="Resource Name", required=True)
+    name = fields.Many2one(
+        'resource',
+        string='Resource Name',
+        required=True,
+        options={'no_create': True})
+    resource_type = fields.Many2one(
+        'resource.type',
+        string=' Resource Type ',
+        required=True,
+        options={'no_create': True})
     start_datetime = fields.Datetime(string='Start Date & Time',
                                      default=lambda self:
                                      fields.Datetime.now(),
@@ -46,9 +54,6 @@ class ResourceReservation(models.Model):
                                         "the end date and time "
                                         "of the event or task.",
                                    required=True)
-    creator = fields.Char(string='Created By',
-                          default=lambda self: self.env.user.name,
-                          required=True)
     user_id = fields.Integer(string='User ID',
                              default=lambda self: self.env.user.id,
                              required=True)
@@ -69,6 +74,11 @@ class ResourceReservation(models.Model):
         required=True,
         widget='many2many_tags')
 
+    color_reserv = fields.Integer(
+        string='Color',
+        related='resource_type.color_resource_type',
+        store=True)
+
     def update_booking_status_cancel(self):
         self.write({'booking_status': 'cancelled'})
 
@@ -77,7 +87,7 @@ class ResourceReservation(models.Model):
 
     @api.model
     def create(self, vals_list):
-        vals_list['creator'] = self.env.user.name
+        vals_list['create_uid'] = self.env.user.name
         return super().create(vals_list)
 
     @api.constrains('name', 'start_datetime', 'end_datetime')
@@ -109,3 +119,48 @@ class ResourceReservation(models.Model):
                 raise exceptions.ValidationError(_("Bookings for "
                                                    "past dates are "
                                                    "not allowed."))
+
+    @api.onchange('name')
+    def _onchange_name(self):
+        if self.name:
+            self.resource_type = self.name.resource_type.id
+            return {'domain': {'resource_type': [
+                ('id', '=',
+                 self.name.resource_type.id), ('id', '!=', False)]}}
+
+    @api.onchange('resource_type')
+    def _onchange_resource_type(self):
+        if self.resource_type:
+            # mb better if it will be in 1 line ?
+            self.name = self.env['resource'].search(
+                [('resource_type', '=', self.resource_type.id)], limit=1)
+            # mb better if it will be in 1 line ?
+            return {'domain': {'name': [
+                ('resource_type', '=',
+                 self.resource_type.id), ('id', '!=', False)]}}
+
+    def write(self, vals):
+        if not self.env.user.has_group('resource_reservation.'
+                                       'group_resource_reservation_admin'):
+            try:
+                if ('create_uid' in
+                        self and self.create_uid.id != self.env.user.id):
+                    raise exceptions.ValidationError(_("Oops! It seems like "
+                                                       "you're trying to "
+                                                       "access a "
+                                                       "reservation that"
+                                                       " wasn't created "
+                                                       "under your account. "
+                                                       "This reservation "
+                                                       "belongs to another "
+                                                       "user, and you "
+                                                       "currently"
+                                                       " don't have the"
+                                                       " necessary permissions"
+                                                       " to modify it"))
+
+                return super(ResourceReservation, self).write(vals)
+            except exceptions.ValidationError as e:
+                raise exceptions.UserError(str(e))
+        else:
+            return super(ResourceReservation, self).write(vals)

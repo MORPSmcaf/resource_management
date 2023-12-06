@@ -10,7 +10,9 @@
     "installable": True,
     'depends': ['base'],
     'data': [
+        'security/resource_reservation_groups.xml',
         'security/ir.model.access.csv',
+        'security/resource_reservation_security.xml',
         'views/resource_reservation_views.xml',
         'views/resource_reservation_tag_views.xml',
         'views/resource_views.xml',

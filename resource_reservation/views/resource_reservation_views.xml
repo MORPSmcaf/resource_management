@@ -1,11 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
+    <record id="action_approve" model="ir.actions.server" >
+            <field name="name">Approve</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_resource_reservation"/>
+            <field name="binding_model_id" ref="model_resource_reservation"/>
+            <field name="groups_id" eval="[(4, ref('group_resource_reservation_approver'))]"/>
+            <field name="binding_view_types">tree,form</field>
+            <field name="state">code</field>
+            <field name="code">records.update_booking_status_confirm()</field>
+    </record>
+
+    <record id="action_cancel" model="ir.actions.server" >
+            <field name="name">Cancel</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_resource_reservation"/>
+            <field name="binding_model_id" ref="model_resource_reservation"/>
+            <field name="groups_id" eval="[(4, ref('group_resource_reservation_approver'))]"/>
+            <field name="binding_view_types">tree,form</field>
+            <field name="state">code</field>
+            <field name="code">records.update_booking_status_cancel()</field>
+    </record>
+
     <record id="view_resource_reservation_form"
             model="ir.ui.view">
         <field name="name">resource.reservation.form</field>
         <field name="model">resource.reservation</field>
         <field name="arch" type="xml">
-            <form create="false">
+            <form create="false" action_cancel="0">
                 <sheet>
                     <group>
                         <group>
@@ -17,7 +40,8 @@
                     </group>
                     <group>
                         <group>
-                            <field name="name"/>
+                            <field name="name" options="{'no_create': True}"/>
+                            <field name="resource_type" options="{'no_create': True}"/>
                         </group>
                         <group>
                             <field name="end_datetime"/>
@@ -25,7 +49,8 @@
                     </group>
                     <group>
                         <group>
-                            <field name="reservation_tag_id" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            <field name="reservation_tag_id"
+                                   widget="many2many_tags"/>
                         </group>
 
                     </group>
@@ -34,7 +59,9 @@
                             <field name="resource_description"/>
                         </group>
                         <group>
-                            <field name="creator" readonly="1"/>
+                            <field name="create_uid"
+                                   readonly="1"
+                                   options="{'no_open' : True}"/>
                         </group>
                     </group>
                 </sheet>
@@ -48,15 +75,11 @@
         <field name="model">resource.reservation</field>
         <field name="arch" type="xml">
             <tree name="Resource Reservation">
-                <header>
-                    <button name="update_booking_status_cancel" string="Cancel" class="oe_highlight" type="object"/>
-                    <button name="update_booking_status_confirm" string="Confirm" class="oe_highlight" type="object"/>
-                </header>
                 <field name="title" width="4"/>
                 <field name="name" width="4"/>
                 <field name="start_datetime" width="4"/>
                 <field name="end_datetime" width="4"/>
-                <field name="creator" width="4"/>
+                <field name="create_uid" width="4"/>
                 <field name="booking_status" width="4"/>
             </tree>
         </field>
@@ -72,21 +95,29 @@
                 <field name="reservation_tag_id"/>
                 <filter string="My Reservations" name="user_id"
                         domain="[('user_id', '=', uid)]" icon="terp-personal"/>
+                <separator/>
+                <filter string="Pending" name="booking_status"
+                        domain="[('booking_status', '=', 'pending')]" icon="terp-personal"/>
+                <separator/>
+                <filter string="Confirmed" name="booking_status"
+                        domain="[('booking_status', '=', 'confirmed')]" icon="terp-personal"/>
+                <separator/>
+                <filter string="Cancelled" name="booking_status"
+                        domain="[('booking_status', '=', 'cancelled')]" icon="terp-personal"/>
             </search>
         </field>
     </record>
 
-    <record model="ir.ui.view"
-            id="view_resource_reservation_calendar">
+    <record id="view_resource_reservation_calendar" model="ir.ui.view">
         <field name="name">resource.reservation.calendar</field>
         <field name="model">resource.reservation</field>
         <field name="arch" type="xml">
-            <calendar string="Resource Reservation Calendar" date_start="start_datetime">
+            <calendar string="Resource Reservation Calendar" date_start="start_datetime" color="color_reserv">
                 <field name="title" width="4"/>
                 <field name="name" width="4" filters="1"/>
                 <field name="start_datetime" width="4"/>
                 <field name="end_datetime" width="4"/>
-                <field name="creator" width="4"/>
+                <field name="create_uid" width="4"/>
                 <field name="booking_status" width="4"/>
                 <field name="reservation_tag_id" width="4"/>
             </calendar>
@@ -100,6 +131,7 @@
         <field name="res_model">resource.reservation</field>
         <field name="view_mode">tree,form,calendar</field>
         <field name="search_view_id" ref="resource_reservation_view_search"/>
+        <field name="context">{'no_breadcrumbs': True}</field>
     </record>
 </odoo>
 

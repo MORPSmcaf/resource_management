@@ -11,7 +11,7 @@
                     <group>
                         <field name="name"/>
                         <field name="description"/>
-                        <field name="color" widget="color_picker"/>
+                        <field name="color_reservation_tag" widget="color_picker"/>
                     </group>
                 </sheet>
             </form>
@@ -26,7 +26,7 @@
             <tree name="Reservation Tags" editable="top">
                 <field name="name"/>
                 <field name="description"/>
-                <field name="color" widget="color_picker"/>
+                <field name="color_reservation_tag" widget="color_picker"/>
             </tree>
         </field>
     </record>
@@ -36,6 +36,7 @@
         <field name="name">Resource Reservation Tag</field>
         <field name="res_model">resource.reservation.tag</field>
         <field name="view_mode">tree,form</field>
+        <field name="context"> {'no_breadcrumbs': True}</field>
     </record>
 </odoo>
 
