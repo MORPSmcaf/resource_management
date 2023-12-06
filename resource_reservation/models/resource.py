@@ -51,6 +51,7 @@ class Resource(models.Model):
     def _onchange_resource_owner(self):
         print()
 
+
     @api.depends('reservation_ids')
     def _compute_cancelled(self):
         for record in self:

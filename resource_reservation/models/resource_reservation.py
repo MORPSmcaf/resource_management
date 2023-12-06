@@ -141,30 +141,11 @@ class ResourceReservation(models.Model):
         if self.resource_type:
             # mb better if it will be in 1 line ?
             self.name = self.env['resource'].search(
-                [('resource_type', '=', self.resource_type.id)], limit=1)
+                [('resource_type', '=', self.resource_type.id)])
             # mb better if it will be in 1 line ?
             return {'domain': {'name': [
                 ('resource_type', '=',
                  self.resource_type.id), ('id', '!=', False)]}}
-
-    # def write(self, vals):
-    #     # Check if the user is in the "Administrator" group
-    #     if not self.env.user.has_group('resource_reservation.group_resource_reservation_admin'):
-    #         try:
-    #             # Check if the 'create_uid' field is present in the record
-    #             if 'create_uid' in self and self.create_uid.id != self.env.user.id:
-    #                 raise exceptions.ValidationError(_("You are not allowed to edit reservations of other users."))
-    #
-    #             # Call the original write method to perform the default behavior
-    #             result = super(ResourceReservation, self).write(vals)
-    #
-    #             return result
-    #         except exceptions.ValidationError as e:
-    #             # Catch the ValidationError and raise a UserError with the custom message
-    #             raise exceptions.UserError(e.name)
-    #     else:
-    #         # Skip the validation for users in the "Administrator" group
-    #         return super(ResourceReservation, self).write(vals)
 
     def write(self, vals):
         if not self.env.user.has_group('resource_reservation.'
