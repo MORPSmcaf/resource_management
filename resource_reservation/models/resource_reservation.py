@@ -57,8 +57,8 @@ class ResourceReservation(models.Model):
                                         "of the event or task.",
                                    required=True)
     current_user = fields.Integer(string='User ID',
-                              default=lambda self: self.env.user.id,
-                              required=True)
+                                  default=lambda self: self.env.user.id,
+                                  required=True)
 
     activity_ids = fields.One2many(
         'mail.activity',
