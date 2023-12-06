@@ -31,7 +31,7 @@ class ResourceReservation(models.Model):
     create reservation
     """
     _name = 'resource.reservation'
-    _inherit = ['mail.thread']
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Resource Reservation'
 
     title = fields.Char(string='Title ', required=True)
@@ -56,7 +56,7 @@ class ResourceReservation(models.Model):
                                         "the end date and time "
                                         "of the event or task.",
                                    required=True)
-    user_idr = fields.Integer(string='User ID',
+    current_user = fields.Integer(string='User ID',
                               default=lambda self: self.env.user.id,
                               required=True)
 

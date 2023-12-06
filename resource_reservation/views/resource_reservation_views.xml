@@ -98,8 +98,8 @@
                 <field name="name"/>
                 <field name="title"/>
                 <field name="reservation_tag_id"/>
-                <filter string="My Reservations" name="user_idr"
-                        domain="[('user_idr', '=', uid)]" icon="terp-personal"/>
+                <filter string="My Reservations" name="current_user"
+                        domain="[('current_user', '=', uid)]" icon="terp-personal"/>
                 <separator/>
                 <filter string="Pending" name="booking_status"
                         domain="[('booking_status', '=', 'pending')]" icon="terp-personal"/>
