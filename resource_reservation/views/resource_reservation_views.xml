@@ -40,7 +40,7 @@
                     </group>
                     <group>
                         <group>
-                            <field name="name" options="{'no_create': True}"/>
+                            <field name="resource_name" options="{'no_create': True}"/>
                             <field name="resource_type" options="{'no_create': True}"/>
                         </group>
                         <group>
@@ -81,7 +81,7 @@
         <field name="arch" type="xml">
             <tree name="Resource Reservation">
                 <field name="title" width="4"/>
-                <field name="name" width="4"/>
+                <field name="resource_name" width="4"/>
                 <field name="start_datetime" width="4"/>
                 <field name="end_datetime" width="4"/>
                 <field name="create_uid" width="4"/>
@@ -119,10 +119,10 @@
         <field name="arch" type="xml">
             <calendar string="Resource Reservation Calendar" date_start="start_datetime" color="color_reserv">
                 <field name="title" width="4"/>
-                <field name="name" width="4" filters="1"/>
+                <field name="resource_name" width="4" filters="1"/>
                 <field name="start_datetime" width="4"/>
                 <field name="end_datetime" width="4"/>
-                <field name="create_uid" width="4"/>
+                <field name="name" width="4"/>
                 <field name="booking_status" width="4"/>
                 <field name="reservation_tag_id" width="4"/>
                 <field name="resource_type" filters="1"/>

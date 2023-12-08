@@ -19,13 +19,13 @@ class Resource(models.Model):
     resource_owner = fields.Char(string='Resource owner', required=True)
     image = fields.Binary(string='')
     reservation_ids = fields.One2many('resource.reservation',
-                                      'name',
+                                      'resource_name',
                                       string='Reservations')
     confirmed_reservations = fields.One2many('resource.reservation',
-                                             'name',
+                                             'resource_name',
                                              compute='_compute_confirmed')
     cancelled_reservations = fields.One2many('resource.reservation',
-                                             'name',
+                                             'resource_name',
                                              compute='_compute_cancelled')
     resource_tags = fields.Many2many('resource.tag',
                                      string='Resource Tags ',
