@@ -103,11 +103,24 @@ class ResourceReservation(models.Model):
             reservation.name = reservation.create_uid.name
 
     def update_booking_status_cancel(self):
-        self.write({'booking_status': 'cancelled'})
+        for reservation in self:
+            if reservation.name.resource_owner.id == self.env.user.id:
+                self.write({'booking_status': 'cancelled'})
+            else:
+                raise exceptions.ValidationError(_("You are not "
+                                                   "resource owner"
+                                                   " for "
+                                                   "this reservation"))
 
     def update_booking_status_confirm(self):
-        self.write({'booking_status': 'confirmed'})
-
+        for reservation in self:
+            if reservation.name.resource_owner.id == self.env.user.id:
+                self.write({'booking_status': 'confirmed'})
+            else:
+                raise exceptions.ValidationError(_("You are not "
+                                                   "resource owner"
+                                                   " for "
+                                                   "this reservation"))
     @api.model
     def create(self, vals_list):
         vals_list['create_uid'] = self.env.user.name
