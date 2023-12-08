@@ -35,9 +35,9 @@ class ResourceReservation(models.Model):
     _description = 'Resource Reservation'
 
     title = fields.Char(string='Title ', required=True)
-    name = fields.Many2one(
+    resource_name = fields.Many2one(
         'resource',
-        string='Resource Name',
+        string='Resource Name ',
         required=True,
         options={'no_create': True})
     resource_type = fields.Many2one(
@@ -59,6 +59,14 @@ class ResourceReservation(models.Model):
     current_user = fields.Integer(string='User ID',
                                   default=lambda self: self.env.user.id,
                                   required=True)
+
+    name = fields.Char(
+        string='Created By',
+        readonly=True,
+        compute='_compute_created_by_name',
+        store=True,
+        help="Name of the user who created reservation."
+    )
 
     activity_ids = fields.One2many(
         'mail.activity',
@@ -89,6 +97,11 @@ class ResourceReservation(models.Model):
         related='resource_type.color_resource_type',
         store=True)
 
+    @api.depends('create_uid')
+    def _compute_created_by_name(self):
+        for reservation in self:
+            reservation.name = reservation.create_uid.name
+
     def update_booking_status_cancel(self):
         self.write({'booking_status': 'cancelled'})
 
@@ -105,7 +118,7 @@ class ResourceReservation(models.Model):
         for reservation in self:
             overlapping = (self.env['resource.reservation'].search([
                 ('id', '!=', reservation.id),
-                ('name', '=', reservation.name.id),
+                ('resource_name', '=', reservation.resource_name.id),
                 ('start_datetime', '<', reservation.end_datetime),
                 ('end_datetime', '>', reservation.start_datetime),
             ]))
@@ -130,22 +143,22 @@ class ResourceReservation(models.Model):
                                                    "past dates are "
                                                    "not allowed."))
 
-    @api.onchange('name')
+    @api.onchange('resource_name')
     def _onchange_name(self):
-        if self.name:
-            self.resource_type = self.name.resource_type.id
+        if self.resource_name:
+            self.resource_type = self.resource_name.resource_type.id
             return {'domain': {'resource_type': [
                 ('id', '=',
-                 self.name.resource_type.id), ('id', '!=', False)]}}
+                 self.resource_name.resource_type.id), ('id', '!=', False)]}}
 
     @api.onchange('resource_type')
     def _onchange_resource_type(self):
         if self.resource_type:
             # mb better if it will be in 1 line ?
-            self.name = self.env['resource'].search(
+            self.resource_name = self.env['resource'].search(
                 [('resource_type', '=', self.resource_type.id)], limit=1)
             # mb better if it will be in 1 line ?
-            return {'domain': {'name': [
+            return {'domain': {'resource_name': [
                 ('resource_type', '=',
                  self.resource_type.id), ('id', '!=', False)]}}
 
