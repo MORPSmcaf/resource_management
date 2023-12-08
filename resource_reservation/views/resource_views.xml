@@ -26,7 +26,7 @@
                                 <field name="name" required="1"/>
                                 <field name="resource_type" required="1"/>
                                 <field name="resource_capacity" required="1"/>
-                                <field name="resource_owner" required="1"/>
+                                <field name="resource_owner" required="1" options="{'no_create': True}"/>
                                 <field name="resource_tags" required="1" widget="many2many_tags"/>
                                 <field name="resource_capacity_text" invisible="1"/>
                             </group>
