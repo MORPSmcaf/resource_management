@@ -153,8 +153,7 @@ class ResourceReservation(models.Model):
             try:
                 is_approver = self.env.user.has_group('resource_reservation.'
                                                       'group_resource_'
-                                                      'reservation_'
-                                                      'approver')
+                                                      'reservation_approver')
 
                 if is_approver and 'booking_status' in vals:
                     return super(ResourceReservation, self).write(vals)

@@ -17,7 +17,12 @@ class Resource(models.Model):
     resource_capacity_text = fields.Char(string=" Resource Capacity",
                                          required=True,)
     resource_owner = fields.Many2one('res.users', string='Resource owner', required=True,
-                                     options={'no_create': True})
+                                     options={'no_create': True},
+                                     domain=lambda self: [('groups_id', 'in',
+                                     [self.env.ref("resource_reservation.group_resource_reservation_approver").id])],
+                                     default=lambda self: self.env.ref
+                                     ("resource_reservation.group_resource_reservation_approver").users.ids,)
+
     image = fields.Binary(string='')
     reservation_ids = fields.One2many('resource.reservation',
                                       'name',
@@ -39,19 +44,6 @@ class Resource(models.Model):
             record.confirmed_reservations = record.reservation_ids.filtered(
                 lambda r: r.booking_status == 'confirmed')
 
-    # @api.onchange('name')
-    # def _onchange_name(self):
-    #     if self.name:
-    #         self.resource_type = self.name.resource_type.id
-    #         return {'domain': {'resource_type': [
-    #             ('id', '=',
-    #              self.name.resource_type.id), ('id', '!=', False)]}}
-
-    @api.onchange('resource_owner')
-    def _onchange_resource_owner(self):
-        print()
-
-
     @api.depends('reservation_ids')
     def _compute_cancelled(self):
         for record in self:
@@ -70,7 +62,6 @@ class ResourceType(models.Model):
 
     name = fields.Char(string='Resource Type', required=True)
     color_resource_type = fields.Integer(string="Color")
-
     _sql_constraints = [
         ('unique_resource_type', 'UNIQUE (name)',
          'A resource type with the same name already exists.'),
