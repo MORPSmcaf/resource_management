@@ -37,7 +37,7 @@ class ResourceReservation(models.Model):
     title = fields.Char(string='Title ', required=True)
     name = fields.Many2one(
         'resource',
-        string='Resource Name',
+        string='Resource',
         required=True,
         options={'no_create': True})
     resource_type = fields.Many2one(
