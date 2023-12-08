@@ -16,7 +16,16 @@ class Resource(models.Model):
                                      required=True)
     resource_capacity_text = fields.Char(string=" Resource Capacity  ",
                                          required=True)
-    resource_owner = fields.Char(string='Resource owner', required=True)
+    resource_owner = fields.Many2one('res.users', string='Resource owner',
+                                     required=True,
+                                     options={'no_create': True},
+                                     domain=lambda self: [('groups_id', 'in',
+                                                           [self.env.ref("resource_reservation."
+                                                                         "group_resource_reservation_approver").id])],
+                                     default=lambda self: self.env.ref
+                                     ("resource_reservation."
+                                      "group_resource_reservation_approver")
+                                     .users.ids, )
     image = fields.Binary(string='')
     reservation_ids = fields.One2many('resource.reservation',
                                       'resource_name',
