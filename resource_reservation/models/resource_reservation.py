@@ -103,11 +103,24 @@ class ResourceReservation(models.Model):
             reservation.name = reservation.create_uid.name
 
     def update_booking_status_cancel(self):
-        self.write({'booking_status': 'cancelled'})
+        for reservation in self:
+            if reservation.resource_name.resource_owner.id == self.env.user.id:
+                self.write({'booking_status': 'cancelled'})
+            else:
+                raise exceptions.ValidationError(_("You are not "
+                                                   "resource owner"
+                                                   " for "
+                                                   "this reservation"))
 
     def update_booking_status_confirm(self):
-        self.write({'booking_status': 'confirmed'})
-
+        for reservation in self:
+            if reservation.resource_name.resource_owner.id == self.env.user.id:
+                self.write({'booking_status': 'confirmed'})
+            else:
+                raise exceptions.ValidationError(_("You are not "
+                                                   "resource owner"
+                                                   " for "
+                                                   "this reservation"))
     @api.model
     def create(self, vals_list):
         vals_list['create_uid'] = self.env.user.name
@@ -183,6 +196,34 @@ class ResourceReservation(models.Model):
                                                        " to modify it"))
 
                 return super(ResourceReservation, self).write(vals)
+            except exceptions.ValidationError as e:
+                raise exceptions.UserError(str(e))
+        else:
+            return super(ResourceReservation, self).write(vals)
+
+    def write(self, vals):
+        if not self.env.user.has_group('resource_reservation.'
+                                       'group_resource_reservation_admin'):
+            try:
+                is_approver = self.env.user.has_group('resource_reservation.'
+                                                      'group_resource_'
+                                                      'reservation_approver')
+
+                if is_approver and 'booking_status' in vals:
+                    return super(ResourceReservation, self).write(vals)
+
+                if 'create_uid' in self and self.create_uid.id != self.env.user.id:
+                    raise exceptions.ValidationError(
+                        _("Oops! It seems like you're "
+                          "trying to access a reservation "
+                          "that wasn't created under your "
+                          "account. This reservation belongs"
+                          " to another user, and you currently"
+                          " don't have the "
+                          "necessary permissions to modify it"))
+                else:
+                    return super(ResourceReservation, self).write(vals)
+
             except exceptions.ValidationError as e:
                 raise exceptions.UserError(str(e))
         else:
