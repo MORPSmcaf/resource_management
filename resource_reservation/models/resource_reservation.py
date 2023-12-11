@@ -121,6 +121,7 @@ class ResourceReservation(models.Model):
                                                    "resource owner"
                                                    " for "
                                                    "this reservation"))
+
     @api.model
     def create(self, vals_list):
         vals_list['create_uid'] = self.env.user.name

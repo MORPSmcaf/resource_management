@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="action_approve" model="ir.actions.server" >
-            <field name="name">Approve</field>
-            <field name="type">ir.actions.server</field>
-            <field name="model_id" ref="model_resource_reservation"/>
-            <field name="binding_model_id" ref="model_resource_reservation"/>
-            <field name="groups_id" eval="[(4, ref('group_resource_reservation_approver'))]"/>
-            <field name="binding_view_types">tree,form</field>
-            <field name="state">code</field>
-            <field name="code">records.update_booking_status_confirm()</field>
+    <record id="action_approve" model="ir.actions.server">
+        <field name="name">Approve</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_resource_reservation"/>
+        <field name="binding_model_id" ref="model_resource_reservation"/>
+        <field name="groups_id" eval="[(4, ref('group_resource_reservation_approver'))]"/>
+        <field name="binding_view_types">tree,form</field>
+        <field name="state">code</field>
+        <field name="code">records.update_booking_status_confirm()</field>
     </record>
 
-    <record id="action_cancel" model="ir.actions.server" >
-            <field name="name">Cancel</field>
-            <field name="type">ir.actions.server</field>
-            <field name="model_id" ref="model_resource_reservation"/>
-            <field name="binding_model_id" ref="model_resource_reservation"/>
-            <field name="groups_id" eval="[(4, ref('group_resource_reservation_approver'))]"/>
-            <field name="binding_view_types">tree,form</field>
-            <field name="state">code</field>
-            <field name="code">records.update_booking_status_cancel()</field>
+    <record id="action_cancel" model="ir.actions.server">
+        <field name="name">Cancel</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_resource_reservation"/>
+        <field name="binding_model_id" ref="model_resource_reservation"/>
+        <field name="groups_id" eval="[(4, ref('group_resource_reservation_approver'))]"/>
+        <field name="binding_view_types">tree,form</field>
+        <field name="state">code</field>
+        <field name="code">records.update_booking_status_cancel()</field>
     </record>
 
     <record id="view_resource_reservation_form"
@@ -108,6 +108,11 @@
                 <separator/>
                 <filter string="Cancelled" name="booking_status"
                         domain="[('booking_status', '=', 'cancelled')]" icon="terp-personal"/>
+                <separator/>
+                <filter string="To be approved" name="booking_status"
+                        domain="[('resource_name.resource_owner.id', '=', uid)]"
+                        groups="resource_reservation.group_resource_reservation_approver"
+                        icon="terp-personal"/>
             </search>
         </field>
     </record>
