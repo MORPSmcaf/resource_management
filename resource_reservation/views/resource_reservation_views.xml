@@ -110,7 +110,8 @@
                         domain="[('booking_status', '=', 'cancelled')]" icon="terp-personal"/>
                 <separator/>
                 <filter string="To be approved" name="booking_status"
-                        domain="[('resource_name.resource_owner.id', '=', uid)]"
+                        domain="[('resource_name.resource_owner.id', '=', uid),
+                                ('booking_status', '=', 'pending')]"
                         groups="resource_reservation.group_resource_reservation_approver"
                         icon="terp-personal"/>
             </search>
