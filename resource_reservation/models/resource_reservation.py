@@ -97,6 +97,10 @@ class ResourceReservation(models.Model):
         related='resource_type.color_resource_type',
         store=True)
 
+    def action_send_mail_rr(self):
+        for rec in self:
+            print("we send a mail")
+
     @api.depends('create_uid')
     def _compute_created_by_name(self):
         for reservation in self:
