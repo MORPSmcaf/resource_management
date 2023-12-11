@@ -104,7 +104,7 @@ class ResourceReservation(models.Model):
 
     def update_booking_status_cancel(self):
         for reservation in self:
-            if reservation.name.resource_owner.id == self.env.user.id:
+            if reservation.resource_name.resource_owner.id == self.env.user.id:
                 self.write({'booking_status': 'cancelled'})
             else:
                 raise exceptions.ValidationError(_("You are not "
@@ -114,7 +114,7 @@ class ResourceReservation(models.Model):
 
     def update_booking_status_confirm(self):
         for reservation in self:
-            if reservation.name.resource_owner.id == self.env.user.id:
+            if reservation.resource_name.resource_owner.id == self.env.user.id:
                 self.write({'booking_status': 'confirmed'})
             else:
                 raise exceptions.ValidationError(_("You are not "
