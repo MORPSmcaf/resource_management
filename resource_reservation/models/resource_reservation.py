@@ -98,8 +98,10 @@ class ResourceReservation(models.Model):
         store=True)
 
     def action_send_mail_rr(self):
-        for rec in self:
-            print("we send a mail")
+        template = self.env.ref('model_resource_reservation.test_email')
+        for reservation in self:
+            template.send_mail(reservation.id, force_send=True)
+        return True
 
     @api.depends('create_uid')
     def _compute_created_by_name(self):
@@ -108,7 +110,7 @@ class ResourceReservation(models.Model):
 
     def update_booking_status_cancel(self):
         for reservation in self:
-            if reservation.name.resource_owner.id == self.env.user.id:
+            if reservation.resource_name.resource_owner.id == self.env.user.id:
                 self.write({'booking_status': 'cancelled'})
             else:
                 raise exceptions.ValidationError(_("You are not "
@@ -118,7 +120,7 @@ class ResourceReservation(models.Model):
 
     def update_booking_status_confirm(self):
         for reservation in self:
-            if reservation.name.resource_owner.id == self.env.user.id:
+            if reservation.resource_name.resource_owner.id == self.env.user.id:
                 self.write({'booking_status': 'confirmed'})
             else:
                 raise exceptions.ValidationError(_("You are not "

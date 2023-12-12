@@ -1,0 +1,24 @@
+<odoo>
+    <data noupdate="1">
+        <record id="test_email" model="mail.template">
+            <field name="name">Test Email RR</field>
+            <field name="model_id" ref="model_resource_reservation"/>
+            <field name="subject">Test Email RR Subject</field>
+            <field name="email_from">{{ object.company_id.email }}</field>
+            <field name="email_to">{{ object.partner_id.email_formatted }}</field>
+            <field name="description">Sent to the customer to test mail</field>
+            <field name="body_html" type="html">
+                <p>
+                    Dear<t t-out="object.partner_id.name"/>,
+                    <br/>
+                    <br/>
+                    Test email
+                    <br/>
+                </p>
+                Regards,
+                <br/>
+                <t t-out="object.company_id.name"/>
+            </field>
+        </record>
+    </data>
+</odoo>
