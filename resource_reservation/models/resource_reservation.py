@@ -98,10 +98,11 @@ class ResourceReservation(models.Model):
         store=True)
 
     def action_send_mail_rr(self):
-        template = self.env.ref('model_resource_reservation.test_email')
-        for reservation in self:
-            template.send_mail(reservation.id, force_send=True)
-        return True
+        # template = self.env.ref('model_resource_reservation.test_email')
+        # for reservation in self:
+        #     template.send_mail(reservation.id, force_send=True)
+        # return True
+        print("email sent")
 
     @api.depends('create_uid')
     def _compute_created_by_name(self):
