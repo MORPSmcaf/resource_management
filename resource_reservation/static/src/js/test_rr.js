@@ -34,9 +34,6 @@ export class Resourcetest extends ListController {
           type: 'ir.actions.act_window',
           name: 'Resource Reservations - Pivot View',
           res_model: 'resource.reservation',
-          view_mode: 'pivot',
-          view_type: 'pivot',
-          views: [[false, 'pivot']],
           target: 'current',
           res_id: false,
       });
