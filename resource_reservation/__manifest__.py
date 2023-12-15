@@ -13,12 +13,19 @@
         'security/resource_reservation_groups.xml',
         'security/ir.model.access.csv',
         'security/resource_reservation_security.xml',
+        'views/resource_reservation.xml',
         'views/resource_reservation_views.xml',
         'views/resource_reservation_tag_views.xml',
         'views/resource_views.xml',
         'views/resource_availability.xml',
         'views/menu.xml'
     ],
+    'assets': {
+        'web.assets_backend': [
+            '/resource_reservation/static/src/js/resource_button.js',
+            '/resource_reservation/static/src/xml/resource_button.xml',
+        ]
+    },
     'demo': [
         'demo/demo.xml',
     ],

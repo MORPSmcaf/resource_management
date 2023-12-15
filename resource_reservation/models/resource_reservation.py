@@ -112,15 +112,6 @@ class ResourceReservation(models.Model):
                                                    " for "
                                                    "this reservation"))
 
-    def button_open_pivot(self):
-        return {
-            'type': 'ir.actions.act_window',
-            'name': 'Resource Reservations - Pivot View',
-            'res_model': 'resource.reservation',
-            'view_mode': 'pivot',
-            'view_id': self.env.ref('resource_reservation.view_resource_reservation_pivot').id,
-        }
-
     def update_booking_status_confirm(self):
         for reservation in self:
             if reservation.resource_name.resource_owner.id == self.env.user.id:
