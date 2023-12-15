@@ -31,7 +31,7 @@ class ResourceReservation(models.Model):
     create reservation
     """
     _name = 'resource.reservation'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'mail.template']
     _description = 'Resource Reservation'
 
     title = fields.Char(string='Title ', required=True)
