@@ -107,9 +107,9 @@ class ResourceReservation(models.Model):
     def action_send_email(self):
         self.ensure_one()
         ir_model_data = self.env['ir.model.data']
-        template_id =    ir_model_data._xmlid_lookup('module_name.template_name')[2]
+        template_id = ir_model_data._xmlid_lookup('email_test')[2]
         try:
-            template_id = ir_model_data._xmlid_lookup('module_name.template_name')[2]
+            template_id = ir_model_data._xmlid_lookup('email_test')[2]
         except:
             compose_form_id = False
         return {
