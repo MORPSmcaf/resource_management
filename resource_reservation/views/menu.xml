@@ -25,6 +25,12 @@
               parent="menu_resource_reservation"
               action="action_resource_availability"/>
 
+    <menuitem id="resource_reservation_pivot"
+              name="Reports"
+              parent="menu_resource_reservation"
+              action="action_resource_reservation_act_pivot_window"
+              groups="group_resource_reservation_approver"/>
+
     <menuitem id="menu_reservation_tag"
               name="Reservation Tags"
               parent="menu_resource_configurations"
