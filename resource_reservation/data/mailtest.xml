@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="test_email_rr" model="mail.template">
+            <field name="name">Test Email RR</field>
+            <field name="body_html" type="html">
+                <p>
+                Dear,
+                <br/>
+                <br/>
+                Test email
+                <br/>
+                </p>
+                Regards,
+                <br/>
+            </field>
+        </record>
+    </data>
+</odoo>

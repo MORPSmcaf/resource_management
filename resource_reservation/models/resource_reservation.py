@@ -104,21 +104,7 @@ class ResourceReservation(models.Model):
         # return True
         print("email sent")
 
-    def action_send_email(self):
-        self.ensure_one()
-        ir_model_data = self.env['ir.model.data']
-        template_id = ir_model_data._xmlid_lookup('email_test')[2]
-        try:
-            template_id = ir_model_data._xmlid_lookup('email_test')[2]
-        except:
-            compose_form_id = False
-        return {
-            'type': 'ir.actions.act_window',
-            'view_type': 'form',
-            'view_mode': 'form',
-            'res_model': 'mail.compose.message',
-            'target': 'new',
-        }
+
 
 
     @api.depends('create_uid')

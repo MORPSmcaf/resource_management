@@ -18,7 +18,7 @@
         'views/resource_views.xml',
         'views/resource_availability.xml',
         'views/menu.xml',
-        'data/email_test.xml'
+        'data/mailtest.xml'
     ],
     'demo': [
         'demo/demo.xml',
