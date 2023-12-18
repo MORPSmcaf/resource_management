@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="action_approve" model="ir.actions.server" >
-            <field name="name">Approve</field>
-            <field name="type">ir.actions.server</field>
-            <field name="model_id" ref="model_resource_reservation"/>
-            <field name="binding_model_id" ref="model_resource_reservation"/>
-            <field name="groups_id" eval="[(4, ref('group_resource_reservation_approver'))]"/>
-            <field name="binding_view_types">tree,form</field>
-            <field name="state">code</field>
-            <field name="code">records.update_booking_status_confirm()</field>
+    <record id="action_approve" model="ir.actions.server">
+        <field name="name">Approve</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_resource_reservation"/>
+        <field name="binding_model_id" ref="model_resource_reservation"/>
+        <field name="groups_id" eval="[(4, ref('group_resource_reservation_approver'))]"/>
+        <field name="binding_view_types">tree,form</field>
+        <field name="state">code</field>
+        <field name="code">records.update_booking_status_confirm()</field>
     </record>
 
-    <record id="action_cancel" model="ir.actions.server" >
-            <field name="name">Cancel</field>
-            <field name="type">ir.actions.server</field>
-            <field name="model_id" ref="model_resource_reservation"/>
-            <field name="binding_model_id" ref="model_resource_reservation"/>
-            <field name="groups_id" eval="[(4, ref('group_resource_reservation_approver'))]"/>
-            <field name="binding_view_types">tree,form</field>
-            <field name="state">code</field>
-            <field name="code">records.update_booking_status_cancel()</field>
+    <record id="action_cancel" model="ir.actions.server">
+        <field name="name">Cancel</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_resource_reservation"/>
+        <field name="binding_model_id" ref="model_resource_reservation"/>
+        <field name="groups_id" eval="[(4, ref('group_resource_reservation_approver'))]"/>
+        <field name="binding_view_types">tree,form</field>
+        <field name="state">code</field>
+        <field name="code">records.update_booking_status_cancel()</field>
     </record>
 
     <record id="view_resource_reservation_form"
@@ -40,7 +40,7 @@
                     </group>
                     <group>
                         <group>
-                            <field name="name" options="{'no_create': True}"/>
+                            <field name="resource_name" options="{'no_create': True}"/>
                             <field name="resource_type" options="{'no_create': True}"/>
                         </group>
                         <group>
@@ -65,6 +65,10 @@
                         </group>
                     </group>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
             </form>
         </field>
     </record>
@@ -76,12 +80,25 @@
         <field name="arch" type="xml">
             <tree name="Resource Reservation">
                 <field name="title" width="4"/>
-                <field name="name" width="4"/>
+                <field name="resource_name" width="4"/>
                 <field name="start_datetime" width="4"/>
                 <field name="end_datetime" width="4"/>
                 <field name="create_uid" width="4"/>
                 <field name="booking_status" width="4"/>
             </tree>
+        </field>
+    </record>
+
+    <record id="view_resource_reservation_pivot" model="ir.ui.view">
+        <field name="name">resource.reservation.pivot</field>
+        <field name="model">resource.reservation</field>
+        <field name="groups_id" eval="[(4, ref('group_resource_reservation_admin')),
+                                (4, ref('group_resource_reservation_approver'))]"/>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="title"/>
+                <field name="resource_type"/>
+            </pivot>
         </field>
     </record>
 
@@ -93,8 +110,8 @@
                 <field name="name"/>
                 <field name="title"/>
                 <field name="reservation_tag_id"/>
-                <filter string="My Reservations" name="user_id"
-                        domain="[('user_id', '=', uid)]" icon="terp-personal"/>
+                <filter string="My Reservations" name="current_user"
+                        domain="[('current_user', '=', uid)]" icon="terp-personal"/>
                 <separator/>
                 <filter string="Pending" name="booking_status"
                         domain="[('booking_status', '=', 'pending')]" icon="terp-personal"/>
@@ -104,6 +121,12 @@
                 <separator/>
                 <filter string="Cancelled" name="booking_status"
                         domain="[('booking_status', '=', 'cancelled')]" icon="terp-personal"/>
+                <separator/>
+                <filter string="To be approved" name="booking_status"
+                        domain="[('resource_name.resource_owner.id', '=', uid),
+                                ('booking_status', '=', 'pending')]"
+                        groups="resource_reservation.group_resource_reservation_approver"
+                        icon="terp-personal"/>
             </search>
         </field>
     </record>
@@ -114,12 +137,13 @@
         <field name="arch" type="xml">
             <calendar string="Resource Reservation Calendar" date_start="start_datetime" color="color_reserv">
                 <field name="title" width="4"/>
-                <field name="name" width="4" filters="1"/>
+                <field name="resource_name" width="4" filters="1"/>
                 <field name="start_datetime" width="4"/>
                 <field name="end_datetime" width="4"/>
-                <field name="create_uid" width="4"/>
+                <field name="name" width="4"/>
                 <field name="booking_status" width="4"/>
                 <field name="reservation_tag_id" width="4"/>
+                <field name="resource_type" filters="1"/>
             </calendar>
 
         </field>
@@ -131,6 +155,14 @@
         <field name="res_model">resource.reservation</field>
         <field name="view_mode">tree,form,calendar</field>
         <field name="search_view_id" ref="resource_reservation_view_search"/>
+        <field name="context">{'no_breadcrumbs': True}</field>
+    </record>
+
+        <record id="action_resource_reservation_act_pivot_window"
+            model="ir.actions.act_window">
+        <field name="name">Resource Reservation</field>
+        <field name="res_model">resource.reservation</field>
+        <field name="view_mode">pivot</field>
         <field name="context">{'no_breadcrumbs': True}</field>
     </record>
 </odoo>

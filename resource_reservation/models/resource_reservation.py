@@ -11,6 +11,7 @@ class ReservationTag(models.Model):
     """
     _name = 'resource.reservation.tag'
     _description = 'Reservation Tag'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char(string=' Reservation Tag ', required=True)
     description = fields.Text(string='Description ')
@@ -30,12 +31,13 @@ class ResourceReservation(models.Model):
     create reservation
     """
     _name = 'resource.reservation'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Resource Reservation'
 
     title = fields.Char(string='Title ', required=True)
-    name = fields.Many2one(
+    resource_name = fields.Many2one(
         'resource',
-        string='Resource Name',
+        string='Resource',
         required=True,
         options={'no_create': True})
     resource_type = fields.Many2one(
@@ -54,9 +56,25 @@ class ResourceReservation(models.Model):
                                         "the end date and time "
                                         "of the event or task.",
                                    required=True)
-    user_id = fields.Integer(string='User ID',
-                             default=lambda self: self.env.user.id,
-                             required=True)
+    current_user = fields.Integer(string='User ID',
+                                  default=lambda self: self.env.user.id,
+                                  required=True)
+
+    name = fields.Char(
+        string='Created By',
+        readonly=True,
+        compute='_compute_created_by_name',
+        store=True,
+        help="Name of the user who created reservation."
+    )
+
+    activity_ids = fields.One2many(
+        'mail.activity',
+        'res_id',
+        string='Activities',
+        index=True,
+        domain=lambda self: [('res_model', '=', self._name)])
+
     booking_status = fields.Selection([
         ('pending', 'Pending '),
         ('confirmed', 'Confirmed '),
@@ -79,11 +97,30 @@ class ResourceReservation(models.Model):
         related='resource_type.color_resource_type',
         store=True)
 
+    @api.depends('create_uid')
+    def _compute_created_by_name(self):
+        for reservation in self:
+            reservation.name = reservation.create_uid.name
+
     def update_booking_status_cancel(self):
-        self.write({'booking_status': 'cancelled'})
+        for reservation in self:
+            if reservation.resource_name.resource_owner.id == self.env.user.id:
+                self.write({'booking_status': 'cancelled'})
+            else:
+                raise exceptions.ValidationError(_("You are not "
+                                                   "resource owner"
+                                                   " for "
+                                                   "this reservation"))
 
     def update_booking_status_confirm(self):
-        self.write({'booking_status': 'confirmed'})
+        for reservation in self:
+            if reservation.resource_name.resource_owner.id == self.env.user.id:
+                self.write({'booking_status': 'confirmed'})
+            else:
+                raise exceptions.ValidationError(_("You are not "
+                                                   "resource owner"
+                                                   " for "
+                                                   "this reservation"))
 
     @api.model
     def create(self, vals_list):
@@ -95,7 +132,7 @@ class ResourceReservation(models.Model):
         for reservation in self:
             overlapping = (self.env['resource.reservation'].search([
                 ('id', '!=', reservation.id),
-                ('name', '=', reservation.name.id),
+                ('resource_name', '=', reservation.resource_name.id),
                 ('start_datetime', '<', reservation.end_datetime),
                 ('end_datetime', '>', reservation.start_datetime),
             ]))
@@ -120,22 +157,22 @@ class ResourceReservation(models.Model):
                                                    "past dates are "
                                                    "not allowed."))
 
-    @api.onchange('name')
+    @api.onchange('resource_name')
     def _onchange_name(self):
-        if self.name:
-            self.resource_type = self.name.resource_type.id
+        if self.resource_name:
+            self.resource_type = self.resource_name.resource_type.id
             return {'domain': {'resource_type': [
                 ('id', '=',
-                 self.name.resource_type.id), ('id', '!=', False)]}}
+                 self.resource_name.resource_type.id), ('id', '!=', False)]}}
 
     @api.onchange('resource_type')
     def _onchange_resource_type(self):
         if self.resource_type:
             # mb better if it will be in 1 line ?
-            self.name = self.env['resource'].search(
+            self.resource_name = self.env['resource'].search(
                 [('resource_type', '=', self.resource_type.id)], limit=1)
             # mb better if it will be in 1 line ?
-            return {'domain': {'name': [
+            return {'domain': {'resource_name': [
                 ('resource_type', '=',
                  self.resource_type.id), ('id', '!=', False)]}}
 
@@ -160,6 +197,34 @@ class ResourceReservation(models.Model):
                                                        " to modify it"))
 
                 return super(ResourceReservation, self).write(vals)
+            except exceptions.ValidationError as e:
+                raise exceptions.UserError(str(e))
+        else:
+            return super(ResourceReservation, self).write(vals)
+
+    def write(self, vals):
+        if not self.env.user.has_group('resource_reservation.'
+                                       'group_resource_reservation_admin'):
+            try:
+                is_approver = self.env.user.has_group('resource_reservation.'
+                                                      'group_resource_'
+                                                      'reservation_approver')
+
+                if is_approver and 'booking_status' in vals:
+                    return super(ResourceReservation, self).write(vals)
+
+                if 'create_uid' in self and self.create_uid.id != self.env.user.id:
+                    raise exceptions.ValidationError(
+                        _("Oops! It seems like you're "
+                          "trying to access a reservation "
+                          "that wasn't created under your "
+                          "account. This reservation belongs"
+                          " to another user, and you currently"
+                          " don't have the "
+                          "necessary permissions to modify it"))
+                else:
+                    return super(ResourceReservation, self).write(vals)
+
             except exceptions.ValidationError as e:
                 raise exceptions.UserError(str(e))
         else:
