@@ -135,8 +135,7 @@
         <field name="name">resource.reservation.calendar</field>
         <field name="model">resource.reservation</field>
         <field name="arch" type="xml">
-            <calendar string="Resource Reservation Calendar" date_start="start_datetime" color="color_reserv"
-                      event_open_popup="false" quick_add="false">
+            <calendar string="Resource Reservation Calendar" date_start="start_datetime" color="color_reserv" event_open_popup="false" quick_add="false">
                 <field name="title" width="4"/>
                 <field name="resource_name" width="4" filters="1"/>
                 <field name="start_datetime" width="4"/>
@@ -159,7 +158,7 @@
         <field name="context">{'no_breadcrumbs': True}</field>
     </record>
 
-    <record id="action_resource_reservation_act_pivot_window"
+        <record id="action_resource_reservation_act_pivot_window"
             model="ir.actions.act_window">
         <field name="name">Resource Reservation</field>
         <field name="res_model">resource.reservation</field>
