@@ -97,6 +97,38 @@ class ResourceReservation(models.Model):
         related='resource_type.color_resource_type',
         store=True)
 
+    def action_send_email(self):
+        self.ensure_one()
+        ir_model_data = self.env['ir.model.data']
+        try:
+            template_id = ir_model_data._xmlid_lookup('resource_reservation.test_email_template')[2]
+        except ValueError:
+            template_id = False
+        try:
+            compose_form_id = ir_model_data._xmlid_lookup('mail.email_compose_message_wizard_form')[2]
+        except ValueError:
+            compose_form_id = False
+            template_id = self.env.ref('resource_reservation.test_email_template')[2]
+        ctx = {
+            'default_model': 'resource.reservation',
+            'default_res_id': self.ids[0],
+            'default_use_template': bool(template_id),
+            'default_template_id': template_id,
+            'default_composition_mode': 'comment',
+            'mark_so_as_sent': True,
+            'force_email': True,
+        }
+        return {
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'mail.compose.message',
+            'views': [(compose_form_id, 'form')],
+            'view_id': compose_form_id,
+            'target': 'new',
+            'context': ctx,
+        }
+
     @api.depends('create_uid')
     def _compute_created_by_name(self):
         for reservation in self:

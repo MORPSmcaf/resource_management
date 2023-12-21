@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data noupdate="1">
+        <record id="test_email_template" model="mail.template">
+            <field name="name">Resource Reservation</field>
+            <field name="subject">Resource Reservation:
+            </field>
+            <field name="model_id"
+                   ref="resource_reservation.model_resource_reservation"/>
+            <field name="email_from">{{ (object.env.user.login) }}
+            </field>
+            <field name="body_html">
+                <![CDATA[
+                Dear <t t-out="object.name"/>,
+                <p>
+                    Your reservation status is <strong><t t-out="object.booking_status"/></strong>
+                </p>
+                <p>
+                    Check your status of reservation and take any necessary action.
+                </p>
+                ]]>
+            </field>
+            <field name="auto_delete" eval="False"/>
+        </record>
+    </data>
+</odoo>
