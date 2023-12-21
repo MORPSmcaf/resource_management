@@ -222,3 +222,20 @@ class ResourceReservation(models.Model):
                 raise exceptions.UserError(str(e))
         else:
             return super(ResourceReservation, self).write(vals)
+
+    def unlink(self):
+        for reservation in self:
+            if not (
+                self.env.user.has_group('resource_reservation.'
+                                        'group_resource_reservation_admin') or
+                reservation.resource_name.resource_owner.id == self.env.user.id
+            ):
+                raise exceptions.AccessError(_("You do not have the "
+                                               "permission to "
+                                               "delete this "
+                                               "reservation. "
+                                               "Only the resource"
+                                               " owner or users "
+                                               "with 'Admin' access"
+                                               " can delete it."))
+        return super(ResourceReservation, self).unlink()
