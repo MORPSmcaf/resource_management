@@ -1,7 +1,7 @@
 {
     'name': "Resource Reservation",
     'summary': "Resource management platform for managing resources",
-    'version': '16.0.1.0.0',
+    'version': '16.0.1.3.0',
     'website': "https://mcaf.nb.ca/en/",
     'author': "MCAF",
     'category': "Appointments",
