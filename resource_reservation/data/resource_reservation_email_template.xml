@@ -10,15 +10,10 @@
                    ref="resource_reservation.model_resource_reservation"/>
             <field name="email_from">{{ (object.env.user.login) }}
             </field>
+            <field name="description">Sent to the users</field>
             <field name="body_html">
                 <![CDATA[
-                Dear <t t-out="object.name"/>,
-                <p>
-                    Your reservation status is <strong><t t-out="object.booking_status"/></strong>
-                </p>
-                <p>
-                    Check your status of reservation and take any necessary action.
-                </p>
+                Dear
                 ]]>
             </field>
             <field name="auto_delete" eval="False"/>

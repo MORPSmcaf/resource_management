@@ -129,6 +129,25 @@ class ResourceReservation(models.Model):
             'context': ctx,
         }
 
+    # def _send_booking_status_change_email(self, old_status):
+    #     """
+    #     Send an email notification when the booking status changes.
+    #     """
+    #     print("here coming rajat")
+    #     template_id = self.env.ref('resource_reservation.test_email_template')[0]
+    #     if template_id:
+    #         for reservation in self:
+    #             if reservation.booking_status != old_status:
+    #                 template_values = {
+    #                     'email_to': 'odoo.demo.local@gmail.com',
+    #                     'subject': 'abcd',
+    #                     'old_status': old_status,
+    #                 }
+    #
+    #                 # Send the email
+    #                 mail = self.env['mail.mail'].sudo().create(template_values)
+    #                 mail.send()
+
     @api.depends('create_uid')
     def _compute_created_by_name(self):
         for reservation in self:
