@@ -29,10 +29,6 @@
         <field name="model">resource.reservation</field>
         <field name="arch" type="xml">
             <form create="false" action_cancel="0">
-                <header>
-                    <button name="action_send_email" string="Send mail"
-                            class="oe_highlight" type="object"/>
-                </header>
                 <sheet>
                     <group>
                         <group>

@@ -97,66 +97,33 @@ class ResourceReservation(models.Model):
         related='resource_type.color_resource_type',
         store=True)
 
-    def action_send_email(self):
-        self.ensure_one()
-        ir_model_data = self.env['ir.model.data']
-        try:
-            template_id = ir_model_data._xmlid_lookup('resource_reservation.test_email_template')[2]
-        except ValueError:
-            template_id = False
-        try:
-            compose_form_id = ir_model_data._xmlid_lookup('mail.email_compose_message_wizard_form')[2]
-        except ValueError:
-            compose_form_id = False
-            template_id = self.env.ref('resource_reservation.test_email_template')[2]
-        ctx = {
-            'default_model': 'resource.reservation',
-            'default_res_id': self.ids[0],
-            'default_use_template': bool(template_id),
-            'default_template_id': template_id,
-            'default_composition_mode': 'comment',
-            'mark_so_as_sent': True,
-            'force_email': True,
-        }
-        return {
-            'type': 'ir.actions.act_window',
-            'view_type': 'form',
-            'view_mode': 'form',
-            'res_model': 'mail.compose.message',
-            'views': [(compose_form_id, 'form')],
-            'view_id': compose_form_id,
-            'target': 'new',
-            'context': ctx,
-        }
+    created_by_email = fields.Char(
+        string='Created By Email ',
+        compute='_compute_created_by_email',
+        store=True,
+        help="Email of the user who created the reservation."
+    )
 
-    # def _send_booking_status_change_email(self, old_status):
-    #     """
-    #     Send an email notification when the booking status changes.
-    #     """
-    #     print("here coming rajat")
-    #     template_id = self.env.ref('resource_reservation.test_email_template')[0]
-    #     if template_id:
-    #         for reservation in self:
-    #             if reservation.booking_status != old_status:
-    #                 template_values = {
-    #                     'email_to': 'odoo.demo.local@gmail.com',
-    #                     'subject': 'abcd',
-    #                     'old_status': old_status,
-    #                 }
-    #
-    #                 # Send the email
-    #                 mail = self.env['mail.mail'].sudo().create(template_values)
-    #                 mail.send()
+    @api.depends('create_uid')
+    def _compute_created_by_email(self):
+        for reservation in self:
+            reservation.created_by_email = reservation.create_uid.email
 
     @api.depends('create_uid')
     def _compute_created_by_name(self):
         for reservation in self:
             reservation.name = reservation.create_uid.name
 
+    def send_confirmation_email(self):
+        self.ensure_one()
+        template_id = self.env.ref('resource_reservation.test_email_template')
+        template_id.send_mail(self.id, force_send=True)
+
     def update_booking_status_cancel(self):
         for reservation in self:
             if reservation.resource_name.resource_owner.id == self.env.user.id:
                 self.write({'booking_status': 'cancelled'})
+                reservation.send_confirmation_email()
             else:
                 raise exceptions.ValidationError(_("You are not "
                                                    "resource owner"
@@ -166,7 +133,8 @@ class ResourceReservation(models.Model):
     def update_booking_status_confirm(self):
         for reservation in self:
             if reservation.resource_name.resource_owner.id == self.env.user.id:
-                self.write({'booking_status': 'confirmed'})
+                reservation.write({'booking_status': 'confirmed'})
+                reservation.send_confirmation_email()
             else:
                 raise exceptions.ValidationError(_("You are not "
                                                    "resource owner"
@@ -226,32 +194,6 @@ class ResourceReservation(models.Model):
             return {'domain': {'resource_name': [
                 ('resource_type', '=',
                  self.resource_type.id), ('id', '!=', False)]}}
-
-    def write(self, vals):
-        if not self.env.user.has_group('resource_reservation.'
-                                       'group_resource_reservation_admin'):
-            try:
-                if ('create_uid' in
-                        self and self.create_uid.id != self.env.user.id):
-                    raise exceptions.ValidationError(_("Oops! It seems like "
-                                                       "you're trying to "
-                                                       "access a "
-                                                       "reservation that"
-                                                       " wasn't created "
-                                                       "under your account. "
-                                                       "This reservation "
-                                                       "belongs to another "
-                                                       "user, and you "
-                                                       "currently"
-                                                       " don't have the"
-                                                       " necessary permissions"
-                                                       " to modify it"))
-
-                return super(ResourceReservation, self).write(vals)
-            except exceptions.ValidationError as e:
-                raise exceptions.UserError(str(e))
-        else:
-            return super(ResourceReservation, self).write(vals)
 
     def write(self, vals):
         if not self.env.user.has_group('resource_reservation.'
