@@ -97,15 +97,33 @@ class ResourceReservation(models.Model):
         related='resource_type.color_resource_type',
         store=True)
 
+    created_by_email = fields.Char(
+        string='Created By Email ',
+        compute='_compute_created_by_email',
+        store=True,
+        help="Email of the user who created the reservation."
+    )
+
+    @api.depends('create_uid')
+    def _compute_created_by_email(self):
+        for reservation in self:
+            reservation.created_by_email = reservation.create_uid.email
+
     @api.depends('create_uid')
     def _compute_created_by_name(self):
         for reservation in self:
             reservation.name = reservation.create_uid.name
 
+    def send_confirmation_email(self):
+        self.ensure_one()
+        template_id = self.env.ref('resource_reservation.test_email_template')
+        template_id.send_mail(self.id, force_send=True)
+
     def update_booking_status_cancel(self):
         for reservation in self:
             if reservation.resource_name.resource_owner.id == self.env.user.id:
                 self.write({'booking_status': 'cancelled'})
+                reservation.send_confirmation_email()
             else:
                 raise exceptions.ValidationError(_("You are not "
                                                    "resource owner"
@@ -115,7 +133,8 @@ class ResourceReservation(models.Model):
     def update_booking_status_confirm(self):
         for reservation in self:
             if reservation.resource_name.resource_owner.id == self.env.user.id:
-                self.write({'booking_status': 'confirmed'})
+                reservation.write({'booking_status': 'confirmed'})
+                reservation.send_confirmation_email()
             else:
                 raise exceptions.ValidationError(_("You are not "
                                                    "resource owner"
