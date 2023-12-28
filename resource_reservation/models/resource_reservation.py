@@ -180,20 +180,21 @@ class ResourceReservation(models.Model):
     def _onchange_name(self):
         if self.resource_name:
             self.resource_type = self.resource_name.resource_type.id
-            return {'domain': {'resource_type': [
-                ('id', '=',
-                 self.resource_name.resource_type.id), ('id', '!=', False)]}}
+            return {'domain': {'resource_type': [('id', '=', self.resource_name.resource_type.id)]}}
+        else:
+            self.resource_type = False
+            return {'domain': {'resource_type': []}}
 
     @api.onchange('resource_type')
     def _onchange_resource_type(self):
         if self.resource_type:
-            # mb better if it will be in 1 line ?
-            self.resource_name = self.env['resource'].search(
+            resource = self.env['resource'].sudo().search(
                 [('resource_type', '=', self.resource_type.id)], limit=1)
-            # mb better if it will be in 1 line ?
-            return {'domain': {'resource_name': [
-                ('resource_type', '=',
-                 self.resource_type.id), ('id', '!=', False)]}}
+            self.resource_name = resource
+            return {'domain': {'resource_name': [('resource_type', '=', self.resource_type.id)]}}
+        else:
+            self.resource_name = False
+            return {'domain': {'resource_name': []}}
 
     def write(self, vals):
         if not self.env.user.has_group('resource_reservation.'
