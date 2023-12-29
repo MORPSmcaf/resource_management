@@ -8,7 +8,7 @@
             <form create="false">
                 <sheet>
                     <group>
-                        <field name="resource_id"/>
+                        <field name="resource_id" options="{'no_create': True}"/>
                         <field name="start_datetime"/>
                         <field name="end_datetime"/>
                         <field name="availability_status" readonly="1"/>
