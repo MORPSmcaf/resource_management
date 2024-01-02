@@ -145,7 +145,7 @@
                 <field name="name" width="4"/>
                 <field name="booking_status" width="4"/>
                 <field name="reservation_tag_id" width="4"/>
-                <field name="resource_type" filters="1"/>
+                <field name="resource_type" />
             </calendar>
 
         </field>
