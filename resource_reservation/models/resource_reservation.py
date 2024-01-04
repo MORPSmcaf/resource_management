@@ -97,15 +97,33 @@ class ResourceReservation(models.Model):
         related='resource_type.color_resource_type',
         store=True)
 
+    created_by_email = fields.Char(
+        string='Created By Email ',
+        compute='_compute_created_by_email',
+        store=True,
+        help="Email of the user who created the reservation."
+    )
+
+    @api.depends('create_uid')
+    def _compute_created_by_email(self):
+        for reservation in self:
+            reservation.created_by_email = reservation.create_uid.email
+
     @api.depends('create_uid')
     def _compute_created_by_name(self):
         for reservation in self:
             reservation.name = reservation.create_uid.name
 
+    def send_confirmation_email(self):
+        self.ensure_one()
+        template_id = self.env.ref('resource_reservation.test_email_template')
+        template_id.send_mail(self.id, force_send=True)
+
     def update_booking_status_cancel(self):
         for reservation in self:
             if reservation.resource_name.resource_owner.id == self.env.user.id:
                 self.write({'booking_status': 'cancelled'})
+                reservation.send_confirmation_email()
             else:
                 raise exceptions.ValidationError(_("You are not "
                                                    "resource owner"
@@ -115,7 +133,8 @@ class ResourceReservation(models.Model):
     def update_booking_status_confirm(self):
         for reservation in self:
             if reservation.resource_name.resource_owner.id == self.env.user.id:
-                self.write({'booking_status': 'confirmed'})
+                reservation.write({'booking_status': 'confirmed'})
+                reservation.send_confirmation_email()
             else:
                 raise exceptions.ValidationError(_("You are not "
                                                    "resource owner"
@@ -161,46 +180,21 @@ class ResourceReservation(models.Model):
     def _onchange_name(self):
         if self.resource_name:
             self.resource_type = self.resource_name.resource_type.id
-            return {'domain': {'resource_type': [
-                ('id', '=',
-                 self.resource_name.resource_type.id), ('id', '!=', False)]}}
+            return {'domain': {'resource_type': [('id', '=', self.resource_name.resource_type.id)]}}
+        else:
+            self.resource_type = False
+            return {'domain': {'resource_type': []}}
 
     @api.onchange('resource_type')
     def _onchange_resource_type(self):
         if self.resource_type:
-            # mb better if it will be in 1 line ?
-            self.resource_name = self.env['resource'].search(
+            resource = self.env['resource'].sudo().search(
                 [('resource_type', '=', self.resource_type.id)], limit=1)
-            # mb better if it will be in 1 line ?
-            return {'domain': {'resource_name': [
-                ('resource_type', '=',
-                 self.resource_type.id), ('id', '!=', False)]}}
-
-    def write(self, vals):
-        if not self.env.user.has_group('resource_reservation.'
-                                       'group_resource_reservation_admin'):
-            try:
-                if ('create_uid' in
-                        self and self.create_uid.id != self.env.user.id):
-                    raise exceptions.ValidationError(_("Oops! It seems like "
-                                                       "you're trying to "
-                                                       "access a "
-                                                       "reservation that"
-                                                       " wasn't created "
-                                                       "under your account. "
-                                                       "This reservation "
-                                                       "belongs to another "
-                                                       "user, and you "
-                                                       "currently"
-                                                       " don't have the"
-                                                       " necessary permissions"
-                                                       " to modify it"))
-
-                return super(ResourceReservation, self).write(vals)
-            except exceptions.ValidationError as e:
-                raise exceptions.UserError(str(e))
+            self.resource_name = resource
+            return {'domain': {'resource_name': [('resource_type', '=', self.resource_type.id)]}}
         else:
-            return super(ResourceReservation, self).write(vals)
+            self.resource_name = False
+            return {'domain': {'resource_name': []}}
 
     def write(self, vals):
         if not self.env.user.has_group('resource_reservation.'
@@ -229,3 +223,20 @@ class ResourceReservation(models.Model):
                 raise exceptions.UserError(str(e))
         else:
             return super(ResourceReservation, self).write(vals)
+
+    def unlink(self):
+        for reservation in self:
+            if not (
+                self.env.user.has_group('resource_reservation.'
+                                        'group_resource_reservation_admin') or
+                reservation.resource_name.resource_owner.id == self.env.user.id
+            ):
+                raise exceptions.AccessError(_("You do not have the "
+                                               "permission to "
+                                               "delete this "
+                                               "reservation. "
+                                               "Only the resource"
+                                               " owner or users "
+                                               "with 'Admin' access"
+                                               " can delete it."))
+        return super(ResourceReservation, self).unlink()
